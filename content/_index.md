@@ -17,7 +17,7 @@ description: "helo"
 :tongue: 
 
 
-I'm currently interesting in cyber field 
+I'm currently interesting in cyber security field 
 
 on a journey to get a job and make some bread
 
