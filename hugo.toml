@@ -42,4 +42,4 @@ weight = 3
 [params]
 custom_css = ["css/theme-override.css"]
 description = "A simple, minimal blog for those who love text."
-footer = "Open-Source | [Github](https://github.com/iluvmOne-Y) 
+footer = "Open-Source | [GitHub](https://github.com/iluvmOne-Y)"
