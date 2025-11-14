@@ -1,7 +1,7 @@
 ---
 title: "I'm Hosting My Fav Actress's Movie Vault!"
 author: clgp
-date: '2025-11-15'
+date: '2025-11-14'
 categories:
   - Projects
 tags:
