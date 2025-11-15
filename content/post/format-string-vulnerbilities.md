@@ -67,32 +67,32 @@ to get the exact value you want written to the exact address.
 This function help yout to write payload which control
 exactly what value gets written to which address.
 
-##  Why This Is a Lifesaver: The Manual Method
+##  Why This Is a Lifesaver: The Manual Method
 
 **Our Goal:** Write the 4-byte value **`0xDEADBEEF`** to the address **`0x12345678`**.
 
 > **Assumptions:**
 > * We are on a little-endian system (most x86/ARM CPUs).
 > * This means `0xDEADBEEF` at `0x12345678` is stored in memory as:
->     * `0xEF` at `0x1234567B`
->     * `0xBE` at `0x1234567A`
->     * `0xAD` at `0x12345679`
->     * `0xDE` at `0x12345678`
+>     * `0xEF` at `0x1234567B`
+>     * `0xBE` at `0x1234567A`
+>     * `0xAD` at `0x12345679`
+>     * `0xDE` at `0x12345678`
 > * We will use `%hhn` (which writes 1 byte) for our writes.
 > * The `printf` byte counter (which `%hhn` uses) starts at `0`.
 
 ---
 
-### Step 0: The "Sort"
+### Step 0: The *Sort*
 
 The `printf` counter can only **increase**. We can't write `222` bytes and then write `173` bytes, because the counter would already be past `173`.
 
 Therefore, we **must sort our writes from the lowest byte value to the highest**:
 
-1.  Write `0xAD` (`173`) -> to address `0x12345679`
-2.  Write `0xBE` (`190`) -> to address `0x1234567A`
-3.  Write `0xDE` (`222`) -> to address `0x12345678`
-4.  Write `0xEF` (`239`) -> to address `0x1234567B`
+1.  Write `0xAD` (`173`) -> to address `0x12345679`
+2.  Write `0xBE` (`190`) -> to address `0x1234567A`
+3.  Write `0xDE` (`222`) -> to address `0x12345678`
+4.  Write `0xEF` (`239`) -> to address `0x1234567B`
 
 Our payload will perform 4 writes in this specific order.
 
@@ -105,9 +105,9 @@ Our payload will perform 4 writes in this specific order.
 * **Action:** We need the counter to become `173`. We do this by printing `173` padding characters.
 * **Payload Part:** `%173c...` (followed by a `%...$hhn` specifier pointing to `0x12345679`)
 * **Result:**
-    * `printf` prints `173` characters.
-    * The counter increases from `0` to **`173`**.
-    * The `%hhn` triggers and writes the value `173` (which is `0xAD`) to the address `0x12345679`.
+    * `printf` prints `173` characters.
+    * The counter increases from `0` to **`173`**.
+    * The `%hhn` triggers and writes the value `173` (which is `0xAD`) to the address `0x12345679`.
 
 ### Step 2: Write the value 190 (0xBE)
 
@@ -116,9 +116,9 @@ Our payload will perform 4 writes in this specific order.
 * **Action:** We need the counter to become `190`. It's already at `173`, so we only need to print an additional **`190 - 173 = 17`** characters.
 * **Payload Part:** `%17c...` (followed by a `%...$hhn` specifier pointing to `0x1234567A`)
 * **Result:**
-    * `printf` prints an additional `17` characters.
-    * The counter increases from `173` to **`190`**.
-    * The `%hhn` triggers and writes the value `190` (which is `0xBE`) to the address `0x1234567A`.
+    * `printf` prints an additional `17` characters.
+    * The counter increases from `173` to **`190`**.
+    * The `%hhn` triggers and writes the value `190` (which is `0xBE`) to the address `0x1234567A`.
 
 ### Step 3: Write the value 222 (0xDE)
 
@@ -127,9 +127,9 @@ Our payload will perform 4 writes in this specific order.
 * **Action:** We need the counter to become `222`. We need to print an additional **`222 - 190 = 32`** characters.
 * **Payload Part:** `%32c...` (followed by a `%...$hhn` specifier pointing to `0x12345678`)
 * **Result:**
-    * `printf` prints an additional `32` characters.
-    * The counter increases from `190` to **`222`**.
-    * The `%hhn` triggers and writes the value `222` (which is `0xDE`) to the address `0x12345678`.
+    * `printf` prints an additional `32` characters.
+    * The counter increases from `190` to **`222`**.
+    * The `%hhn` triggers and writes the value `222` (which is `0xDE`) to the address `0x12345678`.
 
 ### Step 4: Write the value 239 (0xEF)
 
@@ -138,9 +138,9 @@ Our payload will perform 4 writes in this specific order.
 * **Action:** We need the counter to become `239`. We need to print an additional **`239 - 222 = 17`** characters.
 * **Payload Part:** `%17c...` (followed by a `%...$hhn` specifier pointing to `0x1234567B`)
 * **Result:**
-    * `printf` prints an additional `17` characters.
-    * The counter increases from `222` to **`239`**.
-    * The `%hhn` triggers and writes the value `239` (which is `0xEF`) to the address `0x1D234567B`.
+    * `printf` prints an additional `17` characters.
+    * The counter increases from `222` to **`239`**.
+    * The `%hhn` triggers and writes the value `239` (which is `0xEF`) to the address `0x1D234567B`.
 
 ---
 
