@@ -17,12 +17,12 @@ payload = fmtstr_payload(offset, writes, numbwritten='byte')
 
 ```
 
-**offset is the stack offset of where you want to do the payload** 
+**+offset is the stack offset of where you want to do the payload** 
 
-**writes is a pair value { address_to_write_to: value_to_write }**
+**+writes is a pair value { address_to_write_to: value_to_write }**
 
-** numbwritten (optional) is the number of byte that have been printed before the 
-payload is processed **
+**+numbwritten (optional) is the number of byte that have been printed before the 
+payload is processed**
 
 ## Example
 
