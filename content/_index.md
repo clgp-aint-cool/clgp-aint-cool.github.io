@@ -7,9 +7,6 @@ description: "helo"
   id="a"
   src="/images/avatar.jpg"
   alt="A cutie">
-I'm currently interested in cyber security field 
-
-<div class="floating-cat" title="Hi! I'm a cat">🐱</div>
 
 I'm currently interested in cyber security field 
 
