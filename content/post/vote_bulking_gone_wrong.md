@@ -90,8 +90,8 @@ It’s not just automation; it’s _smart_ automation.
 
 - **Speed:** 13 seconds per vote cycle.
 - **The Calculation:**
-  $$\frac{700 \text{ accounts} \times 13 \text{ seconds}}{3600 \text{ seconds/hr}} \approx 2.5 \text{ hours}$$
-- **The Payload:** $700 \times 5 = \mathbf{3,500}$ **points per day.**
+  700 accounts × 13 seconds) ÷ 3600 ≈ 2.5 hours
+- **The Payload:** 700 × 5 = 3,500 **points per day.**
 
 In just two days, I managed to pump **10,000 points** into the system. Not bad for a one-man army, right? =))
 
