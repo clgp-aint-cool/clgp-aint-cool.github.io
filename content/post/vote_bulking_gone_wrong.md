@@ -1,5 +1,5 @@
 ---
-title: "One Man Army: How I Built a Bot to Dominate Lan Song Xanh 2025"
+title: "One Man Army: How I Built a Bot to Dominate Ngoi Sao Xanh 2025"
 author: clgp
 date: "2025-12-12T01:06:11+07:00"
 categories:
@@ -16,7 +16,7 @@ tags:
 
 ## 🎯 The Mission
 
-So, **Lan Song Xanh 2025** is happening. For those who don't know, it's a major voting competition where fans vote for their favorite actors.
+So, **Ngoi Sao Xanh 2025** is happening. For those who don't know, it's a major voting competition where fans vote for their favorite actors.
 
 Here is the rule:
 
