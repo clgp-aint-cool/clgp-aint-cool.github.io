@@ -118,19 +118,31 @@
     </footer>
 
     <style>
-      /* customizable snowflake styling */
+      /* --- BASE SNOWFLAKE STYLING --- */
       .snowflake {
-        color: #fff;
-        font-size: 1em;
+        /* DEFAULT COLOR: Visible on White Background (Light Mode) */
+        color: #a0c4ff; /* Light Blue/Grey */
+        font-size: 1.5em; /* Made slightly bigger to see easier */
         font-family: Arial, sans-serif;
-        text-shadow: 0 0 5px #000;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       }
 
+      /* --- DARK MODE OVERRIDE --- */
+      /* If the user is in Dark Mode, make snow White */
+      @media (prefers-color-scheme: dark) {
+        .snowflake {
+          color: #fff;
+          text-shadow: 0 0 5px #000;
+        }
+      }
+
+      /* --- ANIMATION SETTINGS (Keep as is) --- */
       .snowflake,
       .snowflake .inner {
         animation-iteration-count: infinite;
         animation-play-state: running;
       }
+
       @keyframes snowflakes-fall {
         0% {
           transform: translateY(0);
@@ -139,6 +151,7 @@
           transform: translateY(110vh);
         }
       }
+
       @keyframes snowflakes-shake {
         0%,
         100% {
@@ -148,137 +161,114 @@
           transform: translateX(80px);
         }
       }
+
       .snowflake {
         position: fixed;
         top: -10%;
         z-index: 9999;
-        -webkit-user-select: none;
         user-select: none;
-        cursor: default;
         pointer-events: none;
         animation-name: snowflakes-shake;
         animation-duration: 3s;
         animation-timing-function: ease-in-out;
       }
+
       .snowflake .inner {
         animation-duration: 10s;
         animation-name: snowflakes-fall;
         animation-timing-function: linear;
       }
-      .snowflake:nth-of-type(0) {
+
+      /* --- POSITIONING --- */
+      /* Note: nth-of-type starts at 1, so I fixed the 0 index for you */
+      .snowflake:nth-of-type(1) {
         left: 1%;
         animation-delay: 0s;
       }
-      .snowflake:nth-of-type(0) .inner {
+      .snowflake:nth-of-type(1) .inner {
         animation-delay: 0s;
       }
-      .snowflake:first-of-type {
+
+      .snowflake:nth-of-type(2) {
         left: 10%;
         animation-delay: 1s;
       }
-      .snowflake:first-of-type .inner,
-      .snowflake:nth-of-type(8) .inner {
+      .snowflake:nth-of-type(2) .inner {
         animation-delay: 1s;
       }
-      .snowflake:nth-of-type(2) {
+
+      .snowflake:nth-of-type(3) {
         left: 20%;
         animation-delay: 0.5s;
       }
-      .snowflake:nth-of-type(2) .inner,
-      .snowflake:nth-of-type(6) .inner {
+      .snowflake:nth-of-type(3) .inner {
         animation-delay: 6s;
       }
-      .snowflake:nth-of-type(3) {
+
+      .snowflake:nth-of-type(4) {
         left: 30%;
         animation-delay: 2s;
       }
-      .snowflake:nth-of-type(11) .inner,
-      .snowflake:nth-of-type(3) .inner {
+      .snowflake:nth-of-type(4) .inner {
         animation-delay: 4s;
       }
-      .snowflake:nth-of-type(4) {
+
+      .snowflake:nth-of-type(5) {
         left: 40%;
         animation-delay: 2s;
       }
-      .snowflake:nth-of-type(10) .inner,
-      .snowflake:nth-of-type(4) .inner {
+      .snowflake:nth-of-type(5) .inner {
         animation-delay: 2s;
       }
-      .snowflake:nth-of-type(5) {
+
+      .snowflake:nth-of-type(6) {
         left: 50%;
         animation-delay: 3s;
       }
-      .snowflake:nth-of-type(5) .inner {
+      .snowflake:nth-of-type(6) .inner {
         animation-delay: 8s;
       }
-      .snowflake:nth-of-type(6) {
+
+      .snowflake:nth-of-type(7) {
         left: 60%;
         animation-delay: 2s;
       }
-      .snowflake:nth-of-type(7) {
+      .snowflake:nth-of-type(7) .inner {
+        animation-delay: 6s;
+      }
+
+      .snowflake:nth-of-type(8) {
         left: 70%;
         animation-delay: 1s;
       }
-      .snowflake:nth-of-type(7) .inner {
+      .snowflake:nth-of-type(8) .inner {
         animation-delay: 2.5s;
       }
-      .snowflake:nth-of-type(8) {
+
+      .snowflake:nth-of-type(9) {
         left: 80%;
         animation-delay: 0s;
       }
-      .snowflake:nth-of-type(9) {
+      .snowflake:nth-of-type(9) .inner {
+        animation-delay: 1s;
+      }
+
+      .snowflake:nth-of-type(10) {
         left: 90%;
         animation-delay: 1.5s;
       }
-      .snowflake:nth-of-type(9) .inner {
+      .snowflake:nth-of-type(10) .inner {
         animation-delay: 3s;
       }
-      .snowflake:nth-of-type(10) {
+
+      .snowflake:nth-of-type(11) {
         left: 25%;
         animation-delay: 0s;
       }
-      .snowflake:nth-of-type(11) {
+      .snowflake:nth-of-type(12) {
         left: 65%;
         animation-delay: 2.5s;
       }
     </style>
-    <div class="snowflakes" aria-hidden="true">
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-      <div class="snowflake">
-        <div class="inner">❅</div>
-      </div>
-    </div>
   </body>
 </html>
