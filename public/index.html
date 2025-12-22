@@ -1,127 +1,284 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-us">
   <head>
-	<meta name="generator" content="Hugo 0.152.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta name="generator" content="Hugo 0.152.2" />
+    <script
+      src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload"
+      data-no-instant
+      defer
+    ></script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-    <link rel="manifest" href="/images/site.webmanifest">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/images/site.webmanifest" />
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="helo">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="helo" />
     <title>Home | AboutMe</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
-    <link rel="stylesheet" href="http://localhost:1313/css/theme-override.css">
-    
+    <link
+      rel="stylesheet"
+      href="http://localhost:1313/css/theme-override.css"
+    />
   </head>
 
   <body>
     <header>
       <nav>
         <ul>
-          
-          
           <li class="pull-left current">
             <a href="http://localhost:1313/">~/aboutme</a>
           </li>
-          
-          
-          <li class="pull-left ">
+
+          <li class="pull-left">
             <a href="/blog/">~/blog</a>
           </li>
-          
-          
-          <li class="pull-left ">
+
+          <li class="pull-left">
             <a href="/categories/">~/categories</a>
           </li>
-          
-          
-          <li class="pull-left ">
+
+          <li class="pull-left">
             <a href="/tags/">~/tags</a>
           </li>
-          
-
-          
-
         </ul>
       </nav>
     </header>
 
+    <div class="content-wrapper">
+      <h2 id="clgps-blogz">CLGP&rsquo;S BLOGZ</h2>
+      <p><img id="a" src="/images/avatar.jpeg" alt="A cutie" /></p>
+      <p>&#x1f445; &#x1f445; &#x1f445; &#x1f445; &#x1f445;</p>
+      <p>I&rsquo;m currently interesting in cyber field</p>
+      <p>on a journey to get a job and make some bread</p>
+      <p>20 - hcmcity/vn</p>
+      <img src="/images/goat-licking.gif" />
+      <hr />
+      <h2 id="musings">Musings</h2>
 
+      <ul>
+        <li>
+          <span class="date">2025/11/13</span>
+          <a href="/post/2025/11/13/first-words/">first words</a>
+        </li>
 
-<div class="content-wrapper">
+        <li>
+          <span class="date">2025/11/13</span>
+          <a href="/post/2025/11/13/second-word/">second word</a>
+        </li>
+      </ul>
+    </div>
 
-
-  <h2 id="clgps-blogz">CLGP&rsquo;S BLOGZ</h2>
-<p><img
-id="a"
-src="/images/avatar.jpeg"
-alt="A cutie"></p>
-<p>&#x1f445;
-&#x1f445;
-&#x1f445;
-&#x1f445;
-&#x1f445;</p>
-<p>I&rsquo;m currently interesting in cyber field</p>
-<p>on a journey to get a job and make some bread</p>
-<p>20 - hcmcity/vn</p>
-<img src="/images/goat-licking.gif">
-<hr>
-<h2 id="musings">Musings</h2>
-
-
-  <ul>
-     
-     
-     
-     <li>
-       <span class="date">2025/11/13</span>
-       <a href="/post/2025/11/13/first-words/">first words</a>
-     </li>
-     
-     <li>
-       <span class="date">2025/11/13</span>
-       <a href="/post/2025/11/13/second-word/">second word</a>
-     </li>
-     
-   </ul>
-</div>
     <footer>
-      
-      
       <script>
-      (function() {
-        function center_el(tagName) {
-          var tags = document.getElementsByTagName(tagName), i, tag;
-          for (i = 0; i < tags.length; i++) {
-            tag = tags[i];
-            var parent = tag.parentElement;
-            
-            if (parent.childNodes.length === 1) {
-              
-              if (parent.nodeName === 'A') {
-                parent = parent.parentElement;
-                if (parent.childNodes.length != 1) continue;
+        (function () {
+          function center_el(tagName) {
+            var tags = document.getElementsByTagName(tagName),
+              i,
+              tag;
+            for (i = 0; i < tags.length; i++) {
+              tag = tags[i];
+              var parent = tag.parentElement;
+
+              if (parent.childNodes.length === 1) {
+                if (parent.nodeName === "A") {
+                  parent = parent.parentElement;
+                  if (parent.childNodes.length != 1) continue;
+                }
+                if (parent.nodeName === "P") parent.style.textAlign = "center";
               }
-              if (parent.nodeName === 'P') parent.style.textAlign = 'center';
             }
           }
-        }
-        var tagNames = ['img', 'embed', 'object'];
-        for (var i = 0; i < tagNames.length; i++) {
-          center_el(tagNames[i]);
-        }
-      })();
+          var tagNames = ["img", "embed", "object"];
+          for (var i = 0; i < tagNames.length; i++) {
+            center_el(tagNames[i]);
+          }
+        })();
       </script>
 
-      
-      <hr/>
+      <hr />
       Open-Source | <a href="https://github.com/iluvmOne-Y">Github</a>
-      
     </footer>
+
+    <style>
+      /* customizable snowflake styling */
+      .snowflake {
+        color: #fff;
+        font-size: 1em;
+        font-family: Arial, sans-serif;
+        text-shadow: 0 0 5px #000;
+      }
+
+      .snowflake,
+      .snowflake .inner {
+        animation-iteration-count: infinite;
+        animation-play-state: running;
+      }
+      @keyframes snowflakes-fall {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(110vh);
+        }
+      }
+      @keyframes snowflakes-shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(80px);
+        }
+      }
+      .snowflake {
+        position: fixed;
+        top: -10%;
+        z-index: 9999;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: default;
+        pointer-events: none;
+        animation-name: snowflakes-shake;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
+      }
+      .snowflake .inner {
+        animation-duration: 10s;
+        animation-name: snowflakes-fall;
+        animation-timing-function: linear;
+      }
+      .snowflake:nth-of-type(0) {
+        left: 1%;
+        animation-delay: 0s;
+      }
+      .snowflake:nth-of-type(0) .inner {
+        animation-delay: 0s;
+      }
+      .snowflake:first-of-type {
+        left: 10%;
+        animation-delay: 1s;
+      }
+      .snowflake:first-of-type .inner,
+      .snowflake:nth-of-type(8) .inner {
+        animation-delay: 1s;
+      }
+      .snowflake:nth-of-type(2) {
+        left: 20%;
+        animation-delay: 0.5s;
+      }
+      .snowflake:nth-of-type(2) .inner,
+      .snowflake:nth-of-type(6) .inner {
+        animation-delay: 6s;
+      }
+      .snowflake:nth-of-type(3) {
+        left: 30%;
+        animation-delay: 2s;
+      }
+      .snowflake:nth-of-type(11) .inner,
+      .snowflake:nth-of-type(3) .inner {
+        animation-delay: 4s;
+      }
+      .snowflake:nth-of-type(4) {
+        left: 40%;
+        animation-delay: 2s;
+      }
+      .snowflake:nth-of-type(10) .inner,
+      .snowflake:nth-of-type(4) .inner {
+        animation-delay: 2s;
+      }
+      .snowflake:nth-of-type(5) {
+        left: 50%;
+        animation-delay: 3s;
+      }
+      .snowflake:nth-of-type(5) .inner {
+        animation-delay: 8s;
+      }
+      .snowflake:nth-of-type(6) {
+        left: 60%;
+        animation-delay: 2s;
+      }
+      .snowflake:nth-of-type(7) {
+        left: 70%;
+        animation-delay: 1s;
+      }
+      .snowflake:nth-of-type(7) .inner {
+        animation-delay: 2.5s;
+      }
+      .snowflake:nth-of-type(8) {
+        left: 80%;
+        animation-delay: 0s;
+      }
+      .snowflake:nth-of-type(9) {
+        left: 90%;
+        animation-delay: 1.5s;
+      }
+      .snowflake:nth-of-type(9) .inner {
+        animation-delay: 3s;
+      }
+      .snowflake:nth-of-type(10) {
+        left: 25%;
+        animation-delay: 0s;
+      }
+      .snowflake:nth-of-type(11) {
+        left: 65%;
+        animation-delay: 2.5s;
+      }
+    </style>
+    <div class="snowflakes" aria-hidden="true">
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+      <div class="snowflake">
+        <div class="inner">❅</div>
+      </div>
+    </div>
   </body>
 </html>
-
