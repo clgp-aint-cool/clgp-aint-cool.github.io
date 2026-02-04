@@ -15,4 +15,8 @@ tags:
 
 ## UI
 
+# Components
+
 - [Mantine] https://ui.mantine.dev
+
+# Theme
