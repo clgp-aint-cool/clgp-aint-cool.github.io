@@ -1,4 +1,4 @@
-baseurl = "https://iluvmone-y.github.io"
+baseurl = "https://clgp-aint-cool.github.io"
 enableEmoji = true
 footnotereturnlinkcontents = "↩"
 googleAnalytics = ""
@@ -42,4 +42,4 @@ weight = 3
 [params]
 custom_css = ["css/theme-override.css"]
 description = "A simple, minimal blog for those who love text."
-footer = "Open-Source | [GitHub](https://github.com/iluvmOne-Y)"
+footer = "Open-Source | [GitHub](https://github.com/clgp-aint-cool)"

@@ -10,7 +10,7 @@ tags:
   - PyAutoGUI
 ---
 
-[**View THIS PROJECT ON GitHub**](https://github.com/iluvmOne-Y/Boosting_Lan_Song_Xanh2025)
+[**View THIS PROJECT ON GitHub**](https://github.com/clgp-aint-cool/Boosting_Lan_Song_Xanh2025)
 
 ![Status](https://img.shields.io/badge/Status-Not_Working-red)
 
