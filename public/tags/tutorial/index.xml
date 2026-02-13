@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorial on AboutMe</title>
+    <link>http://localhost:1313/tags/tutorial/</link>
+    <description>Recent content in Tutorial on AboutMe</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 14 Nov 2025 00:49:18 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pwn on MacOS</title>
+      <link>http://localhost:1313/post/2025/11/14/pwn-on-macos/</link>
+      <pubDate>Fri, 14 Nov 2025 00:49:18 +0700</pubDate>
+      <guid>http://localhost:1313/post/2025/11/14/pwn-on-macos/</guid>
+      <description>&lt;h2 id=&#34;the-issue&#34;&gt;The Issue&lt;/h2&gt;&#xA;&lt;p&gt;Pwn or reverse engineering, especially running ELF/x86 files on macOS (M series), can be frustrating. But I finally found a solid solution!&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-docker&#34;&gt;Why Docker?&lt;/h2&gt;&#xA;&lt;p&gt;Instead of using a VM, Docker is a better tools for me :&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;✅ Work directly on macos terminal (I use Iterm2)&lt;/li&gt;&#xA;&lt;li&gt;✅ Lightweight and fast (though running through qemu)&lt;/li&gt;&#xA;&lt;li&gt;✅ Access the same directory as your host&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;&#xA;&lt;p&gt;I found this &lt;a href=&#34;https://github.com/1ikeadragon/pwntainer&#34;&gt;pwntainer&lt;/a&gt; which provides an excellent solution for this exact issue.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

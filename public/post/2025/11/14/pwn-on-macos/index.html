@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple, minimal blog for those who love text.">
+    <title>Pwn on MacOS | AboutMe</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="http://localhost:1313/css/theme-override.css">
+    
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li class="pull-left ">
+            <a href="http://localhost:1313/">~/aboutme</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/blog/">~/blog</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/categories/">~/categories</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/tags/">~/tags</a>
+          </li>
+          
+
+          
+
+        </ul>
+      </nav>
+    </header>
+
+
+<div class="article-meta">
+<h1><span class="title">Pwn on MacOS</span></h1>
+<h2 class="author">clgp</h2>
+<h2 class="date">2025/11/14</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/ctf">ctf</a> 
+  
+  
+  
+  Tags: <a href="/tags/tutorial">tutorial</a> 
+  
+  
+</p>
+</div>
+
+
+
+<div class="content-wrapper">
+  <main>
+    <h2 id="the-issue">The Issue</h2>
+<p>Pwn or reverse engineering, especially running ELF/x86 files on macOS (M series), can be frustrating. But I finally found a solid solution!</p>
+<h2 id="why-docker">Why Docker?</h2>
+<p>Instead of using a VM, Docker is a better tools for me :</p>
+<ul>
+<li>✅ Work directly on macos terminal (I use Iterm2)</li>
+<li>✅ Lightweight and fast (though running through qemu)</li>
+<li>✅ Access the same directory as your host</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>I found this <a href="https://github.com/1ikeadragon/pwntainer">pwntainer</a> which provides an excellent solution for this exact issue.</p>
+<h3 id="installation-steps">Installation Steps</h3>
+<p>First, install the required tools:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install docker
+</span></span><span style="display:flex;"><span>brew install colima
+</span></span><span style="display:flex;"><span>brew install docker-buildx
+</span></span></code></pre></div><h3 id="start-colima-with-x86_64-architecture">Start Colima with x86_64 Architecture</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>colima start -p x64 -a x86_64 -c <span style="color:#ae81ff">8</span> -m <span style="color:#ae81ff">4</span> -d <span style="color:#ae81ff">10</span> --vm-type qemu
+</span></span></code></pre></div><p>This tells Colima to boot a Linux VM with x86_64 architecture. Once running, it starts the Docker engine inside it. Colima automatically configures your Docker CLI to point to this new VM.</p>
+<h3 id="build-and-run-docker-container">Build and Run Docker Container</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker buildx -t pwn:pwn .
+</span></span><span style="display:flex;"><span>docker run --security-opt seccomp<span style="color:#f92672">=</span>unconfined --privileged --cap-add<span style="color:#f92672">=</span>SYS_PTRACE -p 31337:31337 -v ./:/pwn -it pwn:pwn bash
+</span></span></code></pre></div><h2 id="network-issues--fix">Network Issues &amp; Fix</h2>
+<p>When I first set this up, Docker constantly failed fetching packages via apt-get on bad networks. The solution was simple: modify the Dockerfile by adding a line under the <code>FROM</code> instruction:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> ./badproxy /etc/apt/apt.conf.d/99fixbadproxy<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>The <code>badproxy</code> file content should look like this:</p>
+<pre tabindex="0"><code>Acquire::http::Pipeline-Depth 0;
+Acquire::http::No-Cache true;
+Acquire::BrokenProxy    true;
+</code></pre><p>With this single modification, the Docker setup runs flawlessly and is ready to use!
+<img src = "/images/speed.jpeg"></p>
+
+    <a href="/"> >> Home</a>
+  </main>
+</div>
+<footer>
+  
+  
+  <script>
+    (function () {
+      function center_el(tagName) {
+        var tags = document.getElementsByTagName(tagName),
+          i,
+          tag;
+        for (i = 0; i < tags.length; i++) {
+          tag = tags[i];
+          var parent = tag.parentElement;
+          
+          if (parent.childNodes.length === 1) {
+            
+            if (parent.nodeName === "A") {
+              parent = parent.parentElement;
+              if (parent.childNodes.length != 1) continue;
+            }
+            if (parent.nodeName === "P") parent.style.textAlign = "center";
+          }
+        }
+      }
+      var tagNames = ["img", "embed", "object"];
+      for (var i = 0; i < tagNames.length; i++) {
+        center_el(tagNames[i]);
+      }
+    })();
+  </script>
+
+  
+  <hr />
+  Open-Source | <a href="https://github.com/clgp-aint-cool">GitHub</a> 
+</footer>
+

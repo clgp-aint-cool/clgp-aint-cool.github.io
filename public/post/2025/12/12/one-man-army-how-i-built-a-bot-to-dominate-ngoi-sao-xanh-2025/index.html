@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple, minimal blog for those who love text.">
+    <title>One Man Army: How I Built a Bot to Dominate Ngoi Sao Xanh 2025 | AboutMe</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="http://localhost:1313/css/theme-override.css">
+    
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li class="pull-left ">
+            <a href="http://localhost:1313/">~/aboutme</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/blog/">~/blog</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/categories/">~/categories</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/tags/">~/tags</a>
+          </li>
+          
+
+          
+
+        </ul>
+      </nav>
+    </header>
+
+
+<div class="article-meta">
+<h1><span class="title">One Man Army: How I Built a Bot to Dominate Ngoi Sao Xanh 2025</span></h1>
+<h2 class="author">clgp</h2>
+<h2 class="date">2025/12/12</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/tool">Tool</a> <a href="/categories/automation">Automation</a> 
+  
+  
+  
+  Tags: <a href="/tags/python">Python</a> <a href="/tags/pyautogui">PyAutoGUI</a> 
+  
+  
+</p>
+</div>
+
+
+
+<div class="content-wrapper">
+  <main>
+    <p><a href="https://github.com/clgp-aint-cool/Boosting_Lan_Song_Xanh2025"><strong>View THIS PROJECT ON GitHub</strong></a></p>
+<p><img src="https://img.shields.io/badge/Status-Not_Working-red" alt="Status"></p>
+<h2 id="-the-mission">🎯 The Mission</h2>
+<p>So, <strong>Ngoi Sao Xanh 2025</strong> is happening. For those who don&rsquo;t know, it&rsquo;s a major voting competition where fans vote for their favorite actors.</p>
+<p>Here is the rule:</p>
+<blockquote>
+<p><strong>1 Verified Account = 1 Free Vote per Day (worth 5 points).</strong></p>
+</blockquote>
+<p>Most people saw a voting form. I saw a challenge. And since I really wanted my favorite actor to take the top spot (don&rsquo;t judge my dedication), I needed more than just <em>my</em> vote. I needed an army.</p>
+<hr>
+<h2 id="-the-exploit-the-infinite-email-glitch">⚡ The Exploit: &ldquo;The Infinite Email Glitch&rdquo;</h2>
+<p>In the first three days of voting, I noticed something interesting: The website allowed registration with <strong>any</strong> email address, not just Gmail. You just needed to verify it.</p>
+<p>My brain immediately went into <strong>&ldquo;Efficiency Mode.&rdquo;</strong></p>
+<p>I briefly considered hosting my own private SMTP server, but then I realized&hellip; why reinvent the wheel? There are plenty of free temp-mail services online.</p>
+<p>I discovered a sweet spot:</p>
+<ol>
+<li>One temp-mail domain (e.g., <code>@tempmail.com</code>) could be used to receive verification codes for about <strong>10 different accounts</strong> before it stopped working.</li>
+<li>I just needed to rinse and repeat.</li>
+</ol>
+<h3 id="-the-grind">🛠️ The Grind</h3>
+<p>For <strong>2.5 days</strong>, I went into manual overdrive. I managed to create <strong>700 verified accounts</strong>. Yes, 700. My fingers hurt, but the points were calling.</p>
+<hr>
+<h2 id="-the-tool-why-click-when-python-can-click-for-you">🤖 The Tool: &ldquo;Why click when Python can click for you?&rdquo;</h2>
+<p>Okay, creating accounts was manual pain, but <em>voting</em> with them? No way was I logging in and out 700 times a day by hand.</p>
+<p><strong>The Logic:</strong>
+<code>Login</code> ➡️ <code>Vote</code> ➡️ <code>Logout</code> ➡️ <code>Repeat</code></p>
+<p>I thought about the usual web scraping suspects: <em>Selenium</em>, <em>Puppeteer</em>, <em>Playwright</em>. But honestly? They were overkill. Dealing with complex DOM elements, hidden API tokens, and potential anti-bot detection on the backend seemed like a headache.</p>
+<p>So I chose the lazy genius solution: <strong>PyAutoGUI</strong>.</p>
+<p>Instead of bypassing the server, I just became a normal user with machine speed =)).
+<code>PyAutoGUI</code> is a Python library that literally takes control of your mouse and keyboard. It doesn&rsquo;t care about HTML elements or APIs; it just clicks where I tell it to click.</p>
+<p>I wrote a script to simulate <em>me</em> sitting at the computer.</p>
+<h3 id="-phase-1-mapping">📍 Phase 1: Mapping</h3>
+<p>The first step was defining exactly where every button lived on my screen. The function <code>displayMousePosition()</code> was my best friend here. I used it to hunt down the <code>X</code> and <code>Y</code> coordinates for the <strong>&ldquo;Login&rdquo;</strong>, <strong>&ldquo;Vote&rdquo;</strong>, and <strong>&ldquo;Logout&rdquo;</strong> buttons.</p>
+<p>Once mapped, I just needed some simple commands to spam the actions:</p>
+<ul>
+<li><code>click()</code>: To smash the vote button.</li>
+<li><code>press()</code> &amp; <code>hotkey()</code>: To handle typing and tab navigation.</li>
+</ul>
+<h3 id="-phase-2-giving-the-bot-eyes">👁️ Phase 2: Giving the Bot &ldquo;Eyes&rdquo;</h3>
+<p>Clicking blindly at coordinates works&hellip; until it doesn&rsquo;t. What if an error pops up?</p>
+<p>That is where the <code>locateOnScreen()</code> function comes in. It uses <strong>OpenCV</strong> (computer vision) to actually scan the screen for specific images.</p>
+<p><strong>The Strategy:</strong>
+Sometimes, I would log into an account that I forgot to verify. A dumb bot would keep trying to vote and crash. My bot? It constantly scans for the <strong>&ldquo;Unverified Alert&rdquo;</strong> popup image.</p>
+<ul>
+<li><strong>If it sees the popup:</strong> It detects it immediately, closes the alert, logs out, and skips to the next account.</li>
+<li><strong>If it doesn&rsquo;t:</strong> It proceeds to vote.</li>
+</ul>
+<p>It’s not just automation; it’s <em>smart</em> automation.</p>
+<hr>
+<h2 id="-the-result-the-math-of-success">📈 The Result: The Math of Success</h2>
+<ul>
+<li><strong>Speed:</strong> 13 seconds per vote cycle.</li>
+<li><strong>The Calculation:</strong>
+700 accounts × 13 seconds) ÷ 3600 ≈ 2.5 hours</li>
+<li><strong>The Payload:</strong> 700 × 5 = 3,500 <strong>points per day.</strong></li>
+</ul>
+<p>In just two days, I managed to pump <strong>10,000 points</strong> into the system. Not bad for a one-man army, right? =))</p>
+<hr>
+<h2 id="-the-tragedy-bruh-moment">💀 The Tragedy (Bruh Moment)</h2>
+<p>It was too good to last.</p>
+<p>After three days, the Dev Team at Lan Song Xanh apparently woke up. They dropped the ban hammer:</p>
+<blockquote>
+<p><strong>Registration and Login is now restricted to Gmail accounts only.</strong></p>
+</blockquote>
+<p>Just like that, my factory of temp-mail accounts became useless.</p>
+<h2 id="-what-next">🔮 What Next?</h2>
+<p>My 700 soldiers are all XXXXXX.</p>
+<p>Am I giving up?
+I don&rsquo;t know&hellip; but <strong>WHERE THERE&rsquo;S A WILL, THERE&rsquo;S A WAY.</strong></p>
+<p><em>To be continued&hellip; or not.</em></p>
+
+    <a href="/"> >> Home</a>
+  </main>
+</div>
+<footer>
+  
+  
+  <script>
+    (function () {
+      function center_el(tagName) {
+        var tags = document.getElementsByTagName(tagName),
+          i,
+          tag;
+        for (i = 0; i < tags.length; i++) {
+          tag = tags[i];
+          var parent = tag.parentElement;
+          
+          if (parent.childNodes.length === 1) {
+            
+            if (parent.nodeName === "A") {
+              parent = parent.parentElement;
+              if (parent.childNodes.length != 1) continue;
+            }
+            if (parent.nodeName === "P") parent.style.textAlign = "center";
+          }
+        }
+      }
+      var tagNames = ["img", "embed", "object"];
+      for (var i = 0; i < tagNames.length; i++) {
+        center_el(tagNames[i]);
+      }
+    })();
+  </script>
+
+  
+  <hr />
+  Open-Source | <a href="https://github.com/clgp-aint-cool">GitHub</a> 
+</footer>
+

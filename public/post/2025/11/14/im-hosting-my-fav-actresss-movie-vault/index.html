@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple, minimal blog for those who love text.">
+    <title>I&#39;m Hosting My Fav Actress&#39;s Movie Vault! | AboutMe</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="http://localhost:1313/css/theme-override.css">
+    
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li class="pull-left ">
+            <a href="http://localhost:1313/">~/aboutme</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/blog/">~/blog</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/categories/">~/categories</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/tags/">~/tags</a>
+          </li>
+          
+
+          
+
+        </ul>
+      </nav>
+    </header>
+
+
+<div class="article-meta">
+<h1><span class="title">I&rsquo;m Hosting My Fav Actress&rsquo;s Movie Vault!</span></h1>
+<h2 class="author">clgp</h2>
+<h2 class="date">2025/11/14</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/projects">Projects</a> 
+  
+  
+  
+  Tags: <a href="/tags/web">Web</a> 
+  
+  
+</p>
+</div>
+
+
+
+<div class="content-wrapper">
+  <main>
+    <h2 id="i-made-a-movie-site-for-my-fave-actress">I Made a Movie Site for My Fave Actress</h2>
+<img src = "/images/LTM.jpg" >
+<p>First off, why? Because I&rsquo;m a fan. I love her films, I love her vibe, and I wanted a place to archive it all.</p>
+<p><strong>You can see the live site here: <a href="https://lamthanhmymovies.vercel.app">https://lamthanhmymovies.vercel.app</a></strong></p>
+<hr>
+<h3 id="how-i-pulled-it-off">How I Pulled It Off</h3>
+<p>So, how&rsquo;d I build it? Months of intense coding? Nope.</p>
+<p>My main strategy: <strong>Prompting, prompting, and more prompting.</strong></p>
+<p>This &ldquo;vibe coding&rdquo; style is honestly so much fun for a personal project. Did I write <em>some</em> TypeScript? Sure. But let&rsquo;s be real, it&rsquo;s basically JavaScript&hellip; and I prompted the AI for most of it anyway (hehe, lazy af ✌️).</p>
+<p>The setup itself is a joke thanks to <strong>Next.js</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx create-next-app@latest
+</span></span></code></pre></div><p>Seriously, that&rsquo;s the command. If you&rsquo;re a non-tech person, you can still do this. Just follow a YouTube tutorial (or just prompt an AI!) and you can totally build a site for your hobby.</p>
+<h2 id="the-how-do-i-stream-for-0-problem">The &ldquo;How Do I Stream for $0?&rdquo; Problem</h2>
+<p>My biggest headache was the streaming. I wanted you to click a poster and
+navigate to the page to watch the movie, but I wanted a 100% free method.</p>
+<p>The Solution: I just uploaded all the movie files to my Google Drive and
+embedded the Drive player (youtube) right into the site.</p>
+<p>After a bit of testing, it worked flawlessly.
+(Okay, so the quality stops at 1080p, but for a free solution? I&rsquo;ll take it.)</p>
+<h2 id="going-live">Going Live</h2>
+<p>When it was time to deploy, Vercel was the only answer. It&rsquo;s free and practically built for Next.js. A couple of YouTube tutorials helped me stick the landing.</p>
+<p>And that&rsquo;s the blog. Go build something cool.</p>
+
+    <a href="/"> >> Home</a>
+  </main>
+</div>
+<footer>
+  
+  
+  <script>
+    (function () {
+      function center_el(tagName) {
+        var tags = document.getElementsByTagName(tagName),
+          i,
+          tag;
+        for (i = 0; i < tags.length; i++) {
+          tag = tags[i];
+          var parent = tag.parentElement;
+          
+          if (parent.childNodes.length === 1) {
+            
+            if (parent.nodeName === "A") {
+              parent = parent.parentElement;
+              if (parent.childNodes.length != 1) continue;
+            }
+            if (parent.nodeName === "P") parent.style.textAlign = "center";
+          }
+        }
+      }
+      var tagNames = ["img", "embed", "object"];
+      for (var i = 0; i < tagNames.length; i++) {
+        center_el(tagNames[i]);
+      }
+    })();
+  </script>
+
+  
+  <hr />
+  Open-Source | <a href="https://github.com/clgp-aint-cool">GitHub</a> 
+</footer>
+

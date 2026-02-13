@@ -3,12 +3,93 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-11-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/2025/11/13/first-words/</loc>
-    <lastmod>2025-11-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-04T20:22:06+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
+    <lastmod>2026-02-04T20:22:06+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2026-02-04T20:22:06+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/web/</loc>
+    <lastmod>2026-02-04T20:22:06+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/2026/02/04/web-dev/</loc>
+    <lastmod>2026-02-04T20:22:06+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/bass/</loc>
+    <lastmod>2025-12-31T18:14:11+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/2025/12/31/bass_journey/</loc>
+    <lastmod>2025-12-31T18:14:11+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/note/</loc>
+    <lastmod>2025-12-31T18:14:11+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-12-31T18:14:11+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/automation/</loc>
+    <lastmod>2025-12-12T01:06:11+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/2025/12/12/one-man-army-how-i-built-a-bot-to-dominate-ngoi-sao-xanh-2025/</loc>
+    <lastmod>2025-12-12T01:06:11+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/pyautogui/</loc>
+    <lastmod>2025-12-12T01:06:11+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/python/</loc>
+    <lastmod>2025-12-12T01:06:11+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/tool/</loc>
+    <lastmod>2025-12-12T01:06:11+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/2025/11/26/my_bunker/</loc>
+    <lastmod>2025-11-26T21:17:47+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/sites/</loc>
+    <lastmod>2025-11-26T21:17:47+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/2025/11/25/first-time-going-to-the-movie-theater-...-alone/</loc>
+    <lastmod>2025-11-25T22:32:57+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/life-journal/</loc>
+    <lastmod>2025-11-25T22:32:57+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/movie/</loc>
+    <lastmod>2025-11-25T22:32:57+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/ctf/</loc>
+    <lastmod>2025-11-16T00:50:33+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/2025/11/16/format-string-vulnerbilities/</loc>
+    <lastmod>2025-11-16T00:50:33+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/pwn/</loc>
+    <lastmod>2025-11-16T00:50:33+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/2025/11/14/yapping-my-thoughts-on-saigon/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/2025/11/14/im-hosting-my-fav-actresss-movie-vault/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/projects/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/saigon/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/web/</loc>
+    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/2025/11/14/pwn-on-macos/</loc>
+    <lastmod>2025-11-14T00:49:18+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/tutorial/</loc>
+    <lastmod>2025-11-14T00:49:18+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/2025/11/13/first-words/</loc>
     <lastmod>2025-11-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/intro/</loc>
@@ -17,14 +98,11 @@
     <loc>http://localhost:1313/tags/intro/</loc>
     <lastmod>2025-11-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
-    <lastmod>2025-11-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/post/2025/11/13/second-word/</loc>
     <lastmod>2025-11-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-11-13T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/serect.md/</loc>
+    <lastmod>2023-10-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
   </url>

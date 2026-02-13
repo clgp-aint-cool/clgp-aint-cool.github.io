@@ -6,8 +6,71 @@
     <description>Recent content in Tags on AboutMe</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 31 Dec 2025 18:14:11 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bass</title>
+      <link>http://localhost:1313/tags/bass/</link>
+      <pubDate>Wed, 31 Dec 2025 18:14:11 +0700</pubDate>
+      <guid>http://localhost:1313/tags/bass/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PyAutoGUI</title>
+      <link>http://localhost:1313/tags/pyautogui/</link>
+      <pubDate>Fri, 12 Dec 2025 01:06:11 +0700</pubDate>
+      <guid>http://localhost:1313/tags/pyautogui/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>http://localhost:1313/tags/python/</link>
+      <pubDate>Fri, 12 Dec 2025 01:06:11 +0700</pubDate>
+      <guid>http://localhost:1313/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sites</title>
+      <link>http://localhost:1313/tags/sites/</link>
+      <pubDate>Wed, 26 Nov 2025 21:17:47 +0700</pubDate>
+      <guid>http://localhost:1313/tags/sites/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Movie</title>
+      <link>http://localhost:1313/tags/movie/</link>
+      <pubDate>Tue, 25 Nov 2025 22:32:57 +0700</pubDate>
+      <guid>http://localhost:1313/tags/movie/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pwn</title>
+      <link>http://localhost:1313/tags/pwn/</link>
+      <pubDate>Sun, 16 Nov 2025 00:50:33 +0700</pubDate>
+      <guid>http://localhost:1313/tags/pwn/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Saigon</title>
+      <link>http://localhost:1313/tags/saigon/</link>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/saigon/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Web</title>
+      <link>http://localhost:1313/tags/web/</link>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/web/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorial</title>
+      <link>http://localhost:1313/tags/tutorial/</link>
+      <pubDate>Fri, 14 Nov 2025 00:49:18 +0700</pubDate>
+      <guid>http://localhost:1313/tags/tutorial/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Intro</title>
       <link>http://localhost:1313/tags/intro/</link>

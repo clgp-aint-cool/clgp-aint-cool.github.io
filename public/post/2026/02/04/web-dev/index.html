@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple, minimal blog for those who love text.">
+    <title>Web Dev | AboutMe</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="http://localhost:1313/css/theme-override.css">
+    
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li class="pull-left ">
+            <a href="http://localhost:1313/">~/aboutme</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/blog/">~/blog</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/categories/">~/categories</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/tags/">~/tags</a>
+          </li>
+          
+
+          
+
+        </ul>
+      </nav>
+    </header>
+
+
+<div class="article-meta">
+<h1><span class="title">Web Dev</span></h1>
+<h2 class="author">clgp</h2>
+<h2 class="date">2026/02/04</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/web">web</a> 
+  
+  
+  
+  Tags: <a href="/tags/nil"></a> 
+  
+  
+</p>
+</div>
+
+
+
+<div class="content-wrapper">
+  <main>
+    <h2 id="api">API</h2>
+<ul>
+<li>[Tanstalk] <a href="https://tanstack.com">https://tanstack.com</a>
+TanStack Query (trước đây là React Query) là một thư viện mạnh mẽ dùng để quản lý trạng thái server (server state), giúp đơn giản hóa việc xử lý dữ liệu bất đồng bộ (async data), caching, và refetching trong các ứng dụng React, Solid, Vue, Svelte, và Angula</li>
+</ul>
+<h2 id="ui">UI</h2>
+<h1 id="components">Components</h1>
+<ul>
+<li>[Mantine] <a href="https://ui.mantine.dev">https://ui.mantine.dev</a></li>
+</ul>
+<h1 id="theme">Theme</h1>
+
+    <a href="/"> >> Home</a>
+  </main>
+</div>
+<footer>
+  
+  
+  <script>
+    (function () {
+      function center_el(tagName) {
+        var tags = document.getElementsByTagName(tagName),
+          i,
+          tag;
+        for (i = 0; i < tags.length; i++) {
+          tag = tags[i];
+          var parent = tag.parentElement;
+          
+          if (parent.childNodes.length === 1) {
+            
+            if (parent.nodeName === "A") {
+              parent = parent.parentElement;
+              if (parent.childNodes.length != 1) continue;
+            }
+            if (parent.nodeName === "P") parent.style.textAlign = "center";
+          }
+        }
+      }
+      var tagNames = ["img", "embed", "object"];
+      for (var i = 0; i < tagNames.length; i++) {
+        center_el(tagNames[i]);
+      }
+    })();
+  </script>
+
+  
+  <hr />
+  Open-Source | <a href="https://github.com/clgp-aint-cool">GitHub</a> 
+</footer>
+

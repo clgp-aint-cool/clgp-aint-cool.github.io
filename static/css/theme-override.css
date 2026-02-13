@@ -1,2 +1,150 @@
-footer { font-size: 90%; }
+/* ============================================
+   IMPROVED COLOR SCHEME - Better Contrast & Readability
+   ============================================ */
 
+/* Dark Mode - Enhanced Contrast */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1d23;
+        color: #e4e6eb;
+    }
+
+    blockquote {
+        background: #252930;
+        border-left: 5px solid #60a5fa;
+        color: #d1d5db;
+    }
+
+    a {
+        color: #60a5fa;
+    }
+
+    a:hover {
+        color: #93c5fd;
+    }
+
+    header {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        border-bottom: 2px solid #60a5fa;
+    }
+
+    .article-meta,
+    .menu a {
+        background: #252930;
+        color: #e4e6eb;
+        border-color: #60a5fa;
+    }
+
+    .menu a:hover {
+        background: #2d3748;
+        border-color: #93c5fd;
+    }
+
+    pre {
+        border: 2px solid #60a5fa;
+        background: #252930;
+    }
+
+    code {
+        background-color: #2d3748;
+        color: #93c5fd;
+    }
+
+    table {
+        border-top: 1px solid #4b5563;
+        border-bottom: 1px solid #4b5563;
+    }
+
+    table thead th {
+        border-bottom: 1px solid #4b5563;
+        background: #252930;
+    }
+
+    tr:nth-child(even) {
+        background: #252930;
+    }
+
+    #table-of-contents {
+        background-color: #252930 !important;
+        border: 1px solid #60a5fa;
+        color: #e4e6eb;
+    }
+}
+
+/* Light Mode - Enhanced */
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #ffffff;
+        color: #1f2937;
+    }
+
+    blockquote {
+        background: #f3f4f6;
+        border-left: 5px solid #3b82f6;
+    }
+
+    a {
+        color: #2563eb;
+    }
+
+    a:hover {
+        color: #1d4ed8;
+    }
+
+    header {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    }
+
+    .article-meta,
+    .menu a {
+        background: #f3f4f6;
+        color: #1f2937;
+        border-color: #3b82f6;
+    }
+
+    .menu a:hover {
+        background: #e5e7eb;
+        border-color: #2563eb;
+    }
+
+    pre {
+        border: 2px solid #3b82f6;
+        background: #f9fafb;
+    }
+
+    code {
+        background-color: #e5e7eb;
+        color: #1e40af;
+    }
+
+    table {
+        border-top: 1px solid #d1d5db;
+        border-bottom: 1px solid #d1d5db;
+    }
+
+    table thead th {
+        border-bottom: 1px solid #d1d5db;
+        background: #f3f4f6;
+    }
+
+    tr:nth-child(even) {
+        background: #f9fafb;
+    }
+}
+
+/* Footer styling */
+footer {
+    font-size: 90%;
+    color: inherit;
+}
+
+/* Better header contrast */
+header a {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+header a:hover {
+    color: #e0e7ff !important;
+    text-decoration: none;
+}

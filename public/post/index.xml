@@ -6,8 +6,71 @@
     <description>Recent content in Posts on AboutMe</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Feb 2026 20:22:06 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web Dev</title>
+      <link>http://localhost:1313/post/2026/02/04/web-dev/</link>
+      <pubDate>Wed, 04 Feb 2026 20:22:06 +0700</pubDate>
+      <guid>http://localhost:1313/post/2026/02/04/web-dev/</guid>
+      <description>&lt;h2 id=&#34;api&#34;&gt;API&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[Tanstalk] &lt;a href=&#34;https://tanstack.com&#34;&gt;https://tanstack.com&lt;/a&gt;&#xA;TanStack Query (trước đây là React Query) là một thư viện mạnh mẽ dùng để quản lý trạng thái server (server state), giúp đơn giản hóa việc xử lý dữ liệu bất đồng bộ (async data), caching, và refetching trong các ứng dụng React, Solid, Vue, Svelte, và Angula&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;ui&#34;&gt;UI&lt;/h2&gt;&#xA;&lt;h1 id=&#34;components&#34;&gt;Components&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[Mantine] &lt;a href=&#34;https://ui.mantine.dev&#34;&gt;https://ui.mantine.dev&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;theme&#34;&gt;Theme&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title>Bass_journey</title>
+      <link>http://localhost:1313/post/2025/12/31/bass_journey/</link>
+      <pubDate>Wed, 31 Dec 2025 18:14:11 +0700</pubDate>
+      <guid>http://localhost:1313/post/2025/12/31/bass_journey/</guid>
+      <description>&lt;h2 id=&#34;bass-songs&#34;&gt;Bass songs&lt;/h2&gt;&#xA;&lt;p&gt;Cowboy Bebop - Tank! (Bass Cover) (Play Along Tabs In Video)&#xA;&lt;a href=&#34;https://www.youtube.com/watch?v=SunvrwYCvpU&amp;amp;list=RDSunvrwYCvpU&amp;amp;start_radio=1&#34;&gt;cowboyBebop&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Feel Good Inc. Bass Tab (Gorillaz)&#xA;&lt;a href=&#34;https://www.youtube.com/watch?v=1higg1QnQlc&amp;amp;list=RD1higg1QnQlc&amp;amp;start_radio=1&#34;&gt;feelGoodINc&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;NewJeans - Ditto│BASS TAB&#xA;&lt;a href=&#34;https://www.youtube.com/watch?v=1Lnpmu_fz5U&#34;&gt;ditto&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Gorillaz - On Melancholy Hill | Bass Cover with Play Along Tabs&#xA;&lt;a href=&#34;https://www.youtube.com/watch?v=x2yhWSwwheU&amp;amp;list=RDx2yhWSwwheU&amp;amp;start_radio=1&#34;&gt;On Melancholy Hill&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Billie Eilish - bad guy 【★★☆☆☆】 (Bass Cover) | 베이스 악보&#xA;&lt;a href=&#34;https://www.youtube.com/watch?v=QsWGN95nEJc&amp;amp;list=RDx2yhWSwwheU&amp;amp;index=2&#34;&gt;Bad guy&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Djo - End of Beginning (Bass cover) (Play along TABS + pdf)&#xA;&lt;a href=&#34;https://www.youtube.com/watch?v=X8r6f-P%60scCA&amp;amp;list=RDx2yhWSwwheU&amp;amp;index=4&#34;&gt;EndOfBegining&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>One Man Army: How I Built a Bot to Dominate Ngoi Sao Xanh 2025</title>
+      <link>http://localhost:1313/post/2025/12/12/one-man-army-how-i-built-a-bot-to-dominate-ngoi-sao-xanh-2025/</link>
+      <pubDate>Fri, 12 Dec 2025 01:06:11 +0700</pubDate>
+      <guid>http://localhost:1313/post/2025/12/12/one-man-army-how-i-built-a-bot-to-dominate-ngoi-sao-xanh-2025/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/clgp-aint-cool/Boosting_Lan_Song_Xanh2025&#34;&gt;&lt;strong&gt;View THIS PROJECT ON GitHub&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://img.shields.io/badge/Status-Not_Working-red&#34; alt=&#34;Status&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;-the-mission&#34;&gt;🎯 The Mission&lt;/h2&gt;&#xA;&lt;p&gt;So, &lt;strong&gt;Ngoi Sao Xanh 2025&lt;/strong&gt; is happening. For those who don&amp;rsquo;t know, it&amp;rsquo;s a major voting competition where fans vote for their favorite actors.&lt;/p&gt;&#xA;&lt;p&gt;Here is the rule:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;1 Verified Account = 1 Free Vote per Day (worth 5 points).&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Most people saw a voting form. I saw a challenge. And since I really wanted my favorite actor to take the top spot (don&amp;rsquo;t judge my dedication), I needed more than just &lt;em&gt;my&lt;/em&gt; vote. I needed an army.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My_bunker</title>
+      <link>http://localhost:1313/post/2025/11/26/my_bunker/</link>
+      <pubDate>Wed, 26 Nov 2025 21:17:47 +0700</pubDate>
+      <guid>http://localhost:1313/post/2025/11/26/my_bunker/</guid>
+      <description>&lt;h2 id=&#34;bug-bounty&#34;&gt;Bug bounty&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://blog.huntr.com/hunting-with-vulnhuntr-getting-your-first-cve&#34;&gt;https://blog.huntr.com/hunting-with-vulnhuntr-getting-your-first-cve&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://hackerone.com/opportunities/all&#34;&gt;https://hackerone.com/opportunities/all&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;pwn&#34;&gt;Pwn&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://guyinatuxedo.github.io/04-bof_variable/csaw18_boi/index.html&#34;&gt;https://guyinatuxedo.github.io/04-bof_variable/csaw18_boi/index.html&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.root-me.org/&#34;&gt;https://www.root-me.org/&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;encrypt&#34;&gt;Encrypt&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.dcode.fr/cipher-identifier&#34;&gt;https://www.dcode.fr/cipher-identifier&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;more-useful-site&#34;&gt;More useful site&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://cseciitb.github.io/resources/&#34;&gt;https://cseciitb.github.io/resources/&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;tools&#34;&gt;Tools&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.offsec.com/metasploit-unleashed/&#34;&gt;metaploit&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;tricks-handbook&#34;&gt;Tricks (handbook)&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://book.hacktricks.wiki/&#34;&gt;https://book.hacktricks.wiki/&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>First time going to the movie theater ... ALONE </title>
+      <link>http://localhost:1313/post/2025/11/25/first-time-going-to-the-movie-theater-...-alone/</link>
+      <pubDate>Tue, 25 Nov 2025 22:32:57 +0700</pubDate>
+      <guid>http://localhost:1313/post/2025/11/25/first-time-going-to-the-movie-theater-...-alone/</guid>
+      <description>&lt;p&gt;So, I went to the cinema to watch a movie all by myself. Weirdo, right?&#xA;&lt;strong&gt;But&amp;hellip;&lt;/strong&gt; actually, I think everyone should do it at least once. I might even do it a couple more times.&lt;/p&gt;&#xA;&lt;h3 id=&#34;the-experience&#34;&gt;The Experience&lt;/h3&gt;&#xA;&lt;p&gt;I really, &lt;em&gt;really&lt;/em&gt; wanted to watch the new film &lt;strong&gt;&amp;ldquo;Truy Tìm Long Diên Hương,&amp;rdquo;&lt;/strong&gt; but I couldn&amp;rsquo;t find anyone with spare time to go with me. So, I thought, &amp;ldquo;Why can&amp;rsquo;t I just go by myself?&amp;rdquo;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Format String Vulnerbilities</title>
+      <link>http://localhost:1313/post/2025/11/16/format-string-vulnerbilities/</link>
+      <pubDate>Sun, 16 Nov 2025 00:50:33 +0700</pubDate>
+      <guid>http://localhost:1313/post/2025/11/16/format-string-vulnerbilities/</guid>
+      <description>&lt;h2 id=&#34;fmtstr_payload-in-pwntools&#34;&gt;fmtstr_payload() in pwntools&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;from pwn import *&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;payload &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fmtstr_payload&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;offset, writes, numbwritten&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;byte&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;+offset is the stack offset of where you want to do the payload&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;+writes is a pair value { address_to_write_to: value_to_write }&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;+numbwritten (optional) is the number of byte that have been printed before the&#xA;payload is processed&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s say you are doing a CTF challenge where:&lt;/p&gt;&#xA;&lt;p&gt;You found a format string vulnerability.&lt;/p&gt;&#xA;&lt;p&gt;You used a debugger (like GDB) and found that your payload starts at offset 7.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>[YAPPING] My Thoughts on Saigon </title>
+      <link>http://localhost:1313/post/2025/11/14/yapping-my-thoughts-on-saigon/</link>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025/11/14/yapping-my-thoughts-on-saigon/</guid>
+      <description>&lt;img src=&#34;http://localhost:1313/images/saigon.png&#34;&gt;&#xA;&lt;h2 id=&#34;saigon-the-city-i-love-to-hate-and-hate-to-love&#34;&gt;Saigon: The City I Love to Hate (And Hate to Love?)&lt;/h2&gt;&#xA;&lt;p&gt;So, a little background on me: I’m a Củ Chi kid, born and raised.&#xA;I lived in that suburban part of Saigon until the end of 9th grade,&#xA;which is when I decided to pack up and move to a &lt;code&gt;nội trú&lt;/code&gt; (boarding)&#xA;school right in the heart of the city.&lt;/p&gt;&#xA;&lt;p&gt;Because of that, I never really had the &amp;ldquo;normal&amp;rdquo; Saigonese schedule&#xA;. I wasn&amp;rsquo;t part of the daily grind until I hit university.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I&#39;m Hosting My Fav Actress&#39;s Movie Vault!</title>
+      <link>http://localhost:1313/post/2025/11/14/im-hosting-my-fav-actresss-movie-vault/</link>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025/11/14/im-hosting-my-fav-actresss-movie-vault/</guid>
+      <description>&lt;h2 id=&#34;i-made-a-movie-site-for-my-fave-actress&#34;&gt;I Made a Movie Site for My Fave Actress&lt;/h2&gt;&#xA;&lt;img src = &#34;/images/LTM.jpg&#34; &gt;&#xA;&lt;p&gt;First off, why? Because I&amp;rsquo;m a fan. I love her films, I love her vibe, and I wanted a place to archive it all.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;You can see the live site here: &lt;a href=&#34;https://lamthanhmymovies.vercel.app&#34;&gt;https://lamthanhmymovies.vercel.app&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;how-i-pulled-it-off&#34;&gt;How I Pulled It Off&lt;/h3&gt;&#xA;&lt;p&gt;So, how&amp;rsquo;d I build it? Months of intense coding? Nope.&lt;/p&gt;&#xA;&lt;p&gt;My main strategy: &lt;strong&gt;Prompting, prompting, and more prompting.&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;This &amp;ldquo;vibe coding&amp;rdquo; style is honestly so much fun for a personal project. Did I write &lt;em&gt;some&lt;/em&gt; TypeScript? Sure. But let&amp;rsquo;s be real, it&amp;rsquo;s basically JavaScript&amp;hellip; and I prompted the AI for most of it anyway (hehe, lazy af ✌️).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Pwn on MacOS</title>
+      <link>http://localhost:1313/post/2025/11/14/pwn-on-macos/</link>
+      <pubDate>Fri, 14 Nov 2025 00:49:18 +0700</pubDate>
+      <guid>http://localhost:1313/post/2025/11/14/pwn-on-macos/</guid>
+      <description>&lt;h2 id=&#34;the-issue&#34;&gt;The Issue&lt;/h2&gt;&#xA;&lt;p&gt;Pwn or reverse engineering, especially running ELF/x86 files on macOS (M series), can be frustrating. But I finally found a solid solution!&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-docker&#34;&gt;Why Docker?&lt;/h2&gt;&#xA;&lt;p&gt;Instead of using a VM, Docker is a better tools for me :&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;✅ Work directly on macos terminal (I use Iterm2)&lt;/li&gt;&#xA;&lt;li&gt;✅ Lightweight and fast (though running through qemu)&lt;/li&gt;&#xA;&lt;li&gt;✅ Access the same directory as your host&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;&#xA;&lt;p&gt;I found this &lt;a href=&#34;https://github.com/1ikeadragon/pwntainer&#34;&gt;pwntainer&lt;/a&gt; which provides an excellent solution for this exact issue.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>first words</title>
       <link>http://localhost:1313/post/2025/11/13/first-words/</link>

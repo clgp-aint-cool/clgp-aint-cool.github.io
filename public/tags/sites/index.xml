@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sites on AboutMe</title>
+    <link>http://localhost:1313/tags/sites/</link>
+    <description>Recent content in Sites on AboutMe</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Nov 2025 21:17:47 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/sites/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My_bunker</title>
+      <link>http://localhost:1313/post/2025/11/26/my_bunker/</link>
+      <pubDate>Wed, 26 Nov 2025 21:17:47 +0700</pubDate>
+      <guid>http://localhost:1313/post/2025/11/26/my_bunker/</guid>
+      <description>&lt;h2 id=&#34;bug-bounty&#34;&gt;Bug bounty&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://blog.huntr.com/hunting-with-vulnhuntr-getting-your-first-cve&#34;&gt;https://blog.huntr.com/hunting-with-vulnhuntr-getting-your-first-cve&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://hackerone.com/opportunities/all&#34;&gt;https://hackerone.com/opportunities/all&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;pwn&#34;&gt;Pwn&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://guyinatuxedo.github.io/04-bof_variable/csaw18_boi/index.html&#34;&gt;https://guyinatuxedo.github.io/04-bof_variable/csaw18_boi/index.html&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.root-me.org/&#34;&gt;https://www.root-me.org/&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;encrypt&#34;&gt;Encrypt&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.dcode.fr/cipher-identifier&#34;&gt;https://www.dcode.fr/cipher-identifier&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;more-useful-site&#34;&gt;More useful site&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://cseciitb.github.io/resources/&#34;&gt;https://cseciitb.github.io/resources/&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;tools&#34;&gt;Tools&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.offsec.com/metasploit-unleashed/&#34;&gt;metaploit&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;tricks-handbook&#34;&gt;Tricks (handbook)&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://book.hacktricks.wiki/&#34;&gt;https://book.hacktricks.wiki/&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

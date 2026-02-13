@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on AboutMe</title>
+    <link>http://localhost:1313/categories/web/</link>
+    <description>Recent content in Web on AboutMe</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Feb 2026 20:22:06 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web Dev</title>
+      <link>http://localhost:1313/post/2026/02/04/web-dev/</link>
+      <pubDate>Wed, 04 Feb 2026 20:22:06 +0700</pubDate>
+      <guid>http://localhost:1313/post/2026/02/04/web-dev/</guid>
+      <description>&lt;h2 id=&#34;api&#34;&gt;API&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[Tanstalk] &lt;a href=&#34;https://tanstack.com&#34;&gt;https://tanstack.com&lt;/a&gt;&#xA;TanStack Query (trước đây là React Query) là một thư viện mạnh mẽ dùng để quản lý trạng thái server (server state), giúp đơn giản hóa việc xử lý dữ liệu bất đồng bộ (async data), caching, và refetching trong các ứng dụng React, Solid, Vue, Svelte, và Angula&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;ui&#34;&gt;UI&lt;/h2&gt;&#xA;&lt;h1 id=&#34;components&#34;&gt;Components&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[Mantine] &lt;a href=&#34;https://ui.mantine.dev&#34;&gt;https://ui.mantine.dev&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;theme&#34;&gt;Theme&lt;/h1&gt;</description>
+    </item>
+  </channel>
+</rss>

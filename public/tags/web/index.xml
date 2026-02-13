@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on AboutMe</title>
+    <link>http://localhost:1313/tags/web/</link>
+    <description>Recent content in Web on AboutMe</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 14 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I&#39;m Hosting My Fav Actress&#39;s Movie Vault!</title>
+      <link>http://localhost:1313/post/2025/11/14/im-hosting-my-fav-actresss-movie-vault/</link>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025/11/14/im-hosting-my-fav-actresss-movie-vault/</guid>
+      <description>&lt;h2 id=&#34;i-made-a-movie-site-for-my-fave-actress&#34;&gt;I Made a Movie Site for My Fave Actress&lt;/h2&gt;&#xA;&lt;img src = &#34;/images/LTM.jpg&#34; &gt;&#xA;&lt;p&gt;First off, why? Because I&amp;rsquo;m a fan. I love her films, I love her vibe, and I wanted a place to archive it all.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;You can see the live site here: &lt;a href=&#34;https://lamthanhmymovies.vercel.app&#34;&gt;https://lamthanhmymovies.vercel.app&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;how-i-pulled-it-off&#34;&gt;How I Pulled It Off&lt;/h3&gt;&#xA;&lt;p&gt;So, how&amp;rsquo;d I build it? Months of intense coding? Nope.&lt;/p&gt;&#xA;&lt;p&gt;My main strategy: &lt;strong&gt;Prompting, prompting, and more prompting.&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;This &amp;ldquo;vibe coding&amp;rdquo; style is honestly so much fun for a personal project. Did I write &lt;em&gt;some&lt;/em&gt; TypeScript? Sure. But let&amp;rsquo;s be real, it&amp;rsquo;s basically JavaScript&amp;hellip; and I prompted the AI for most of it anyway (hehe, lazy af ✌️).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

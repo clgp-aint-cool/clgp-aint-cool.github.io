@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Movie on AboutMe</title>
+    <link>http://localhost:1313/tags/movie/</link>
+    <description>Recent content in Movie on AboutMe</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Nov 2025 22:32:57 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/movie/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>First time going to the movie theater ... ALONE </title>
+      <link>http://localhost:1313/post/2025/11/25/first-time-going-to-the-movie-theater-...-alone/</link>
+      <pubDate>Tue, 25 Nov 2025 22:32:57 +0700</pubDate>
+      <guid>http://localhost:1313/post/2025/11/25/first-time-going-to-the-movie-theater-...-alone/</guid>
+      <description>&lt;p&gt;So, I went to the cinema to watch a movie all by myself. Weirdo, right?&#xA;&lt;strong&gt;But&amp;hellip;&lt;/strong&gt; actually, I think everyone should do it at least once. I might even do it a couple more times.&lt;/p&gt;&#xA;&lt;h3 id=&#34;the-experience&#34;&gt;The Experience&lt;/h3&gt;&#xA;&lt;p&gt;I really, &lt;em&gt;really&lt;/em&gt; wanted to watch the new film &lt;strong&gt;&amp;ldquo;Truy Tìm Long Diên Hương,&amp;rdquo;&lt;/strong&gt; but I couldn&amp;rsquo;t find anyone with spare time to go with me. So, I thought, &amp;ldquo;Why can&amp;rsquo;t I just go by myself?&amp;rdquo;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

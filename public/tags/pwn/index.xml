@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pwn on AboutMe</title>
+    <link>http://localhost:1313/tags/pwn/</link>
+    <description>Recent content in Pwn on AboutMe</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 16 Nov 2025 00:50:33 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/pwn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Format String Vulnerbilities</title>
+      <link>http://localhost:1313/post/2025/11/16/format-string-vulnerbilities/</link>
+      <pubDate>Sun, 16 Nov 2025 00:50:33 +0700</pubDate>
+      <guid>http://localhost:1313/post/2025/11/16/format-string-vulnerbilities/</guid>
+      <description>&lt;h2 id=&#34;fmtstr_payload-in-pwntools&#34;&gt;fmtstr_payload() in pwntools&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;from pwn import *&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;payload &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fmtstr_payload&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;offset, writes, numbwritten&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;byte&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;+offset is the stack offset of where you want to do the payload&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;+writes is a pair value { address_to_write_to: value_to_write }&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;+numbwritten (optional) is the number of byte that have been printed before the&#xA;payload is processed&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s say you are doing a CTF challenge where:&lt;/p&gt;&#xA;&lt;p&gt;You found a format string vulnerability.&lt;/p&gt;&#xA;&lt;p&gt;You used a debugger (like GDB) and found that your payload starts at offset 7.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
