@@ -6,8 +6,15 @@
     <description>Recent content in Home on AboutMe</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Feb 2026 20:22:06 +0700</lastBuildDate>
+    <lastBuildDate>Sat, 14 Feb 2026 00:58:20 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Insta Swiper</title>
+      <link>http://localhost:1313/post/2026/02/14/insta-swiper/</link>
+      <pubDate>Sat, 14 Feb 2026 00:58:20 +0700</pubDate>
+      <guid>http://localhost:1313/post/2026/02/14/insta-swiper/</guid>
+      <description>&lt;h1 id=&#34;building-ig-swiper-an-instagram-photo-gallery-scraper&#34;&gt;Building IG Swiper: An Instagram Photo Gallery Scraper&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-what-is-ig-swiper&#34;&gt;🎯 What is IG Swiper?&lt;/h2&gt;&#xA;&lt;p&gt;IG Swiper is a full-stack web application designed to crawl and display Instagram user photos in an elegant, swipeable gallery format. Think of it as your personal Instagram photo archive manager - it downloads photos from public Instagram profiles and presents them in a beautiful, user-friendly interface where you can browse, organize, and enjoy the content.&lt;/p&gt;&#xA;&lt;h2 id=&#34;-the-purpose--motivation&#34;&gt;💡 The Purpose &amp;amp; Motivation&lt;/h2&gt;&#xA;&lt;p&gt;Instagram is a wonderful platform for sharing visual content, but it has limitations:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Web Dev</title>
       <link>http://localhost:1313/post/2026/02/04/web-dev/</link>

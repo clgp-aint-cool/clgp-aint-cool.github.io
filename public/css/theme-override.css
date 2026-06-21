@@ -148,3 +148,30 @@ header a:hover {
     color: #e0e7ff !important;
     text-decoration: none;
 }
+
+/* ============================================
+   COMMENT SECTION STYLES
+   ============================================ */
+
+.comments-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.comments-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Dark mode support for comments */
+@media (prefers-color-scheme: dark) {
+    .comments-section {
+        border-top-color: #444;
+    }
+
+    .comments-section h2 {
+        color: #e0e0e0;
+    }
+}

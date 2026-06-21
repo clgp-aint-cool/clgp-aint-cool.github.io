@@ -51,27 +51,27 @@
 
 
 <div class="article-meta">
-<h1><span class="title">Format String Vulnerbilities</span></h1>
-<h2 class="author">clgp</h2>
-<h2 class="date">2025/11/16</h2>
-<p class="terms">
-  
-  
-  Categories: <a href="/categories/ctf">ctf</a> 
-  
-  
-  
-  Tags: <a href="/tags/pwn">pwn</a> 
-  
-  
-</p>
+    <h1><span class="title">Format String Vulnerbilities</span></h1>
+    <h2 class="author">clgp</h2>
+    <h2 class="date">2025/11/16</h2>
+    <p class="terms">
+        
+        
+        Categories: <a href="/categories/ctf">ctf</a> 
+        
+        
+        
+        Tags: <a href="/tags/pwn">pwn</a> 
+        
+        
+    </p>
 </div>
 
 
 
 <div class="content-wrapper">
-  <main>
-    <h2 id="fmtstr_payload-in-pwntools">fmtstr_payload() in pwntools</h2>
+    <main>
+        <h2 id="fmtstr_payload-in-pwntools">fmtstr_payload() in pwntools</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>from pwn import *
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>payload <span style="color:#f92672">=</span> fmtstr_payload<span style="color:#f92672">(</span>offset, writes, numbwritten<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;byte&#39;</span><span style="color:#f92672">)</span>
@@ -193,8 +193,31 @@ exactly what value gets written to which address.</p>
 <p>All 4 of these bytes combine to form the value <strong><code>0xDEADBEEF</code></strong> at the address <code>0x12345678</code>.</p>
 <p>This is the extremely complex logic (sorting, calculating differences, handling padding, and managing addresses) that <code>fmtstr_payload()</code> automates for you in a single, clean line of code.</p>
 
-    <a href="/"> >> Home</a>
-  </main>
+        <a href="/"> >> Home</a>
+    </main>
+
+    
+<div class="comments-section">
+  <h2>Comments</h2>
+  <script src="https://giscus.app/client.js"
+    data-repo="clgp-aint-cool/clgp-aint-cool.github.io"
+    data-repo-id="R_kgDOQVBefA"
+    data-category="General"
+    data-category-id="DIC_kwDOQVBefM4C2YFQ"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+
+
 </div>
 <footer>
   
@@ -230,4 +253,3 @@ exactly what value gets written to which address.</p>
   <hr />
   Open-Source | <a href="https://github.com/clgp-aint-cool">GitHub</a> 
 </footer>
-

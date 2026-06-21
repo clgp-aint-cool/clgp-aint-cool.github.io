@@ -20,3 +20,5 @@ tags:
 - [Mantine] https://ui.mantine.dev
 
 # Theme
+
+[Cursor for figma]https://www.pencil.dev
