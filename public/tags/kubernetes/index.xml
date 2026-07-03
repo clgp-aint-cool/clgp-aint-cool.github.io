@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on AboutMe</title>
+    <link>http://localhost:1313/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on AboutMe</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 Jun 2026 10:49:47 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>High-Availability Microservices Infrastructure với K3s</title>
+      <link>http://localhost:1313/post/2026/06/21/high-availability-microservices-infrastructure-v%E1%BB%9Bi-k3s/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/post/2026/06/21/high-availability-microservices-infrastructure-v%E1%BB%9Bi-k3s/</guid>
+      <description>&lt;h2 id=&#34;tổng-quan&#34;&gt;Tổng quan&lt;/h2&gt;&#xA;&lt;p&gt;Dự án này triển khai một &lt;strong&gt;high-availability&lt;/strong&gt; &lt;strong&gt;microservices&lt;/strong&gt; trên Kubernetes, sử dụng K3s - một phiên bản Kubernetes nhẹ, tối ưu cho bare-metal.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Google&amp;rsquo;s Online Boutique&lt;/strong&gt; - một ứng dụng microservices gồm &lt;strong&gt;11 services độc lập&lt;/strong&gt; giao tiếp với nhau thông qua &lt;strong&gt;gRPC&lt;/strong&gt;, từ cơ sở dữ liệu đến frontend.&lt;/p&gt;&#xA;&lt;h2 id=&#34;kiến-trúc-tổng-thể&#34;&gt;Kiến trúc tổng thể&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Internet&#xA;   │&#xA;   ├──&amp;gt; Tailscale VPN (Mesh Network)&#xA;   │&#xA;   └──&amp;gt; Proxmox VE (KVM Hypervisor)&#xA;            │&#xA;            ├──&amp;gt; VM 1: K3s Control Plane (etcd + API Server)&#xA;            │        │&#xA;            │        └──&amp;gt; NodePort: 30080 (Frontend)&#xA;            │&#xA;            ├──&amp;gt; VM 2: K3s Worker Node 1&#xA;            │        └──&amp;gt; 5-6 microservice pods&#xA;            │&#xA;            └──&amp;gt; VM 3: K3s Worker Node 2&#xA;                     └──&amp;gt; 5-6 microservice pods&#xA;&#xA;Monitoring Stack:&#xA;   └──&amp;gt; Prometheus + Grafana (Helm-deployed)&#xA;            └──&amp;gt; Real-time metrics cho tất cả pods &amp;amp; nodes&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;công-nghệ-sử-dụng&#34;&gt;Công nghệ sử dụng&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;K3s&lt;/strong&gt; - Kubernetes nhẹ, triển khai nhanh&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Docker&lt;/strong&gt; - Container runtime&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Proxmox VE&lt;/strong&gt; - Hypervisor KVM để tạo VM&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Ubuntu Server&lt;/strong&gt; - OS cho tất cả các node&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Tailscale&lt;/strong&gt; - VPN mesh giải quyết AP isolation&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Prometheus&lt;/strong&gt; - Metrics collection&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Grafana&lt;/strong&gt; - Visualization &amp;amp; dashboards&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Helm&lt;/strong&gt; - Package manager cho Kubernetes&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;gRPC&lt;/strong&gt; - Communication protocol giữa microservices&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;thách-thức-ap-isolation&#34;&gt;Thách thức: AP Isolation&lt;/h2&gt;&#xA;&lt;p&gt;Mạng WiFi tại nhà bật &lt;strong&gt;AP isolation&lt;/strong&gt;, ngăn các thiết bị trong cùng mạng giao tiếp với nhau. Điều này gây khó khăn lớn cho:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -6,8 +6,36 @@
     <description>Recent content in Posts on AboutMe</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Feb 2026 00:58:20 +0700</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 22:21:09 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My_first_job</title>
+      <link>http://localhost:1313/post/2026/07/03/my_first_job/</link>
+      <pubDate>Fri, 03 Jul 2026 22:21:09 +0700</pubDate>
+      <guid>http://localhost:1313/post/2026/07/03/my_first_job/</guid>
+      <description>&lt;h1 id=&#34;my-first-job-as-a-syterm-engineer&#34;&gt;My first job as a Syterm Engineer&lt;/h1&gt;&#xA;&lt;h2 id=&#34;i-landed-my-first-intern-as-a-system-engineer-at-cmc-cloud&#34;&gt;&lt;span class=&#34;rainbow-text&#34;&gt;I landed my first intern as a System Engineer at CMC Cloud&lt;/span&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Before that, i have never applied to a tech job ever before due to my low confidence and&#xA;struggle to think that i&amp;rsquo;m able to fit in this big tech&lt;/p&gt;&#xA;&lt;p&gt;I always think i was not good enough&lt;/p&gt;&#xA;&lt;p&gt;Then just at the lowest time of my life, Stoicism came to me&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>High-Availability Microservices Infrastructure với K3s</title>
+      <link>http://localhost:1313/post/2026/06/21/high-availability-microservices-infrastructure-v%E1%BB%9Bi-k3s/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/post/2026/06/21/high-availability-microservices-infrastructure-v%E1%BB%9Bi-k3s/</guid>
+      <description>&lt;h2 id=&#34;tổng-quan&#34;&gt;Tổng quan&lt;/h2&gt;&#xA;&lt;p&gt;Dự án này triển khai một &lt;strong&gt;high-availability&lt;/strong&gt; &lt;strong&gt;microservices&lt;/strong&gt; trên Kubernetes, sử dụng K3s - một phiên bản Kubernetes nhẹ, tối ưu cho bare-metal.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Google&amp;rsquo;s Online Boutique&lt;/strong&gt; - một ứng dụng microservices gồm &lt;strong&gt;11 services độc lập&lt;/strong&gt; giao tiếp với nhau thông qua &lt;strong&gt;gRPC&lt;/strong&gt;, từ cơ sở dữ liệu đến frontend.&lt;/p&gt;&#xA;&lt;h2 id=&#34;kiến-trúc-tổng-thể&#34;&gt;Kiến trúc tổng thể&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Internet&#xA;   │&#xA;   ├──&amp;gt; Tailscale VPN (Mesh Network)&#xA;   │&#xA;   └──&amp;gt; Proxmox VE (KVM Hypervisor)&#xA;            │&#xA;            ├──&amp;gt; VM 1: K3s Control Plane (etcd + API Server)&#xA;            │        │&#xA;            │        └──&amp;gt; NodePort: 30080 (Frontend)&#xA;            │&#xA;            ├──&amp;gt; VM 2: K3s Worker Node 1&#xA;            │        └──&amp;gt; 5-6 microservice pods&#xA;            │&#xA;            └──&amp;gt; VM 3: K3s Worker Node 2&#xA;                     └──&amp;gt; 5-6 microservice pods&#xA;&#xA;Monitoring Stack:&#xA;   └──&amp;gt; Prometheus + Grafana (Helm-deployed)&#xA;            └──&amp;gt; Real-time metrics cho tất cả pods &amp;amp; nodes&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;công-nghệ-sử-dụng&#34;&gt;Công nghệ sử dụng&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;K3s&lt;/strong&gt; - Kubernetes nhẹ, triển khai nhanh&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Docker&lt;/strong&gt; - Container runtime&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Proxmox VE&lt;/strong&gt; - Hypervisor KVM để tạo VM&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Ubuntu Server&lt;/strong&gt; - OS cho tất cả các node&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Tailscale&lt;/strong&gt; - VPN mesh giải quyết AP isolation&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Prometheus&lt;/strong&gt; - Metrics collection&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Grafana&lt;/strong&gt; - Visualization &amp;amp; dashboards&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Helm&lt;/strong&gt; - Package manager cho Kubernetes&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;gRPC&lt;/strong&gt; - Communication protocol giữa microservices&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;thách-thức-ap-isolation&#34;&gt;Thách thức: AP Isolation&lt;/h2&gt;&#xA;&lt;p&gt;Mạng WiFi tại nhà bật &lt;strong&gt;AP isolation&lt;/strong&gt;, ngăn các thiết bị trong cùng mạng giao tiếp với nhau. Điều này gây khó khăn lớn cho:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Building an Enterprise-Grade Private Cloud with Proxmox VE</title>
+      <link>http://localhost:1313/post/2026/06/18/building-an-enterprise-grade-private-cloud-with-proxmox-ve/</link>
+      <pubDate>Thu, 18 Jun 2026 19:13:33 +0700</pubDate>
+      <guid>http://localhost:1313/post/2026/06/18/building-an-enterprise-grade-private-cloud-with-proxmox-ve/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;In this project, I designed and deployed a secured private cloud infrastructure. The setup uses Proxmox VE as the hypervisor foundation, Nextcloud for cloud storage, and various security layers including SSL encryption and VPN access.&lt;/p&gt;&#xA;&lt;h2 id=&#34;challenge-router-ap-isolation&#34;&gt;Challenge: Router AP Isolation&lt;/h2&gt;&#xA;&lt;p&gt;My home WiFi router enforces &lt;strong&gt;AP isolation&lt;/strong&gt;, preventing devices on the network from communicating with each other. This posed a significant challenge for accessing the Proxmox dashboard and managing the infrastructure.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My_first_home_server</title>
+      <link>http://localhost:1313/post/2026/06/02/my_first_home_server/</link>
+      <pubDate>Tue, 02 Jun 2026 13:50:09 +0700</pubDate>
+      <guid>http://localhost:1313/post/2026/06/02/my_first_home_server/</guid>
+      <description>&lt;img src = &#34;/images/first_home_server.PNG&#34;&gt;</description>
+    </item>
     <item>
       <title>Insta Swiper</title>
       <link>http://localhost:1313/post/2026/02/14/insta-swiper/</link>
@@ -20,7 +48,7 @@
       <link>http://localhost:1313/post/2026/02/04/web-dev/</link>
       <pubDate>Wed, 04 Feb 2026 20:22:06 +0700</pubDate>
       <guid>http://localhost:1313/post/2026/02/04/web-dev/</guid>
-      <description>&lt;h2 id=&#34;api&#34;&gt;API&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[Tanstalk] &lt;a href=&#34;https://tanstack.com&#34;&gt;https://tanstack.com&lt;/a&gt;&#xA;TanStack Query (trước đây là React Query) là một thư viện mạnh mẽ dùng để quản lý trạng thái server (server state), giúp đơn giản hóa việc xử lý dữ liệu bất đồng bộ (async data), caching, và refetching trong các ứng dụng React, Solid, Vue, Svelte, và Angula&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;ui&#34;&gt;UI&lt;/h2&gt;&#xA;&lt;h1 id=&#34;components&#34;&gt;Components&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[Mantine] &lt;a href=&#34;https://ui.mantine.dev&#34;&gt;https://ui.mantine.dev&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;theme&#34;&gt;Theme&lt;/h1&gt;</description>
+      <description>&lt;h2 id=&#34;api&#34;&gt;API&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[Tanstalk] &lt;a href=&#34;https://tanstack.com&#34;&gt;https://tanstack.com&lt;/a&gt;&#xA;TanStack Query (trước đây là React Query) là một thư viện mạnh mẽ dùng để quản lý trạng thái server (server state), giúp đơn giản hóa việc xử lý dữ liệu bất đồng bộ (async data), caching, và refetching trong các ứng dụng React, Solid, Vue, Svelte, và Angula&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;ui&#34;&gt;UI&lt;/h2&gt;&#xA;&lt;h1 id=&#34;components&#34;&gt;Components&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;[Mantine] &lt;a href=&#34;https://ui.mantine.dev&#34;&gt;https://ui.mantine.dev&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;theme&#34;&gt;Theme&lt;/h1&gt;&#xA;&lt;p&gt;[Cursor for figma]https://www.pencil.dev&lt;/p&gt;</description>
     </item>
     <item>
       <title>Bass_journey</title>

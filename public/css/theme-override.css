@@ -132,6 +132,34 @@
     }
 }
 
+/* Rainbow text animation */
+.rainbow-text {
+    font-weight: bold;
+    font-size: 1.2em;
+    background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff8800,
+        #ffff00,
+        #00cc00,
+        #0088ff,
+        #4400ff,
+        #cc00ff,
+        #ff0000
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow-shine 3s linear infinite;
+    display: inline-block;
+}
+
+@keyframes rainbow-shine {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
 /* Footer styling */
 footer {
     font-size: 90%;

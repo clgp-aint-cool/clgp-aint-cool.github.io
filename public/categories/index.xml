@@ -6,8 +6,36 @@
     <description>Recent content in Categories on AboutMe</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Feb 2026 20:22:06 +0700</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 22:21:09 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Job</title>
+      <link>http://localhost:1313/categories/job/</link>
+      <pubDate>Fri, 03 Jul 2026 22:21:09 +0700</pubDate>
+      <guid>http://localhost:1313/categories/job/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Homelab</title>
+      <link>http://localhost:1313/categories/homelab/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/categories/homelab/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Infrastructure</title>
+      <link>http://localhost:1313/categories/infrastructure/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/categories/infrastructure/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>http://localhost:1313/categories/kubernetes/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/categories/kubernetes/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Web</title>
       <link>http://localhost:1313/categories/web/</link>

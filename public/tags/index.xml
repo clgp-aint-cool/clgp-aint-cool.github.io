@@ -6,8 +6,99 @@
     <description>Recent content in Tags on AboutMe</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 31 Dec 2025 18:14:11 +0700</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 22:21:09 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Job, Intern</title>
+      <link>http://localhost:1313/tags/job-intern/</link>
+      <pubDate>Fri, 03 Jul 2026 22:21:09 +0700</pubDate>
+      <guid>http://localhost:1313/tags/job-intern/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Grafana</title>
+      <link>http://localhost:1313/tags/grafana/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/tags/grafana/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GRPC</title>
+      <link>http://localhost:1313/tags/grpc/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/tags/grpc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>K3s</title>
+      <link>http://localhost:1313/tags/k3s/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/tags/k3s/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>http://localhost:1313/tags/kubernetes/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microservices</title>
+      <link>http://localhost:1313/tags/microservices/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/tags/microservices/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prometheus</title>
+      <link>http://localhost:1313/tags/prometheus/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Proxmox</title>
+      <link>http://localhost:1313/tags/proxmox/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/tags/proxmox/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tailscale</title>
+      <link>http://localhost:1313/tags/tailscale/</link>
+      <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
+      <guid>http://localhost:1313/tags/tailscale/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nextcloud</title>
+      <link>http://localhost:1313/tags/nextcloud/</link>
+      <pubDate>Thu, 18 Jun 2026 19:13:33 +0700</pubDate>
+      <guid>http://localhost:1313/tags/nextcloud/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Self-Hosted</title>
+      <link>http://localhost:1313/tags/self-hosted/</link>
+      <pubDate>Thu, 18 Jun 2026 19:13:33 +0700</pubDate>
+      <guid>http://localhost:1313/tags/self-hosted/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VPN</title>
+      <link>http://localhost:1313/tags/vpn/</link>
+      <pubDate>Thu, 18 Jun 2026 19:13:33 +0700</pubDate>
+      <guid>http://localhost:1313/tags/vpn/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ZFS</title>
+      <link>http://localhost:1313/tags/zfs/</link>
+      <pubDate>Thu, 18 Jun 2026 19:13:33 +0700</pubDate>
+      <guid>http://localhost:1313/tags/zfs/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Bass</title>
       <link>http://localhost:1313/tags/bass/</link>

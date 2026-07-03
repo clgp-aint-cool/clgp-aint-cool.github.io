@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Job, Intern on AboutMe</title>
+    <link>http://localhost:1313/tags/job-intern/</link>
+    <description>Recent content in Job, Intern on AboutMe</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 03 Jul 2026 22:21:09 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/job-intern/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My_first_job</title>
+      <link>http://localhost:1313/post/2026/07/03/my_first_job/</link>
+      <pubDate>Fri, 03 Jul 2026 22:21:09 +0700</pubDate>
+      <guid>http://localhost:1313/post/2026/07/03/my_first_job/</guid>
+      <description>&lt;h1 id=&#34;my-first-job-as-a-syterm-engineer&#34;&gt;My first job as a Syterm Engineer&lt;/h1&gt;&#xA;&lt;h2 id=&#34;i-landed-my-first-intern-as-a-system-engineer-at-cmc-cloud&#34;&gt;&lt;span class=&#34;rainbow-text&#34;&gt;I landed my first intern as a System Engineer at CMC Cloud&lt;/span&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Before that, i have never applied to a tech job ever before due to my low confidence and&#xA;struggle to think that i&amp;rsquo;m able to fit in this big tech&lt;/p&gt;&#xA;&lt;p&gt;I always think i was not good enough&lt;/p&gt;&#xA;&lt;p&gt;Then just at the lowest time of my life, Stoicism came to me&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

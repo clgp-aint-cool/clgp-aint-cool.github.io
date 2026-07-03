@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple, minimal blog for those who love text.">
+    <title>High-Availability Microservices Infrastructure với K3s | AboutMe</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="http://localhost:1313/css/theme-override.css">
+    
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li class="pull-left ">
+            <a href="http://localhost:1313/">~/aboutme</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/blog/">~/blog</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/categories/">~/categories</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/tags/">~/tags</a>
+          </li>
+          
+
+          
+
+        </ul>
+      </nav>
+    </header>
+
+
+<div class="article-meta">
+    <h1><span class="title">High-Availability Microservices Infrastructure với K3s</span></h1>
+    <h2 class="author">clgp</h2>
+    <h2 class="date">2026/06/21</h2>
+    <p class="terms">
+        
+        
+        Categories: <a href="/categories/infrastructure">Infrastructure</a> <a href="/categories/homelab">Homelab</a> <a href="/categories/kubernetes">Kubernetes</a> 
+        
+        
+        
+        Tags: <a href="/tags/k3s">K3s</a> <a href="/tags/kubernetes">Kubernetes</a> <a href="/tags/proxmox">Proxmox</a> <a href="/tags/microservices">Microservices</a> <a href="/tags/tailscale">Tailscale</a> <a href="/tags/prometheus">Prometheus</a> <a href="/tags/grafana">Grafana</a> <a href="/tags/grpc">gRPC</a> 
+        
+        
+    </p>
+</div>
+
+
+
+<div class="content-wrapper">
+    <main>
+        <h2 id="tổng-quan">Tổng quan</h2>
+<p>Dự án này triển khai một <strong>high-availability</strong> <strong>microservices</strong> trên Kubernetes, sử dụng K3s - một phiên bản Kubernetes nhẹ, tối ưu cho bare-metal.</p>
+<p><strong>Google&rsquo;s Online Boutique</strong> - một ứng dụng microservices gồm <strong>11 services độc lập</strong> giao tiếp với nhau thông qua <strong>gRPC</strong>, từ cơ sở dữ liệu đến frontend.</p>
+<h2 id="kiến-trúc-tổng-thể">Kiến trúc tổng thể</h2>
+<pre tabindex="0"><code>Internet
+   │
+   ├──&gt; Tailscale VPN (Mesh Network)
+   │
+   └──&gt; Proxmox VE (KVM Hypervisor)
+            │
+            ├──&gt; VM 1: K3s Control Plane (etcd + API Server)
+            │        │
+            │        └──&gt; NodePort: 30080 (Frontend)
+            │
+            ├──&gt; VM 2: K3s Worker Node 1
+            │        └──&gt; 5-6 microservice pods
+            │
+            └──&gt; VM 3: K3s Worker Node 2
+                     └──&gt; 5-6 microservice pods
+
+Monitoring Stack:
+   └──&gt; Prometheus + Grafana (Helm-deployed)
+            └──&gt; Real-time metrics cho tất cả pods &amp; nodes
+</code></pre><h2 id="công-nghệ-sử-dụng">Công nghệ sử dụng</h2>
+<ul>
+<li><strong>K3s</strong> - Kubernetes nhẹ, triển khai nhanh</li>
+<li><strong>Docker</strong> - Container runtime</li>
+<li><strong>Proxmox VE</strong> - Hypervisor KVM để tạo VM</li>
+<li><strong>Ubuntu Server</strong> - OS cho tất cả các node</li>
+<li><strong>Tailscale</strong> - VPN mesh giải quyết AP isolation</li>
+<li><strong>Prometheus</strong> - Metrics collection</li>
+<li><strong>Grafana</strong> - Visualization &amp; dashboards</li>
+<li><strong>Helm</strong> - Package manager cho Kubernetes</li>
+<li><strong>gRPC</strong> - Communication protocol giữa microservices</li>
+</ul>
+<h2 id="thách-thức-ap-isolation">Thách thức: AP Isolation</h2>
+<p>Mạng WiFi tại nhà bật <strong>AP isolation</strong>, ngăn các thiết bị trong cùng mạng giao tiếp với nhau. Điều này gây khó khăn lớn cho:</p>
+<ul>
+<li>SSH access vào các VM từ laptop</li>
+<li>Truy cập Proxmox dashboard</li>
+</ul>
+<h3 id="giải-pháp-tailscale-vpn-mesh">Giải pháp: Tailscale VPN Mesh</h3>
+<p><strong>Kết quả</strong>:</p>
+<ul>
+<li>Tất cả nodes có thể SSH trực tiếp qua Tailscale IP</li>
+<li>Kubernetes pods communicate được qua mạng VPN</li>
+<li>Không expose services ra public internet</li>
+<li>Không cần thay đổi router config</li>
+</ul>
+<h2 id="triển-khai-multi-node-k3s-cluster">Triển khai Multi-Node K3s Cluster</h2>
+<h3 id="bước-1-provision-vms-trên-proxmox">Bước 1: Provision VMs trên Proxmox</h3>
+<p>Tạo 3 VMs Ubuntu Server:</p>
+<ul>
+<li><strong>VM 1</strong> (2 vCPU, 4GB RAM): K3s Control Plane</li>
+<li><strong>VM 2</strong> (2 vCPU, 4GB RAM): K3s Worker Node 1</li>
+<li><strong>VM 3</strong> (2 vCPU, 4GB RAM): K3s Worker Node 2</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Trên Control Plane node</span>
+</span></span><span style="display:flex;"><span>curl -sfL https://get.k3s.io | sh -s - --cluster-cidr<span style="color:#f92672">=</span>10.244.0.0/16
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Trên Worker nodes, lấy token từ control plane:</span>
+</span></span><span style="display:flex;"><span>curl -sfL https://get.k3s.io | sh -s - --server https://&lt;control-plane-ip&gt;:6443 --token &lt;token&gt;
+</span></span></code></pre></div><h3 id="bước-2-deploy-google-online-boutique">Bước 2: Deploy Google Online Boutique</h3>
+<p>Google Online Boutique là microservices application với 11 services:</p>
+<ul>
+<li><code>frontend</code> - Web UI (Go)</li>
+<li><code>cartservice</code> - Giỏ hàng (C#/ASP.NET)</li>
+<li><code>checkoutservice</code> - Thanh toán (Go)</li>
+<li><code>productcatalogservice</code> - Danh mục sản phẩm (Go)</li>
+<li><code>recommendationservice</code> - Gợi ý sản phẩm (Python)</li>
+<li><code>shippingservice</code> - Vận chuyển (Go)</li>
+<li><code>emailservice</code> - Gửi email (Python)</li>
+<li><code>paymentservice</code> - Xử lý thanh toán (Node.js)</li>
+<li><code>currencyservice</code> - Chuyển đổi tiền tệ (Node.js)</li>
+<li><code>redis-cart</code> - Redis cache cho giỏ hàng</li>
+<li><code>loadgenerator</code> - Traffic generator (Python)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Deploy với kubectl</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">kubectl apply -f ..../manifests/ ( sau khi đã clone repo về)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Kubernetes scheduler **tự động phân bổ** 11 pods cho 2 worker nodes dựa trên CPU/memory available.</span>
+</span></span></code></pre></div><p><strong>Lưu ý</strong>: Nếu không setup taint thì scheduler cũng sẽ phân bổ pods cho master/control node</p>
+<h3 id="bước-3-expose-frontend-với-nodeport">Bước 3: Expose Frontend với NodePort</h3>
+<p>Trong môi trường bare-metal (không có cloud load balancer), dùng <strong>NodePort service</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">frontend</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">frontend</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">nodePort</span>: <span style="color:#ae81ff">30080</span>
+</span></span></code></pre></div><p><strong>Truy cập frontend</strong>: <code>http://&lt;any-node-ip&gt;:30080</code></p>
+<p>Kube-proxy tự động route requests từ bất kỳ node nào trong cluster đến frontend pod.</p>
+<h2 id="monitoring-với-prometheus--grafana">Monitoring với Prometheus &amp; Grafana</h2>
+<h3 id="cài-đặt-qua-helm">Cài đặt qua Helm</h3>
+<p>Tạo namespace riêng cho monitoring:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl create namespace monitoring
+</span></span></code></pre></div><p>Cài đặt kube-prometheus-stack:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span><span style="display:flex;"><span>helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring
+</span></span></code></pre></div><p>Stack bao gồm:</p>
+<ul>
+<li><strong>Prometheus Operator</strong> - Quản lý Prometheus instances</li>
+<li><strong>Prometheus</strong> - Metrics collection</li>
+<li><strong>Alertmanager</strong> - Quản lý alerts</li>
+<li><strong>Grafana</strong> - Dashboards với pre-configured panels</li>
+<li><strong>Node Exporter</strong> - Host-level metrics</li>
+<li><strong>kube-state-metrics</strong> - Kubernetes object metrics</li>
+</ul>
+<h3 id="observability-đạt-được">Observability đạt được</h3>
+<p>Dashboard Grafana hiển thị real-time:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Metric</th>
+          <th>Source</th>
+          <th>Detail</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CPU Usage</td>
+          <td>Pod-level</td>
+          <td>Từng microservice container</td>
+      </tr>
+      <tr>
+          <td>Memory Consumption</td>
+          <td>Pod-level</td>
+          <td>RAM usage của từng service</td>
+      </tr>
+      <tr>
+          <td>Network I/O</td>
+          <td>Node &amp; Pod</td>
+          <td>Traffic giữa services qua gRPC</td>
+      </tr>
+      <tr>
+          <td>Request Rate</td>
+          <td>Frontend</td>
+          <td>HTTP requests/second</td>
+      </tr>
+      <tr>
+          <td>Error Rate</td>
+          <td>All services</td>
+          <td>5xx responses theo service</td>
+      </tr>
+  </tbody>
+</table>
+<p>So với monitoring ở <strong>hypervisor level</strong> (Proxmox), cấp độ <strong>pod-level metrics</strong> cung cấp visibility sâu hơn vào ứng dụng microservices.</p>
+<h2 id="tính-năng-high-availability">Tính năng High-Availability</h2>
+<h3 id="1-multi-node-cluster">1. Multi-Node Cluster</h3>
+<ul>
+<li><strong>Control Plane HA</strong>: etcd cluster với 3 nodes (trong demo này dùng single control plane nhưng có thể scale)</li>
+<li><strong>Worker Nodes</strong>: 2 nodes, Kubernetes scheduler tự động reschedule pods nếu node fail</li>
+</ul>
+<h3 id="2-self-healing">2. Self-Healing</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Kiểm tra pods được tự động restart nếu crash</span>
+</span></span><span style="display:flex;"><span>kubectl get pods -w
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Nếu worker node 1 die, pods được lên lại trên worker node 2</span>
+</span></span><span style="display:flex;"><span>kubectl delete node &lt;worker-node-1&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Watch: pods bị disrupted → tạo lại trên node khác</span>
+</span></span></code></pre></div><h2 id="demo-pictures">Demo Pictures</h2>
+<hr>
+<img src = "/images/my_first_k8s/2.png">
+*K3s cluster architecture with 3 VMs on Proxmox* -->
+<hr>
+<img src = "/images/my_first_k8s/1.png">
+*Pods distributed across 2 worker nodes by Kubernetes scheduler*
+---
+<img src = "/images/my_first_k8s/3.png">
+*Google Online Boutique - 11 microservices with gRPC communication*
+<hr>
+<img src = "/images/my_first_k8s/4.png">
+*Prometheus + Grafana monitoring: CPU, Memory, Network I/O metrics*
+<hr>
+
+        <a href="/"> >> Home</a>
+    </main>
+
+    
+<div class="comments-section">
+  <h2>Comments</h2>
+  <script src="https://giscus.app/client.js"
+    data-repo="clgp-aint-cool/clgp-aint-cool.github.io"
+    data-repo-id="R_kgDOQVBefA"
+    data-category="General"
+    data-category-id="DIC_kwDOQVBefM4C2YFQ"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+
+
+</div>
+<footer>
+  
+  
+  <script>
+    (function () {
+      function center_el(tagName) {
+        var tags = document.getElementsByTagName(tagName),
+          i,
+          tag;
+        for (i = 0; i < tags.length; i++) {
+          tag = tags[i];
+          var parent = tag.parentElement;
+          
+          if (parent.childNodes.length === 1) {
+            
+            if (parent.nodeName === "A") {
+              parent = parent.parentElement;
+              if (parent.childNodes.length != 1) continue;
+            }
+            if (parent.nodeName === "P") parent.style.textAlign = "center";
+          }
+        }
+      }
+      var tagNames = ["img", "embed", "object"];
+      for (var i = 0; i < tagNames.length; i++) {
+        center_el(tagNames[i]);
+      }
+    })();
+  </script>
+
+  
+  <hr />
+  Open-Source | <a href="https://github.com/clgp-aint-cool">GitHub</a> 
+</footer>
