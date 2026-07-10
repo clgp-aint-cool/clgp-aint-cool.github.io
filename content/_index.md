@@ -1,14 +1,14 @@
 ---
 title: Home
-description: "helo"
+description: "hello"
 ---
 
 CLGP'S BLOG
-Cybersecurity | Backend Developer | DevOps
+Cybersecurity | Backend Developer (partime) | DevOps
 
-I am a 20-year-old developer based in Ho Chi Minh City, VN
+I'm 21 years old, based in Ho Chi Minh City, VN
 
-<!-- ## <span class="rainbow-text">Currently intern as a System Engineer at CMC Cloud</span> -->
+## <span class="rainbow-text">Currently intern as a System Engineer at CMC Cloud</span> - JULY, 2026
 
 ---
 

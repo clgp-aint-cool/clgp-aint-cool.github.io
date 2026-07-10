@@ -9,11 +9,11 @@
     <lastBuildDate>Fri, 03 Jul 2026 22:21:09 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My_first_job</title>
-      <link>http://localhost:1313/post/2026/07/03/my_first_job/</link>
+      <title>My first tech job</title>
+      <link>http://localhost:1313/post/2026/07/03/my-first-tech-job/</link>
       <pubDate>Fri, 03 Jul 2026 22:21:09 +0700</pubDate>
-      <guid>http://localhost:1313/post/2026/07/03/my_first_job/</guid>
-      <description>&lt;h1 id=&#34;my-first-job-as-a-syterm-engineer&#34;&gt;My first job as a Syterm Engineer&lt;/h1&gt;&#xA;&lt;h2 id=&#34;i-landed-my-first-intern-as-a-system-engineer-at-cmc-cloud&#34;&gt;&lt;span class=&#34;rainbow-text&#34;&gt;I landed my first intern as a System Engineer at CMC Cloud&lt;/span&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Before that, i have never applied to a tech job ever before due to my low confidence and&#xA;struggle to think that i&amp;rsquo;m able to fit in this big tech&lt;/p&gt;&#xA;&lt;p&gt;I always think i was not good enough&lt;/p&gt;&#xA;&lt;p&gt;Then just at the lowest time of my life, Stoicism came to me&lt;/p&gt;</description>
+      <guid>http://localhost:1313/post/2026/07/03/my-first-tech-job/</guid>
+      <description>&lt;h2 id=&#34;i-landed-my-first-internship-as-a-system-engineer-at-cmc-cloud&#34;&gt;&lt;span class=&#34;rainbow-text&#34;&gt;I landed my first internship as a System Engineer at CMC Cloud&lt;/span&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Before that, i have never applied to a tech job ever before due to my low confidence and&#xA;struggle to think that i&amp;rsquo;m able to fit in this tech industry&lt;/p&gt;&#xA;&lt;p&gt;I always think i was not good enough&lt;/p&gt;&#xA;&lt;p&gt;Then just at the lowest time of my life, Stoicism came to me&lt;/p&gt;&#xA;&lt;p&gt;The most valuable things Stoicism taught me is how a Stoicisms think about everything into 2 categories&lt;/p&gt;</description>
     </item>
     <item>
       <title>High-Availability Microservices Infrastructure với K3s</title>
