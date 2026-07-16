@@ -12,7 +12,9 @@ tags:
 
 # một website kinh doanh quá đần, vibe code thu 49k một tháng mà lộ hết trong source, chả hiểu blur làm gì xong thu ngta 49k
 
-#LEAK DEMO
+# LEAK DEMO
+
+<img src = "/images/web_vibe_code.png">
 
 ## Cloud-AWS (blur từ 24-32)
 
