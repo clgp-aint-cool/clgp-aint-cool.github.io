@@ -1,0 +1,28 @@
+{{ partial "header.html" . }}
+
+<div class="article-meta">
+    <h1><span class="title">{{ .Title | markdownify }}</span></h1>
+    {{ with .Params.author }}<h2 class="author">by {{ . }}</h2>{{ end }}
+    <p class="book-metadata">
+        {{ with .Params.date }}<span class="date-read">Date Read: {{ .Format "January 2, 2006" }}</span>{{ end }}
+        {{ with .Params.rating }}
+        {{ $rating := . }} · <span class="book-rating" role="img" aria-label="{{ $rating }} out of 5 stars">{{ range seq 5 }}{{ if le . $rating }}&#9733;{{ else }}&#9734;{{ end }}{{ end }}</span>
+        {{ end }}
+    </p>
+</div>
+
+<div class="content-wrapper">
+    <main>
+        {{ with .Params.coverimage }}
+        <div class="book-cover-single">
+            <img src="{{ . | relURL }}" alt="{{ $.Title }} cover">
+        </div>
+        {{ end }}
+        {{ .Content }}
+        <a href="/"> >> Home</a>
+    </main>
+
+    {{ partial "comments.html" . }}
+</div>
+
+{{ partial "footer.html" . }}
