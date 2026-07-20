@@ -1,88 +1,5 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-    <link rel="manifest" href="/images/site.webmanifest">
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A simple, minimal blog for those who love text.">
-    <title>Building an Enterprise-Grade Private Cloud with Proxmox VE | AboutMe</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link rel="stylesheet" href="http://localhost:1313/css/theme-override.css">
-    
-  </head>
-
-  <body>
-    <header>
-      <nav>
-        <ul>
-          
-          
-          <li class="pull-left ">
-            <a href="http://localhost:1313/">~/aboutme</a>
-          </li>
-          
-          
-          <li class="pull-left ">
-            <a href="/blog/">~/blog</a>
-          </li>
-          
-          
-          <li class="pull-left ">
-            <a href="/categories/">~/categories</a>
-          </li>
-          
-          
-          <li class="pull-left ">
-            <a href="/tags/">~/tags</a>
-          </li>
-          
-          
-          <li class="pull-left ">
-            <a href="/books/">~/books</a>
-          </li>
-          
-
-          
-
-        </ul>
-      </nav>
-    </header>
-
-
-<div class="article-meta">
-    <h1><span class="title">Building an Enterprise-Grade Private Cloud with Proxmox VE</span></h1>
-    <h2 class="author">clgp</h2>
-    <h2 class="date">2026/06/18</h2>
-    <p class="terms">
-        
-        
-        Categories: <a href="/categories/infrastructure">Infrastructure</a> <a href="/categories/homelab">Homelab</a> 
-        
-        
-        
-        Tags: <a href="/tags/proxmox">Proxmox</a> <a href="/tags/nextcloud">Nextcloud</a> <a href="/tags/zfs">ZFS</a> <a href="/tags/self-hosted">Self-Hosted</a> <a href="/tags/vpn">VPN</a> 
-        
-        
-    </p>
-</div>
-
-
-
-<div class="content-wrapper">
-    <main>
-        <h2 id="overview">Overview</h2>
-<p>In this project, I designed and deployed a secured private cloud infrastructure. The setup uses Proxmox VE as the hypervisor foundation, Nextcloud for cloud storage, and various security layers including SSL encryption and VPN access.</p>
-<h2 id="challenge-router-ap-isolation">Challenge: Router AP Isolation</h2>
-<p>My home WiFi router enforces <strong>AP isolation</strong>, preventing devices on the network from communicating with each other. This posed a significant challenge for accessing the Proxmox dashboard and managing the infrastructure.</p>
-<p><strong>Solution</strong>: I deployed <strong>Tailscale</strong> to create a secure VPN mesh network, enabling direct access to the Proxmox host and all hosted services without modifying router settings or exposing services to the public internet.</p>
-<h2 id="architecture">Architecture</h2>
-<pre tabindex="0"><code>Internet
+<!doctype html><html lang=en-us><head><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/images/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/images/favicon-16x16.png><link rel=manifest href=/images/site.webmanifest><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="A simple, minimal blog for those who love text."><title>Building an Enterprise-Grade Private Cloud with Proxmox VE | AboutMe</title><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link rel=stylesheet href=https://clgp-aint-cool.github.io/css/theme-override.css></head><body><header><nav><ul><li class=pull-left><a href=https://clgp-aint-cool.github.io/>~/aboutme</a></li><li class=pull-left><a href=/blog/>~/blog</a></li><li class=pull-left><a href=/categories/>~/categories</a></li><li class=pull-left><a href=/tags/>~/tags</a></li><li class=pull-left><a href=/books/>~/books</a></li><li class=pull-left><a href=/company-lunch/>~/company lunch</a></li></ul></nav></header><div class=article-meta><h1><span class=title>Building an Enterprise-Grade Private Cloud with Proxmox VE</span></h1><h2 class=author>clgp</h2><h2 class=date>2026/06/18</h2><p class=terms>Categories: <a href=/categories/infrastructure>Infrastructure</a> <a href=/categories/homelab>Homelab</a>
+Tags: <a href=/tags/proxmox>Proxmox</a> <a href=/tags/nextcloud>Nextcloud</a> <a href=/tags/zfs>ZFS</a> <a href=/tags/self-hosted>Self-Hosted</a> <a href=/tags/vpn>VPN</a></p></div><div class=content-wrapper><main><h2 id=overview>Overview</h2><p>In this project, I designed and deployed a secured private cloud infrastructure. The setup uses Proxmox VE as the hypervisor foundation, Nextcloud for cloud storage, and various security layers including SSL encryption and VPN access.</p><h2 id=challenge-router-ap-isolation>Challenge: Router AP Isolation</h2><p>My home WiFi router enforces <strong>AP isolation</strong>, preventing devices on the network from communicating with each other. This posed a significant challenge for accessing the Proxmox dashboard and managing the infrastructure.</p><p><strong>Solution</strong>: I deployed <strong>Tailscale</strong> to create a secure VPN mesh network, enabling direct access to the Proxmox host and all hosted services without modifying router settings or exposing services to the public internet.</p><h2 id=architecture>Architecture</h2><pre tabindex=0><code>Internet
    │
    └──&gt; Tailscale VPN ──&gt; Proxmox VE (KVM Hypervisor)
                               │
@@ -91,128 +8,17 @@
                               │         └──&gt; Let&#39;s Encrypt SSL
                               │
                               └──&gt; ZFS Storage Pool (Compression + Snapshots)
-</code></pre><h2 id="implementation-steps">Implementation Steps</h2>
-<p>Note : all the script are taken from <a href="https://community-scripts.org">https://community-scripts.org</a></p>
-<h3 id="1-proxmox-ve-installation--configuration">1. Proxmox VE Installation &amp; Configuration</h3>
-<ul>
-<li>Installed <strong>Proxmox VE</strong> bare-metal hypervisor on dedicated hardware</li>
-<li>Set up network bridge for VM connectivity</li>
-<li>Configured resource allocation pools (CPU, RAM, storage)</li>
-</ul>
-<h3 id="2-tailscale-vpn-setup">2. Tailscale VPN Setup</h3>
-<p>Due to AP isolation on my router:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Tailscale on Proxmox host</span>
-</span></span><span style="display:flex;"><span>curl -fsSL https://tailscale.com/install.sh | sh
-</span></span><span style="display:flex;"><span>tailscale up
-</span></span></code></pre></div><ul>
-<li>Created a Tailscale network and authenticated the Proxmox host</li>
-<li>Access Proxmox dashboard via Tailscale IP: <code>https://&lt;tailscale-ip&gt;:8006</code></li>
-<li>All management tasks now routable through the secure VPN mesh</li>
-</ul>
-<h3 id="3-nextcloud-vm-provisioning">3. Nextcloud VM Provisioning</h3>
-<ul>
-<li>Created Ubuntu LXC container within Proxmox</li>
-<li>Configured database and initial admin account</li>
-</ul>
-<h3 id="4-nginx-reverse-proxy--ssl">4. Nginx Reverse Proxy &amp; SSL</h3>
-<ul>
-<li>Deployed <strong>Nginx</strong> as reverse proxy for Nextcloud</li>
-<li>Integrated <strong>Let&rsquo;s Encrypt</strong> for automatic SSL certificate provisioning</li>
-<li>Configured HTTPS enforcement and security headers</li>
-</ul>
-<h3 id="5-zfs-storage-configuration">5. ZFS Storage Configuration</h3>
-<ul>
-<li>Created <strong>ZFS storage pool</strong> for VM disks and Nextcloud data</li>
-<li>Enabled LZ4 compression for optimal disk I/O performance</li>
-<li>Configured automatic snapshots for data redundancy</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create ZFS pool</span>
-</span></span><span style="display:flex;"><span>zpool create -o ashift<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span> tank /dev/sdb /dev/sdc
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable compression</span>
-</span></span><span style="display:flex;"><span>zfs set compression<span style="color:#f92672">=</span>lz4 tank
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configure automated snapshots</span>
-</span></span><span style="display:flex;"><span>zfs snapshot tank@backup-<span style="color:#66d9ef">$(</span>date +%Y%m%d<span style="color:#66d9ef">)</span>
-</span></span></code></pre></div><h3 id="6-backup--disaster-recovery">6. Backup &amp; Disaster Recovery</h3>
-<ul>
-<li>Configured <strong>Proxmox Backup Server</strong> integration</li>
-<li>Set up automated VM/LXC backup schedules (daily/weekly)</li>
-<li>Implemented snapshot retention policies</li>
-<li>Tested disaster recovery procedures</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Proxmox backup job (configured via web UI or CLI)</span>
-</span></span><span style="display:flex;"><span>vzdump &lt;vmid&gt; --storage local-zfs --mode snapshot --compress lzo
-</span></span></code></pre></div><h2 id="technologies-used">Technologies Used</h2>
-<ul>
-<li><strong>Proxmox VE</strong> (KVM hypervisor)</li>
-<li><strong>Tailscale</strong> (WireGuard-based VPN)</li>
-<li><strong>Nextcloud</strong> (Private cloud storage)</li>
-<li><strong>Nginx</strong> (Reverse proxy)</li>
-<li><strong>Let&rsquo;s Encrypt</strong> (SSL certificates)</li>
-<li><strong>ZFS</strong> (Advanced filesystem with compression and snapshots)</li>
-<li><strong>Linux</strong> (Ubuntu LXC containers)</li>
-</ul>
-<h2 id="demo-demonstration">Demo demonstration</h2>
-<hr>
-
-        <a href="/"> >> Home</a>
-    </main>
-
-    
-<div class="comments-section">
-  <h2>Comments</h2>
-  <script src="https://giscus.app/client.js"
-    data-repo="clgp-aint-cool/clgp-aint-cool.github.io"
-    data-repo-id="R_kgDOQVBefA"
-    data-category="General"
-    data-category-id="DIC_kwDOQVBefM4C2YFQ"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="en"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async>
-  </script>
-</div>
-
-
-</div>
-<footer>
-  
-  
-  <script>
-    (function () {
-      function center_el(tagName) {
-        var tags = document.getElementsByTagName(tagName),
-          i,
-          tag;
-        for (i = 0; i < tags.length; i++) {
-          tag = tags[i];
-          var parent = tag.parentElement;
-          
-          if (parent.childNodes.length === 1) {
-            
-            if (parent.nodeName === "A") {
-              parent = parent.parentElement;
-              if (parent.childNodes.length != 1) continue;
-            }
-            if (parent.nodeName === "P") parent.style.textAlign = "center";
-          }
-        }
-      }
-      var tagNames = ["img", "embed", "object"];
-      for (var i = 0; i < tagNames.length; i++) {
-        center_el(tagNames[i]);
-      }
-    })();
-  </script>
-
-  
-  <hr />
-  Open-Source | <a href="https://github.com/clgp-aint-cool">GitHub</a> 
-</footer>
+</code></pre><h2 id=implementation-steps>Implementation Steps</h2><p>Note : all the script are taken from <a href=https://community-scripts.org>https://community-scripts.org</a></p><h3 id=1-proxmox-ve-installation--configuration>1. Proxmox VE Installation & Configuration</h3><ul><li>Installed <strong>Proxmox VE</strong> bare-metal hypervisor on dedicated hardware</li><li>Set up network bridge for VM connectivity</li><li>Configured resource allocation pools (CPU, RAM, storage)</li></ul><h3 id=2-tailscale-vpn-setup>2. Tailscale VPN Setup</h3><p>Due to AP isolation on my router:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install Tailscale on Proxmox host</span>
+</span></span><span style=display:flex><span>curl -fsSL https://tailscale.com/install.sh | sh
+</span></span><span style=display:flex><span>tailscale up
+</span></span></code></pre></div><ul><li>Created a Tailscale network and authenticated the Proxmox host</li><li>Access Proxmox dashboard via Tailscale IP: <code>https://&lt;tailscale-ip>:8006</code></li><li>All management tasks now routable through the secure VPN mesh</li></ul><h3 id=3-nextcloud-vm-provisioning>3. Nextcloud VM Provisioning</h3><ul><li>Created Ubuntu LXC container within Proxmox</li><li>Configured database and initial admin account</li></ul><h3 id=4-nginx-reverse-proxy--ssl>4. Nginx Reverse Proxy & SSL</h3><ul><li>Deployed <strong>Nginx</strong> as reverse proxy for Nextcloud</li><li>Integrated <strong>Let&rsquo;s Encrypt</strong> for automatic SSL certificate provisioning</li><li>Configured HTTPS enforcement and security headers</li></ul><h3 id=5-zfs-storage-configuration>5. ZFS Storage Configuration</h3><ul><li>Created <strong>ZFS storage pool</strong> for VM disks and Nextcloud data</li><li>Enabled LZ4 compression for optimal disk I/O performance</li><li>Configured automatic snapshots for data redundancy</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create ZFS pool</span>
+</span></span><span style=display:flex><span>zpool create -o ashift<span style=color:#f92672>=</span><span style=color:#ae81ff>12</span> tank /dev/sdb /dev/sdc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Enable compression</span>
+</span></span><span style=display:flex><span>zfs set compression<span style=color:#f92672>=</span>lz4 tank
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Configure automated snapshots</span>
+</span></span><span style=display:flex><span>zfs snapshot tank@backup-<span style=color:#66d9ef>$(</span>date +%Y%m%d<span style=color:#66d9ef>)</span>
+</span></span></code></pre></div><h3 id=6-backup--disaster-recovery>6. Backup & Disaster Recovery</h3><ul><li>Configured <strong>Proxmox Backup Server</strong> integration</li><li>Set up automated VM/LXC backup schedules (daily/weekly)</li><li>Implemented snapshot retention policies</li><li>Tested disaster recovery procedures</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Proxmox backup job (configured via web UI or CLI)</span>
+</span></span><span style=display:flex><span>vzdump &lt;vmid&gt; --storage local-zfs --mode snapshot --compress lzo
+</span></span></code></pre></div><h2 id=technologies-used>Technologies Used</h2><ul><li><strong>Proxmox VE</strong> (KVM hypervisor)</li><li><strong>Tailscale</strong> (WireGuard-based VPN)</li><li><strong>Nextcloud</strong> (Private cloud storage)</li><li><strong>Nginx</strong> (Reverse proxy)</li><li><strong>Let&rsquo;s Encrypt</strong> (SSL certificates)</li><li><strong>ZFS</strong> (Advanced filesystem with compression and snapshots)</li><li><strong>Linux</strong> (Ubuntu LXC containers)</li></ul><h2 id=demo-demonstration>Demo demonstration</h2><hr><a href=/>>> Home</a></main><div class=comments-section><h2>Comments</h2><script src=https://giscus.app/client.js data-repo=clgp-aint-cool/clgp-aint-cool.github.io data-repo-id=R_kgDOQVBefA data-category=General data-category-id=DIC_kwDOQVBefM4C2YFQ data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=preferred_color_scheme data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div><footer><script>(function(){function n(e){var t,n,o,s=document.getElementsByTagName(e);for(n=0;n<s.length;n++)if(o=s[n],t=o.parentElement,t.childNodes.length===1){if(t.nodeName==="A"&&(t=t.parentElement,t.childNodes.length!=1))continue;t.nodeName==="P"&&(t.style.textAlign="center")}}for(var t=["img","embed","object"],e=0;e<t.length;e++)n(t[e])})()</script><hr>Open-Source | <a href=https://github.com/clgp-aint-cool>GitHub</a></footer>

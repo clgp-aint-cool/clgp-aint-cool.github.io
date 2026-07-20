@@ -1,0 +1,31 @@
+{{ partial "header.html" . }}
+
+<div class="content-wrapper">
+  <h1>{{ .Title | markdownify }}</h1>
+
+  {{ .Content }}
+
+  <div class="company-lunch-grid">
+    {{ range (where site.RegularPages "Section" "company-lunch").ByDate.Reverse }}
+    {{ $page := . }}
+    <article class="company-lunch-card">
+      {{ with $page.Params.image }}
+      <div class="company-lunch-photo">
+        <img src="{{ . | relURL }}" alt="{{ $page.Title }}">
+      </div>
+      {{ end }}
+      <h2 class="company-lunch-title">{{ $page.Title | markdownify }}</h2>
+      <p class="company-lunch-date">{{ $page.Date.Format "January 2, 2006" }}</p>
+      {{ with $page.Params.description }}<p class="company-lunch-description">{{ . }}</p>{{ end }}
+      {{ with $page.Params.rating }}
+      {{ $rating := . }}
+      <div class="company-lunch-rating" role="img" aria-label="{{ $rating }} out of 5 stars">
+        {{ range seq 5 }}{{ if le . $rating }}&#9733;{{ else }}&#9734;{{ end }}{{ end }}
+      </div>
+      {{ end }}
+    </article>
+    {{ end }}
+  </div>
+</div>
+
+{{ partial "footer.html" . }}

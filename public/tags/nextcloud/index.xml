@@ -1,19 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Nextcloud on AboutMe</title>
-    <link>http://localhost:1313/tags/nextcloud/</link>
-    <description>Recent content in Nextcloud on AboutMe</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 18 Jun 2026 19:13:33 +0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/nextcloud/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Building an Enterprise-Grade Private Cloud with Proxmox VE</title>
-      <link>http://localhost:1313/post/2026/06/18/building-an-enterprise-grade-private-cloud-with-proxmox-ve/</link>
-      <pubDate>Thu, 18 Jun 2026 19:13:33 +0700</pubDate>
-      <guid>http://localhost:1313/post/2026/06/18/building-an-enterprise-grade-private-cloud-with-proxmox-ve/</guid>
-      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;In this project, I designed and deployed a secured private cloud infrastructure. The setup uses Proxmox VE as the hypervisor foundation, Nextcloud for cloud storage, and various security layers including SSL encryption and VPN access.&lt;/p&gt;&#xA;&lt;h2 id=&#34;challenge-router-ap-isolation&#34;&gt;Challenge: Router AP Isolation&lt;/h2&gt;&#xA;&lt;p&gt;My home WiFi router enforces &lt;strong&gt;AP isolation&lt;/strong&gt;, preventing devices on the network from communicating with each other. This posed a significant challenge for accessing the Proxmox dashboard and managing the infrastructure.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nextcloud on AboutMe</title><link>https://clgp-aint-cool.github.io/tags/nextcloud/</link><description>Recent content in Nextcloud on AboutMe</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 18 Jun 2026 19:13:33 +0700</lastBuildDate><atom:link href="https://clgp-aint-cool.github.io/tags/nextcloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Building an Enterprise-Grade Private Cloud with Proxmox VE</title><link>https://clgp-aint-cool.github.io/post/2026/06/18/building-an-enterprise-grade-private-cloud-with-proxmox-ve/</link><pubDate>Thu, 18 Jun 2026 19:13:33 +0700</pubDate><guid>https://clgp-aint-cool.github.io/post/2026/06/18/building-an-enterprise-grade-private-cloud-with-proxmox-ve/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;In this project, I designed and deployed a secured private cloud infrastructure. The setup uses Proxmox VE as the hypervisor foundation, Nextcloud for cloud storage, and various security layers including SSL encryption and VPN access.&lt;/p&gt;
+&lt;h2 id="challenge-router-ap-isolation"&gt;Challenge: Router AP Isolation&lt;/h2&gt;
+&lt;p&gt;My home WiFi router enforces &lt;strong&gt;AP isolation&lt;/strong&gt;, preventing devices on the network from communicating with each other. This posed a significant challenge for accessing the Proxmox dashboard and managing the infrastructure.&lt;/p&gt;</description></item></channel></rss>

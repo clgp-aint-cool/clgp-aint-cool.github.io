@@ -318,3 +318,83 @@ header a:hover {
   }
 }
 
+/* ============================================
+   COMPANY LUNCH SECTION STYLES
+   ============================================ */
+
+.company-lunch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.company-lunch-card {
+  background: #f3f4f6;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  padding-bottom: 1.25rem;
+}
+
+.company-lunch-photo {
+  aspect-ratio: 4 / 3;
+  background: #e5e7eb;
+}
+
+.company-lunch-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.company-lunch-title {
+  font-size: 1.1rem;
+  margin: 1rem 1.25rem 0.25rem;
+}
+
+.company-lunch-date {
+  color: #9ca3af;
+  font-size: 0.85rem;
+  margin: 0.25rem 1.25rem;
+}
+
+.company-lunch-description {
+  color: #4b5563;
+  font-size: 0.95rem;
+  margin: 0.5rem 1.25rem;
+}
+
+.company-lunch-rating {
+  color: #f59e0b;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  margin: 0.5rem 1.25rem 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .company-lunch-card {
+    background: #252930;
+    border-color: #444;
+  }
+
+  .company-lunch-photo {
+    background: #2d3748;
+  }
+
+  .company-lunch-date {
+    color: #6b7280;
+  }
+
+  .company-lunch-description {
+    color: #d1d5db;
+  }
+}
+
+@media (max-width: 600px) {
+  .company-lunch-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

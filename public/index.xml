@@ -6,8 +6,15 @@
     <description>Recent content in Home on AboutMe</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Jul 2026 04:18:24 +0700</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Com-ca-gi-do</title>
+      <link>http://localhost:1313/company-lunch/sample/</link>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/company-lunch/sample/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Nghia Dia Thu Cung</title>
       <link>http://localhost:1313/books/nghia-dia-thu-cung/</link>
