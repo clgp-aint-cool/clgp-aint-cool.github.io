@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Intro on AboutMe</title>
-    <link>http://localhost:1313/categories/intro/</link>
+    <link>http://localhost:62678/categories/intro/</link>
     <description>Recent content in Intro on AboutMe</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 13 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/intro/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:62678/categories/intro/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>first words</title>
-      <link>http://localhost:1313/post/2025/11/13/first-words/</link>
+      <link>http://localhost:62678/post/2025/11/13/first-words/</link>
       <pubDate>Thu, 13 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2025/11/13/first-words/</guid>
+      <guid>http://localhost:62678/post/2025/11/13/first-words/</guid>
       <description>&lt;p&gt;ẨmthựcViệtNamnổitiếngvớisựcânbằngtinhgiữacácvịngọt,chua,mặn,cay.Phở,mónsúpbúnbiểutượng,baogồmbánhphởnướcldùngthơmngonvàthịtbòhoặcgà.BánhmìlàchiếcbánhsandwichbaguetteảnhhưởngtừPhápgiònrụm,nhồiđầypâtê,thịtnguội,đồchuavàớttươi.Gỏicuốn(nemcuốn)lànhữngcuốntuơimátgồmtôm,thịt,cácloạirauthơm,vàbún,chấmvớinướcsốtđậuphộngbéo.Ngượclại,chảgiò(nemrán)thìgiòntanvớinhânthịtđậuxanhcủakhoaimôn.Búnchả,mộtđặcsảncủaHàNội,làsựkếthợphoànhảogiữathịtnướngtrênthanhoavàbún,ăncùngbátnướcmắmchuangọt.CơmtấmlàmộtmónăndânphổbiếnởmiềnNam,thườngđượcphụcvụvớisườnnướngmậtong,bìheo,vàchảtrứnghấp.Bánhxèo,loạibánhkếpmặn,cóvỏbánhgiònrụmmàuvàngtươicủanghệ,bêntronglàthịt,tôm,vàgiáđỗ.NgoàiracònphảikểđếnBúnbòHuế,mónbúnbòcayđặcbiệtcủaHuế,vàCaolầu,mónmìđộclạochỉcótạiHộiAnvớisợiMìdaiđặctrưng.&lt;/p&gt;</description>
     </item>
     <item>
       <title>second word</title>
-      <link>http://localhost:1313/post/2025/11/13/second-word/</link>
+      <link>http://localhost:62678/post/2025/11/13/second-word/</link>
       <pubDate>Thu, 13 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2025/11/13/second-word/</guid>
+      <guid>http://localhost:62678/post/2025/11/13/second-word/</guid>
       <description>&lt;img src = &#34;/images/licking.gif&#34;&gt;</description>
     </item>
   </channel>
