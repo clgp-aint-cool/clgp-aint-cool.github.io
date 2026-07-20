@@ -2,94 +2,94 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on AboutMe</title>
-    <link>http://localhost:62678/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on AboutMe</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 03 Jul 2026 22:21:09 +0700</lastBuildDate>
-    <atom:link href="http://localhost:62678/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Job</title>
-      <link>http://localhost:62678/categories/job/</link>
+      <link>http://localhost:1313/categories/job/</link>
       <pubDate>Fri, 03 Jul 2026 22:21:09 +0700</pubDate>
-      <guid>http://localhost:62678/categories/job/</guid>
+      <guid>http://localhost:1313/categories/job/</guid>
       <description></description>
     </item>
     <item>
       <title>Homelab</title>
-      <link>http://localhost:62678/categories/homelab/</link>
+      <link>http://localhost:1313/categories/homelab/</link>
       <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
-      <guid>http://localhost:62678/categories/homelab/</guid>
+      <guid>http://localhost:1313/categories/homelab/</guid>
       <description></description>
     </item>
     <item>
       <title>Infrastructure</title>
-      <link>http://localhost:62678/categories/infrastructure/</link>
+      <link>http://localhost:1313/categories/infrastructure/</link>
       <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
-      <guid>http://localhost:62678/categories/infrastructure/</guid>
+      <guid>http://localhost:1313/categories/infrastructure/</guid>
       <description></description>
     </item>
     <item>
       <title>Kubernetes</title>
-      <link>http://localhost:62678/categories/kubernetes/</link>
+      <link>http://localhost:1313/categories/kubernetes/</link>
       <pubDate>Sun, 21 Jun 2026 10:49:47 +0700</pubDate>
-      <guid>http://localhost:62678/categories/kubernetes/</guid>
+      <guid>http://localhost:1313/categories/kubernetes/</guid>
       <description></description>
     </item>
     <item>
       <title>Web</title>
-      <link>http://localhost:62678/categories/web/</link>
+      <link>http://localhost:1313/categories/web/</link>
       <pubDate>Wed, 04 Feb 2026 20:22:06 +0700</pubDate>
-      <guid>http://localhost:62678/categories/web/</guid>
+      <guid>http://localhost:1313/categories/web/</guid>
       <description></description>
     </item>
     <item>
       <title>Note</title>
-      <link>http://localhost:62678/categories/note/</link>
+      <link>http://localhost:1313/categories/note/</link>
       <pubDate>Wed, 31 Dec 2025 18:14:11 +0700</pubDate>
-      <guid>http://localhost:62678/categories/note/</guid>
+      <guid>http://localhost:1313/categories/note/</guid>
       <description></description>
     </item>
     <item>
       <title>Automation</title>
-      <link>http://localhost:62678/categories/automation/</link>
+      <link>http://localhost:1313/categories/automation/</link>
       <pubDate>Fri, 12 Dec 2025 01:06:11 +0700</pubDate>
-      <guid>http://localhost:62678/categories/automation/</guid>
+      <guid>http://localhost:1313/categories/automation/</guid>
       <description></description>
     </item>
     <item>
       <title>Tool</title>
-      <link>http://localhost:62678/categories/tool/</link>
+      <link>http://localhost:1313/categories/tool/</link>
       <pubDate>Fri, 12 Dec 2025 01:06:11 +0700</pubDate>
-      <guid>http://localhost:62678/categories/tool/</guid>
+      <guid>http://localhost:1313/categories/tool/</guid>
       <description></description>
     </item>
     <item>
       <title>Life Journal</title>
-      <link>http://localhost:62678/categories/life-journal/</link>
+      <link>http://localhost:1313/categories/life-journal/</link>
       <pubDate>Tue, 25 Nov 2025 22:32:57 +0700</pubDate>
-      <guid>http://localhost:62678/categories/life-journal/</guid>
+      <guid>http://localhost:1313/categories/life-journal/</guid>
       <description></description>
     </item>
     <item>
       <title>Ctf</title>
-      <link>http://localhost:62678/categories/ctf/</link>
+      <link>http://localhost:1313/categories/ctf/</link>
       <pubDate>Sun, 16 Nov 2025 00:50:33 +0700</pubDate>
-      <guid>http://localhost:62678/categories/ctf/</guid>
+      <guid>http://localhost:1313/categories/ctf/</guid>
       <description></description>
     </item>
     <item>
       <title>Projects</title>
-      <link>http://localhost:62678/categories/projects/</link>
+      <link>http://localhost:1313/categories/projects/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:62678/categories/projects/</guid>
+      <guid>http://localhost:1313/categories/projects/</guid>
       <description></description>
     </item>
     <item>
       <title>Intro</title>
-      <link>http://localhost:62678/categories/intro/</link>
+      <link>http://localhost:1313/categories/intro/</link>
       <pubDate>Thu, 13 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:62678/categories/intro/</guid>
+      <guid>http://localhost:1313/categories/intro/</guid>
       <description></description>
     </item>
   </channel>
