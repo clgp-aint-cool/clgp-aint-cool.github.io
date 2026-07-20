@@ -1,52 +1,360 @@
-<!doctype html><html lang=en-us><head><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/images/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/images/favicon-16x16.png><link rel=manifest href=/images/site.webmanifest><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="A simple, minimal blog for those who love text."><title>Insta Swiper | AboutMe</title><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link rel=stylesheet href=https://clgp-aint-cool.github.io/css/theme-override.css></head><body><header><nav><ul><li class=pull-left><a href=https://clgp-aint-cool.github.io/>~/aboutme</a></li><li class=pull-left><a href=/blog/>~/blog</a></li><li class=pull-left><a href=/categories/>~/categories</a></li><li class=pull-left><a href=/tags/>~/tags</a></li><li class=pull-left><a href=/books/>~/books</a></li><li class=pull-left><a href=/company-lunch/>~/company lunch</a></li></ul></nav></header><div class=article-meta><h1><span class=title>Insta Swiper</span></h1><h2 class=author>clgp</h2><h2 class=date>2026/02/14</h2><p class=terms>Categories: <a href=/categories/nil></a>Tags: <a href=/tags/nil></a></p></div><div class=content-wrapper><main><h1 id=building-ig-swiper-an-instagram-photo-gallery-scraper>Building IG Swiper: An Instagram Photo Gallery Scraper</h1><hr><h2 id=-what-is-ig-swiper>🎯 What is IG Swiper?</h2><p>IG Swiper is a full-stack web application designed to crawl and display Instagram user photos in an elegant, swipeable gallery format. Think of it as your personal Instagram photo archive manager - it downloads photos from public Instagram profiles and presents them in a beautiful, user-friendly interface where you can browse, organize, and enjoy the content.</p><h2 id=-the-purpose--motivation>💡 The Purpose & Motivation</h2><p>Instagram is a wonderful platform for sharing visual content, but it has limitations:</p><ul><li><strong>No bulk download options</strong> - You can&rsquo;t easily save entire photo collections from your favorite accounts</li><li><strong>Internet dependency</strong> - You need to be online to view photos</li><li><strong>Rate limiting & restrictions</strong> - Instagram limits how much you can view without logging in</li><li><strong>Content preservation</strong> - Posts can be deleted or accounts can go private</li></ul><h2 id=-architecture--technology-stack>🏗️ Architecture & Technology Stack</h2><p>The project is built as a modern full-stack application with clear separation of concerns:</p><h3 id=backend-nodejs--express>Backend (Node.js + Express)</h3><ul><li><strong>Framework</strong>: Express.js for RESTful API</li><li><strong>Database</strong>: Better-SQLite3 for local data storage</li><li><strong>Scraping Engine</strong>: Node-fetch + Instagram API integration</li><li><strong>Authentication</strong>: Cookie-based Instagram authentication</li><li><strong>Security</strong>: Helmet for security headers, CORS for cross-origin protection</li><li><strong>Performance</strong>: Rate limiting to avoid Instagram blocks, compression middleware</li></ul><h3 id=frontend-react--vite>Frontend (React + Vite)</h3><ul><li><strong>Framework</strong>: React 18 with modern hooks</li><li><strong>Build Tool</strong>: Vite for fast development and optimized builds</li><li><strong>Routing</strong>: React Router for navigation</li><li><strong>Styling</strong>: Modern CSS with responsive design</li><li><strong>UI/UX</strong>: Swipeable galleries, lazy loading, and smooth animations</li></ul><h3 id=deployment--process-management>Deployment & Process Management</h3><ul><li><strong>PM2</strong>: Process manager for production deployment</li><li><strong>Cloudflare Tunnel</strong>: Secure public access without exposing local network</li><li><strong>Environment Variables</strong>: Flexible configuration for different environments</li></ul><h2 id=-the-development-journey>🛠️ The Development Journey</h2><h3 id=phase-1-core-scraping-engine>Phase 1: Core Scraping Engine</h3><p>The first challenge was understanding Instagram&rsquo;s API structure. Instagram doesn&rsquo;t provide an official public API for downloading photos, so I had to reverse-engineer their web interface:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// The core scraping approach uses authenticated requests
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>instagramRequest</span>(<span style=color:#a6e22e>url</span>, <span style=color:#a6e22e>options</span> <span style=color:#f92672>=</span> {}) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>cookieHeader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>getCookieHeader</span>();
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>csrfToken</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>getCsrfToken</span>();
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>headers</span> <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;User-Agent&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Mozilla/5.0 ...&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Cookie</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>cookieHeader</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;X-CSRFToken&#34;</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>csrfToken</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;X-IG-App-ID&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;936619743392459&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#75715e>// ... other headers
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  };
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fetch</span>(<span style=color:#a6e22e>url</span>, { ...<span style=color:#a6e22e>options</span>, <span style=color:#a6e22e>headers</span> });
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p><strong>Key learnings:</strong></p><ul><li>Instagram requires valid session cookies for API access</li><li>CSRF tokens must be included in requests</li><li>Rate limiting is crucial (1.5 seconds between requests)</li><li>The API returns paginated results with <code>next_max_id</code> cursors</li></ul><h3 id=phase-2-handling-different-post-types>Phase 2: Handling Different Post Types</h3><p>Instagram has various content types that needed special handling:</p><ol><li><strong>Single image posts</strong> - Straightforward image downloads</li><li><strong>Carousel posts</strong> - Multiple images in one post (handled via <code>carousel_media</code> array)</li><li><strong>Videos</strong> - Skipped during image crawling (media_type === 2)</li><li><strong>High-resolution images</strong> - Accessed via <code>image_versions2.candidates[0].url</code></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// Extract images from carousel posts
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>carousel_media</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>carouselItem</span> <span style=color:#66d9ef>of</span> <span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>carousel_media</span>) {
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>carouselItem</span>.<span style=color:#a6e22e>media_type</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>2</span>) <span style=color:#66d9ef>continue</span>; <span style=color:#75715e>// Skip videos
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>url</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>carouselItem</span>.<span style=color:#a6e22e>image_versions2</span><span style=color:#f92672>?</span>.<span style=color:#a6e22e>candidates</span><span style=color:#f92672>?</span>.[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>?</span>.<span style=color:#a6e22e>url</span>;
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>url</span>) {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>allImages</span>.<span style=color:#a6e22e>push</span>({ <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>carouselItem</span>.<span style=color:#a6e22e>id</span>, <span style=color:#a6e22e>display_url</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>url</span> });
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=phase-3-database-design>Phase 3: Database Design</h3><p>I chose Better-SQLite3 for several reasons:</p><ul><li><strong>Serverless</strong> - No separate database process needed</li><li><strong>Fast</strong> - Synchronous API is actually faster for small-scale apps</li><li><strong>Portable</strong> - Single file database, easy to backup</li><li><strong>Zero configuration</strong> - Works out of the box</li></ul><p>The database schema tracks:</p><ul><li><strong>Users</strong>: Instagram usernames, display names, crawl status</li><li><strong>Images</strong>: Downloaded photos with metadata (captions, original URLs)</li><li><strong>Crawl state</strong>: Status tracking (crawling, completed, stopped, error)</li></ul><h3 id=phase-4-crawl-state-management>Phase 4: Crawl State Management</h3><p>One of the trickiest parts was implementing a robust crawl control system:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>crawlState</span> <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>isActive</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>shouldStop</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>currentUser</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>null</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>imagesFound</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>0</span>,
-</span></span><span style=display:flex><span>};
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>stopCrawl</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>crawlState</span>.<span style=color:#a6e22e>shouldStop</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>stoppedCount</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>stopAllCrawling</span>(); <span style=color:#75715e>// Update DB
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>return</span> { <span style=color:#a6e22e>success</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>, <span style=color:#a6e22e>message</span><span style=color:#f92672>:</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>stoppedCount</span><span style=color:#e6db74>}</span><span style=color:#e6db74> user(s) stopped`</span> };
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p><strong>Challenges solved:</strong></p><ul><li>Graceful stopping mid-crawl</li><li>Status synchronization between memory and database</li><li>Handling multiple simultaneous crawl requests</li><li>Error recovery and retry logic</li></ul><h3 id=phase-5-frontend-development>Phase 5: Frontend Development</h3><p>The frontend needed to be both functional and beautiful:</p><ul><li><strong>Gallery view</strong> with smooth scrolling and lazy loading</li><li><strong>Add user interface</strong> with real-time status updates</li><li><strong>Crawl controls</strong> (start, stop, reset)</li><li><strong>Responsive design</strong> that works on mobile and desktop</li><li><strong>Image optimization</strong> for fast loading</li></ul><h3 id=phase-6-deployment-strategy>Phase 6: Deployment Strategy</h3><p>Deploying locally with public access required:</p><ol><li><strong>PM2 Configuration</strong>:</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>apps</span><span style=color:#f92672>:</span> [
-</span></span><span style=display:flex><span>    {
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;ig-swiper&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>script</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;./backend/server.js&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>env</span><span style=color:#f92672>:</span> {
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>NODE_ENV</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;production&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>PORT</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>3002</span>,
-</span></span><span style=display:flex><span>      },
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>  ],
-</span></span><span style=display:flex><span>};
-</span></span></code></pre></div><ol start=2><li><strong>Cloudflare Tunnel</strong>: Secure HTTPS access without port forwarding</li><li><strong>Environment variables</strong>: Separate dev/prod configurations</li><li><strong>Build optimization</strong>: Production build with Vite</li></ol><h2 id=-features--capabilities>🚀 Features & Capabilities</h2><h3 id=current-features>Current Features</h3><p>✅ <strong>Batch downloading</strong> - Crawl up to 500 posts per user<br>✅ <strong>Carousel support</strong> - Extract all images from multi-image posts<br>✅ <strong>Rate limiting</strong> - Intelligent delays to avoid Instagram blocks<br>✅ <strong>Status tracking</strong> - Real-time crawl progress updates<br>✅ <strong>Error handling</strong> - Graceful failure recovery<br>✅ <strong>Duplicate prevention</strong> - Skip already-downloaded images<br>✅ <strong>Cookie-based auth</strong> - Use your Instagram session for access<br>✅ <strong>Production deployment</strong> - PM2 + Cloudflare Tunnel ready</p><h3 id=future-enhancements>Future Enhancements</h3><p>🔜 <strong>User authentication</strong> - Multi-user support with role-based access<br>🔜 <strong>Search & filtering</strong> - Find images by caption or date<br>🔜 <strong>Collections</strong> - Organize images into custom albums<br>🔜 <strong>Export options</strong> - Bulk download as ZIP files<br>🔜 <strong>Video support</strong> - Download and play videos<br>🔜 <strong>Privacy controls</strong> - Public/private galleries</p><h2 id=-technical-challenges--solutions>📊 Technical Challenges & Solutions</h2><h3 id=challenge-1-instagram-rate-limiting>Challenge 1: Instagram Rate Limiting</h3><p><strong>Problem</strong>: Instagram blocks aggressive scraping<br><strong>Solution</strong>: Implemented 1.5s delays, max 500 posts limit, and exponential backoff on errors</p><h3 id=challenge-2-cookie-expiration>Challenge 2: Cookie Expiration</h3><p><strong>Problem</strong>: Instagram sessions expire, breaking the scraper<br><strong>Solution</strong>: Cookie validation checks and user-friendly error messages to refresh cookies</p><h3 id=challenge-3-image-storage>Challenge 3: Image Storage</h3><p><strong>Problem</strong>: Where to store potentially thousands of images<br><strong>Solution</strong>: Local filesystem with UUID filenames, configurable via <code>IMAGES_DIR</code> env variable
-<strong>Problem after problem</strong>: Local machine still the main storage</p><h3 id=challenge-4-concurrent-crawls>Challenge 4: Concurrent Crawls</h3><p><strong>Problem</strong>: Multiple users crawling simultaneously could cause conflicts<br><strong>Solution</strong>: Global crawl state with stop flags and database-level status tracking</p><h3 id=challenge-5-production-deployment>Challenge 5: Production Deployment</h3><p><strong>Problem</strong>: Running locally but accessible publicly without exposing home network<br><strong>Solution</strong>: Cloudflare Tunnel for secure HTTPS access + PM2 for process stability</p><h2 id=-key-learnings>🎓 Key Learnings</h2><ol><li><strong>Reverse engineering APIs</strong> - Instagram&rsquo;s web API isn&rsquo;t documented, but network inspection reveals patterns</li><li><strong>Rate limiting importance</strong> - Respectful scraping prevents IP bans</li><li><strong>State management complexity</strong> - Coordinating async operations requires careful planning</li><li><strong>Database choice matters</strong> - SQLite is perfect for single-user, local-first applications</li><li><strong>Deployment isn&rsquo;t just hosting</strong> - Process management, monitoring, and tunneling are crucial</li></ol><h2 id=-ethical-considerations>🔒 Ethical Considerations</h2><p>IG Swiper is designed for <strong>personal use only</strong>:</p><ul><li>Only scrapes <strong>public</strong> Instagram profiles</li><li>Respects Instagram&rsquo;s rate limits</li><li>Requires user&rsquo;s own Instagram cookies (no credential theft)</li><li>Not intended for commercial use or redistribution</li><li>Users should comply with Instagram&rsquo;s Terms of Service</li></ul><h2 id=-conclusion>🎯 Conclusion</h2><p>Building IG Swiper was an educational journey through full-stack development, API reverse engineering, and production deployment. The project demonstrates:</p><ul><li>Modern JavaScript/Node.js best practices</li><li>RESTful API design</li><li>React component architecture</li><li>Database management</li><li>Production deployment strategies</li><li>Security and rate limiting considerations</li></ul><hr><h2 id=-project-resources>📦 Project Resources</h2><ul><li><strong>Stack</strong>: Node.js, Express, React, Vite, SQLite</li><li><strong>Deployment</strong>: PM2 + Cloudflare Tunnel</li></ul><hr><p><em>Built with ❤️ by a developer who loves beautiful photo galleries and offline-first applications.</em></p><a href=/>>> Home</a></main><div class=comments-section><h2>Comments</h2><script src=https://giscus.app/client.js data-repo=clgp-aint-cool/clgp-aint-cool.github.io data-repo-id=R_kgDOQVBefA data-category=General data-category-id=DIC_kwDOQVBefM4C2YFQ data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=preferred_color_scheme data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></div><footer><script>(function(){function n(e){var t,n,o,s=document.getElementsByTagName(e);for(n=0;n<s.length;n++)if(o=s[n],t=o.parentElement,t.childNodes.length===1){if(t.nodeName==="A"&&(t=t.parentElement,t.childNodes.length!=1))continue;t.nodeName==="P"&&(t.style.textAlign="center")}}for(var t=["img","embed","object"],e=0;e<t.length;e++)n(t[e])})()</script><hr>Open-Source | <a href=https://github.com/clgp-aint-cool>GitHub</a></footer>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple, minimal blog for those who love text.">
+    <title>Insta Swiper | AboutMe</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="http://localhost:1313/css/theme-override.css">
+    
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li class="pull-left ">
+            <a href="http://localhost:1313/">~/aboutme</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/blog/">~/blog</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/categories/">~/categories</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/tags/">~/tags</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/books/">~/books</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/company-lunch/">~/company lunch</a>
+          </li>
+          
+
+          
+
+        </ul>
+      </nav>
+    </header>
+
+
+<div class="article-meta">
+    <h1><span class="title">Insta Swiper</span></h1>
+    <h2 class="author">clgp</h2>
+    <h2 class="date">2026/02/14</h2>
+    <p class="terms">
+        
+        
+        Categories: <a href="/categories/nil"></a> 
+        
+        
+        
+        Tags: <a href="/tags/nil"></a> 
+        
+        
+    </p>
+</div>
+
+
+
+<div class="content-wrapper">
+    <main>
+        <h1 id="building-ig-swiper-an-instagram-photo-gallery-scraper">Building IG Swiper: An Instagram Photo Gallery Scraper</h1>
+<hr>
+<h2 id="-what-is-ig-swiper">🎯 What is IG Swiper?</h2>
+<p>IG Swiper is a full-stack web application designed to crawl and display Instagram user photos in an elegant, swipeable gallery format. Think of it as your personal Instagram photo archive manager - it downloads photos from public Instagram profiles and presents them in a beautiful, user-friendly interface where you can browse, organize, and enjoy the content.</p>
+<h2 id="-the-purpose--motivation">💡 The Purpose &amp; Motivation</h2>
+<p>Instagram is a wonderful platform for sharing visual content, but it has limitations:</p>
+<ul>
+<li><strong>No bulk download options</strong> - You can&rsquo;t easily save entire photo collections from your favorite accounts</li>
+<li><strong>Internet dependency</strong> - You need to be online to view photos</li>
+<li><strong>Rate limiting &amp; restrictions</strong> - Instagram limits how much you can view without logging in</li>
+<li><strong>Content preservation</strong> - Posts can be deleted or accounts can go private</li>
+</ul>
+<h2 id="-architecture--technology-stack">🏗️ Architecture &amp; Technology Stack</h2>
+<p>The project is built as a modern full-stack application with clear separation of concerns:</p>
+<h3 id="backend-nodejs--express">Backend (Node.js + Express)</h3>
+<ul>
+<li><strong>Framework</strong>: Express.js for RESTful API</li>
+<li><strong>Database</strong>: Better-SQLite3 for local data storage</li>
+<li><strong>Scraping Engine</strong>: Node-fetch + Instagram API integration</li>
+<li><strong>Authentication</strong>: Cookie-based Instagram authentication</li>
+<li><strong>Security</strong>: Helmet for security headers, CORS for cross-origin protection</li>
+<li><strong>Performance</strong>: Rate limiting to avoid Instagram blocks, compression middleware</li>
+</ul>
+<h3 id="frontend-react--vite">Frontend (React + Vite)</h3>
+<ul>
+<li><strong>Framework</strong>: React 18 with modern hooks</li>
+<li><strong>Build Tool</strong>: Vite for fast development and optimized builds</li>
+<li><strong>Routing</strong>: React Router for navigation</li>
+<li><strong>Styling</strong>: Modern CSS with responsive design</li>
+<li><strong>UI/UX</strong>: Swipeable galleries, lazy loading, and smooth animations</li>
+</ul>
+<h3 id="deployment--process-management">Deployment &amp; Process Management</h3>
+<ul>
+<li><strong>PM2</strong>: Process manager for production deployment</li>
+<li><strong>Cloudflare Tunnel</strong>: Secure public access without exposing local network</li>
+<li><strong>Environment Variables</strong>: Flexible configuration for different environments</li>
+</ul>
+<h2 id="-the-development-journey">🛠️ The Development Journey</h2>
+<h3 id="phase-1-core-scraping-engine">Phase 1: Core Scraping Engine</h3>
+<p>The first challenge was understanding Instagram&rsquo;s API structure. Instagram doesn&rsquo;t provide an official public API for downloading photos, so I had to reverse-engineer their web interface:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// The core scraping approach uses authenticated requests
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">instagramRequest</span>(<span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">options</span> <span style="color:#f92672">=</span> {}) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cookieHeader</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCookieHeader</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">csrfToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCsrfToken</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">headers</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;User-Agent&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Mozilla/5.0 ...&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Cookie</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">cookieHeader</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;X-CSRFToken&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">csrfToken</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;X-IG-App-ID&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;936619743392459&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... other headers
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">url</span>, { ...<span style="color:#a6e22e">options</span>, <span style="color:#a6e22e">headers</span> });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Key learnings:</strong></p>
+<ul>
+<li>Instagram requires valid session cookies for API access</li>
+<li>CSRF tokens must be included in requests</li>
+<li>Rate limiting is crucial (1.5 seconds between requests)</li>
+<li>The API returns paginated results with <code>next_max_id</code> cursors</li>
+</ul>
+<h3 id="phase-2-handling-different-post-types">Phase 2: Handling Different Post Types</h3>
+<p>Instagram has various content types that needed special handling:</p>
+<ol>
+<li><strong>Single image posts</strong> - Straightforward image downloads</li>
+<li><strong>Carousel posts</strong> - Multiple images in one post (handled via <code>carousel_media</code> array)</li>
+<li><strong>Videos</strong> - Skipped during image crawling (media_type === 2)</li>
+<li><strong>High-resolution images</strong> - Accessed via <code>image_versions2.candidates[0].url</code></li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Extract images from carousel posts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">carousel_media</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">carouselItem</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">carousel_media</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">carouselItem</span>.<span style="color:#a6e22e">media_type</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">continue</span>; <span style="color:#75715e">// Skip videos
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">carouselItem</span>.<span style="color:#a6e22e">image_versions2</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">candidates</span><span style="color:#f92672">?</span>.[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">?</span>.<span style="color:#a6e22e">url</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">url</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">allImages</span>.<span style="color:#a6e22e">push</span>({ <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">carouselItem</span>.<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">display_url</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">url</span> });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="phase-3-database-design">Phase 3: Database Design</h3>
+<p>I chose Better-SQLite3 for several reasons:</p>
+<ul>
+<li><strong>Serverless</strong> - No separate database process needed</li>
+<li><strong>Fast</strong> - Synchronous API is actually faster for small-scale apps</li>
+<li><strong>Portable</strong> - Single file database, easy to backup</li>
+<li><strong>Zero configuration</strong> - Works out of the box</li>
+</ul>
+<p>The database schema tracks:</p>
+<ul>
+<li><strong>Users</strong>: Instagram usernames, display names, crawl status</li>
+<li><strong>Images</strong>: Downloaded photos with metadata (captions, original URLs)</li>
+<li><strong>Crawl state</strong>: Status tracking (crawling, completed, stopped, error)</li>
+</ul>
+<h3 id="phase-4-crawl-state-management">Phase 4: Crawl State Management</h3>
+<p>One of the trickiest parts was implementing a robust crawl control system:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">crawlState</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">isActive</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">shouldStop</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">currentUser</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">imagesFound</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">stopCrawl</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">crawlState</span>.<span style="color:#a6e22e">shouldStop</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">stoppedCount</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">stopAllCrawling</span>(); <span style="color:#75715e">// Update DB
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">success</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">stoppedCount</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> user(s) stopped`</span> };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Challenges solved:</strong></p>
+<ul>
+<li>Graceful stopping mid-crawl</li>
+<li>Status synchronization between memory and database</li>
+<li>Handling multiple simultaneous crawl requests</li>
+<li>Error recovery and retry logic</li>
+</ul>
+<h3 id="phase-5-frontend-development">Phase 5: Frontend Development</h3>
+<p>The frontend needed to be both functional and beautiful:</p>
+<ul>
+<li><strong>Gallery view</strong> with smooth scrolling and lazy loading</li>
+<li><strong>Add user interface</strong> with real-time status updates</li>
+<li><strong>Crawl controls</strong> (start, stop, reset)</li>
+<li><strong>Responsive design</strong> that works on mobile and desktop</li>
+<li><strong>Image optimization</strong> for fast loading</li>
+</ul>
+<h3 id="phase-6-deployment-strategy">Phase 6: Deployment Strategy</h3>
+<p>Deploying locally with public access required:</p>
+<ol>
+<li><strong>PM2 Configuration</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">apps</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ig-swiper&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">script</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;./backend/server.js&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">env</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">NODE_ENV</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;production&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">PORT</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3002</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><ol start="2">
+<li><strong>Cloudflare Tunnel</strong>: Secure HTTPS access without port forwarding</li>
+<li><strong>Environment variables</strong>: Separate dev/prod configurations</li>
+<li><strong>Build optimization</strong>: Production build with Vite</li>
+</ol>
+<h2 id="-features--capabilities">🚀 Features &amp; Capabilities</h2>
+<h3 id="current-features">Current Features</h3>
+<p>✅ <strong>Batch downloading</strong> - Crawl up to 500 posts per user<br>
+✅ <strong>Carousel support</strong> - Extract all images from multi-image posts<br>
+✅ <strong>Rate limiting</strong> - Intelligent delays to avoid Instagram blocks<br>
+✅ <strong>Status tracking</strong> - Real-time crawl progress updates<br>
+✅ <strong>Error handling</strong> - Graceful failure recovery<br>
+✅ <strong>Duplicate prevention</strong> - Skip already-downloaded images<br>
+✅ <strong>Cookie-based auth</strong> - Use your Instagram session for access<br>
+✅ <strong>Production deployment</strong> - PM2 + Cloudflare Tunnel ready</p>
+<h3 id="future-enhancements">Future Enhancements</h3>
+<p>🔜 <strong>User authentication</strong> - Multi-user support with role-based access<br>
+🔜 <strong>Search &amp; filtering</strong> - Find images by caption or date<br>
+🔜 <strong>Collections</strong> - Organize images into custom albums<br>
+🔜 <strong>Export options</strong> - Bulk download as ZIP files<br>
+🔜 <strong>Video support</strong> - Download and play videos<br>
+🔜 <strong>Privacy controls</strong> - Public/private galleries</p>
+<h2 id="-technical-challenges--solutions">📊 Technical Challenges &amp; Solutions</h2>
+<h3 id="challenge-1-instagram-rate-limiting">Challenge 1: Instagram Rate Limiting</h3>
+<p><strong>Problem</strong>: Instagram blocks aggressive scraping<br>
+<strong>Solution</strong>: Implemented 1.5s delays, max 500 posts limit, and exponential backoff on errors</p>
+<h3 id="challenge-2-cookie-expiration">Challenge 2: Cookie Expiration</h3>
+<p><strong>Problem</strong>: Instagram sessions expire, breaking the scraper<br>
+<strong>Solution</strong>: Cookie validation checks and user-friendly error messages to refresh cookies</p>
+<h3 id="challenge-3-image-storage">Challenge 3: Image Storage</h3>
+<p><strong>Problem</strong>: Where to store potentially thousands of images<br>
+<strong>Solution</strong>: Local filesystem with UUID filenames, configurable via <code>IMAGES_DIR</code> env variable
+<strong>Problem after problem</strong>: Local machine still the main storage</p>
+<h3 id="challenge-4-concurrent-crawls">Challenge 4: Concurrent Crawls</h3>
+<p><strong>Problem</strong>: Multiple users crawling simultaneously could cause conflicts<br>
+<strong>Solution</strong>: Global crawl state with stop flags and database-level status tracking</p>
+<h3 id="challenge-5-production-deployment">Challenge 5: Production Deployment</h3>
+<p><strong>Problem</strong>: Running locally but accessible publicly without exposing home network<br>
+<strong>Solution</strong>: Cloudflare Tunnel for secure HTTPS access + PM2 for process stability</p>
+<h2 id="-key-learnings">🎓 Key Learnings</h2>
+<ol>
+<li><strong>Reverse engineering APIs</strong> - Instagram&rsquo;s web API isn&rsquo;t documented, but network inspection reveals patterns</li>
+<li><strong>Rate limiting importance</strong> - Respectful scraping prevents IP bans</li>
+<li><strong>State management complexity</strong> - Coordinating async operations requires careful planning</li>
+<li><strong>Database choice matters</strong> - SQLite is perfect for single-user, local-first applications</li>
+<li><strong>Deployment isn&rsquo;t just hosting</strong> - Process management, monitoring, and tunneling are crucial</li>
+</ol>
+<h2 id="-ethical-considerations">🔒 Ethical Considerations</h2>
+<p>IG Swiper is designed for <strong>personal use only</strong>:</p>
+<ul>
+<li>Only scrapes <strong>public</strong> Instagram profiles</li>
+<li>Respects Instagram&rsquo;s rate limits</li>
+<li>Requires user&rsquo;s own Instagram cookies (no credential theft)</li>
+<li>Not intended for commercial use or redistribution</li>
+<li>Users should comply with Instagram&rsquo;s Terms of Service</li>
+</ul>
+<h2 id="-conclusion">🎯 Conclusion</h2>
+<p>Building IG Swiper was an educational journey through full-stack development, API reverse engineering, and production deployment. The project demonstrates:</p>
+<ul>
+<li>Modern JavaScript/Node.js best practices</li>
+<li>RESTful API design</li>
+<li>React component architecture</li>
+<li>Database management</li>
+<li>Production deployment strategies</li>
+<li>Security and rate limiting considerations</li>
+</ul>
+<hr>
+<h2 id="-project-resources">📦 Project Resources</h2>
+<ul>
+<li><strong>Stack</strong>: Node.js, Express, React, Vite, SQLite</li>
+<li><strong>Deployment</strong>: PM2 + Cloudflare Tunnel</li>
+</ul>
+<hr>
+<p><em>Built with ❤️ by a developer who loves beautiful photo galleries and offline-first applications.</em></p>
+
+        <a href="/"> >> Home</a>
+    </main>
+
+    
+<div class="comments-section">
+  <h2>Comments</h2>
+  <script src="https://giscus.app/client.js"
+    data-repo="clgp-aint-cool/clgp-aint-cool.github.io"
+    data-repo-id="R_kgDOQVBefA"
+    data-category="General"
+    data-category-id="DIC_kwDOQVBefM4C2YFQ"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+
+
+</div>
+<footer>
+  
+  
+  <script>
+    (function () {
+      function center_el(tagName) {
+        var tags = document.getElementsByTagName(tagName),
+          i,
+          tag;
+        for (i = 0; i < tags.length; i++) {
+          tag = tags[i];
+          var parent = tag.parentElement;
+          
+          if (parent.childNodes.length === 1) {
+            
+            if (parent.nodeName === "A") {
+              parent = parent.parentElement;
+              if (parent.childNodes.length != 1) continue;
+            }
+            if (parent.nodeName === "P") parent.style.textAlign = "center";
+          }
+        }
+      }
+      var tagNames = ["img", "embed", "object"];
+      for (var i = 0; i < tagNames.length; i++) {
+        center_el(tagNames[i]);
+      }
+    })();
+  </script>
+
+  
+  <hr />
+  Open-Source | <a href="https://github.com/clgp-aint-cool">GitHub</a> 
+</footer>
