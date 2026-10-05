@@ -46,6 +46,10 @@ weight = 4
 name = "Company Lunch"
 url = "/company-lunch/"
 weight = 5
+[[menu.main]]
+name = "Gears"
+url = "/gears/"
+weight = 6
 
 [params]
 custom_css = ["css/theme-override.css"]

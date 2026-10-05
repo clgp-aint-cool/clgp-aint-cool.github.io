@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-10-05T09:46:11+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/2026/10/05/jailbreak_kindle/</loc>
+    <lastmod>2026-10-05T09:46:11+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2026-10-05T09:46:11+07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
     <lastmod>2026-08-04T23:38:37+07:00</lastmod>
   </url><url>
@@ -12,12 +21,6 @@
     <lastmod>2026-08-04T23:38:37+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/fshare/</loc>
-    <lastmod>2026-08-04T23:38:37+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2026-08-04T23:38:37+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/</loc>
     <lastmod>2026-08-04T23:38:37+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
@@ -194,16 +197,7 @@
     <loc>http://localhost:1313/post/2025/11/14/yapping-my-thoughts-on-saigon/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/11/14/im-hosting-my-fav-actresss-movie-vault/</loc>
-    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/projects/</loc>
-    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/saigon/</loc>
-    <lastmod>2025-11-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/web/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/2025/11/14/pwn-on-macos/</loc>
@@ -228,5 +222,7 @@
     <lastmod>2023-10-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
+  </url><url>
+    <loc>http://localhost:1313/gears/</loc>
   </url>
 </urlset>
