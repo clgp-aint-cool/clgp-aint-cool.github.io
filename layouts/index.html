@@ -1,0 +1,18 @@
+{{ partial "header.html" . }}
+
+<div class="content-wrapper">
+  {{ partial "k9s.html" . }}
+
+  {{ .Content }}
+
+  <ul>
+    {{ range where .Site.RegularPages "Section" "post" }}
+    <li>
+      <span class="date">{{ .Date.Format "2006/01/02" }}</span>
+      <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+
+{{ partial "footer.html" . }}

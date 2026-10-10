@@ -1,0 +1,231 @@
+{{/*
+  Dashboard kiểu k9s cho trang chủ.
+  Thông tin cá nhân: front matter `k9s:` trong content/_index.md
+  Pod "reader" lấy streak + sách đang đọc từ data/reading_log.json, data/koreader.json
+  Phím tắt: ↑/↓ hoặc j/k chọn pod, ":" gõ lệnh (:blog, :books, :gears, :lunch)
+*/}}
+{{ $p := .Params.k9s | default dict }}
+{{ $age := $p.age | default 21 }}
+{{ $since := time.AsTime ($p.since | default "2026-07-01") }}
+{{ $streak := partial "reading-streak.html" . }}
+{{ $reading := "—" }}
+{{ with site.Data.koreader.current }}{{ $reading = printf "%s · %v%%" .title .progress }}{{ end }}
+{{ $firstRead := "" }}
+{{ range $k, $_ := site.Data.reading_log }}{{ if not $firstRead }}{{ $firstRead = $k }}{{ end }}{{ end }}
+{{ $days := int (div (now.Sub $since).Hours 24) }}
+
+{{ $pods := slice
+  (dict "name" "system-engineer-intern" "ready" "1/1" "status" "Running" "restarts" "0"
+        "since" ($since.Format "2006-01-02") "age" (printf "%dd" $days)
+        "describe" (slice
+          (slice "Name" "system-engineer-intern")
+          (slice "Namespace" $p.namespace)
+          (slice "Node" (printf "%s/intern" (lower (replace $p.company " " "-"))))
+          (slice "Start Time" ($since.Format "02/01/2006"))
+          (slice "Labels" (printf "age=%v, location=%s" $age $p.location))
+          (slice "Role" $p.role))
+        "events" (slice
+          (slice "Normal" "Started" (printf "Joined %s as %s intern" $p.company $p.role))
+          (slice "Normal" "Pulled" "Image \"clgp:21\" already present on machine")
+          (slice "Warning" "OOMKilled" "Container ran out of coffee")))
+  (dict "name" "reader" "ready" "1/1" "status" "Running" "restarts" (printf "🔥 %d" $streak)
+        "since" $firstRead "age" "—" "link" "/books/"
+        "describe" (slice
+          (slice "Name" "reader")
+          (slice "Image" "koreader:latest (Kindle)")
+          (slice "Reading" $reading)
+          (slice "Streak" (printf "%d ngày liên tiếp" $streak))
+          (slice "Volumes" "/books → heatmap, TBR, đã đọc"))
+        "events" (slice
+          (slice "Normal" "Synced" "Pulled statistics.sqlite3 from Koofr")
+          (slice "Normal" "Restarted" "RESTARTS = streak, restart càng nhiều càng tốt")))
+  (dict "name" "apple-music-sidecar" "ready" "0/1" "status" "ContainerCreating" "restarts" "0"
+        "age" "—"
+        "describe" (slice
+          (slice "Name" "apple-music-sidecar")
+          (slice "Image" "osascript → cloudflare-worker")
+          (slice "Purpose" "Hiện bài đang nghe trên Apple Music"))
+        "events" (slice
+          (slice "Normal" "Scheduled" "Assigned to node macbook")
+          (slice "Warning" "FailedMount" "Worker chưa deploy, coming soon™")))
+  (dict "name" "sleep-scheduler" "ready" "0/1" "status" "CrashLoopBackOff" "restarts" "999+"
+        "age" (printf "%vy" $age)
+        "describe" (slice
+          (slice "Name" "sleep-scheduler")
+          (slice "Last State" "Terminated")
+          (slice "Reason" "2AM thoughts")
+          (slice "Exit Code" "137"))
+        "events" (slice
+          (slice "Warning" "BackOff" "Back-off restarting failed container: \"just one more episode\"")
+          (slice "Warning" "Unhealthy" "Readiness probe failed: alarm snoozed (x5)")))
+  (dict "name" "motivation" "ready" "0/1" "status" "Pending" "restarts" "0"
+        "since" "today" "age" (printf "%dh" now.Hour)
+        "describe" (slice
+          (slice "Name" "motivation")
+          (slice "Requests" "coffee: 1, deadline: 1")
+          (slice "QoS Class" "BestEffort"))
+        "events" (slice
+          (slice "Warning" "FailedScheduling" "0/1 nodes are available: 1 Insufficient coffee.")))
+}}
+
+<section class="k9s" tabindex="0" aria-label="Giới thiệu, hiển thị như dashboard k9s">
+  <div class="k9s-top">
+    <dl class="k9s-info">
+      <dt>Context:</dt><dd>{{ $p.namespace }}</dd>
+      <dt>Cluster:</dt><dd>{{ lower (replace $p.company " " "-") }}</dd>
+      <dt>User:</dt><dd>clgp</dd>
+      <dt>K9s Rev:</dt><dd>v{{ $age }}.0.0 <span class="k9s-warn">⚡</span></dd>
+      <dt>K8s Rev:</dt><dd>v1.{{ $age }}</dd>
+      <dt>CPU:</dt><dd><span class="k9s-coffee">☕☕☕</span>░░</dd>
+      <dt>MEM:</dt><dd>70%</dd>
+    </dl>
+    <ul class="k9s-keys">
+      <li><a href="/blog/"><span>&lt;:blog&gt;</span> Blog</a></li>
+      <li><a href="/books/"><span>&lt;:books&gt;</span> Books</a></li>
+      <li><a href="/gears/"><span>&lt;:gears&gt;</span> Gears</a></li>
+      <li><a href="/company-lunch/"><span>&lt;:lunch&gt;</span> Lunch</a></li>
+      <li><span>&lt;j/k&gt;</span> Up/Down</li>
+      <li><span>&lt;enter&gt;</span> Open</li>
+    </ul>
+    <pre class="k9s-logo" aria-hidden="true">  ___ _    ___ ___
+ / __| |  / __| _ \
+| (__| |_| (_ |  _/
+ \___|____\___|_|  </pre>
+  </div>
+
+  <div class="k9s-frame">
+    <div class="k9s-title"><span class="k9s-title-res">Pods</span>(<span class="k9s-title-ns">{{ $p.namespace }}</span>)[{{ len $pods }}]</div>
+    <div class="k9s-table-wrap">
+      <table class="k9s-table">
+        <thead>
+          <tr><th>NAME↑</th><th>READY</th><th>STATUS</th><th>RESTARTS</th><th>AGE</th></tr>
+        </thead>
+        <tbody>
+          {{ range $i, $pod := $pods }}
+          <tr class="k9s-row{{ if eq $i 0 }} is-selected{{ end }}" data-pod="{{ $pod.name }}" data-status="{{ $pod.status }}"
+              {{ with $pod.since }}data-since="{{ . }}"{{ end }} {{ with $pod.link }}data-link="{{ . }}"{{ end }}>
+            <td>{{ $pod.name }}</td>
+            <td>{{ $pod.ready }}</td>
+            <td class="k9s-status">{{ $pod.status }}</td>
+            <td>{{ $pod.restarts }}</td>
+            <td class="k9s-age">{{ $pod.age }}</td>
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {{ range $i, $pod := $pods }}
+  <div class="k9s-describe" data-for="{{ $pod.name }}"{{ if ne $i 0 }} hidden{{ end }}>
+    <div class="k9s-title"><span class="k9s-title-res">Describe</span>(<span class="k9s-title-ns">{{ $p.namespace }}/{{ $pod.name }}</span>)</div>
+    <dl class="k9s-desc-list">
+      {{ range $pod.describe }}<dt>{{ index . 0 }}:</dt><dd>{{ index . 1 }}</dd>{{ end }}
+      <dt>Status:</dt><dd class="k9s-status-text">{{ $pod.status }}</dd>
+    </dl>
+    <div class="k9s-events">
+      <div class="k9s-events-head"><span>Type</span><span>Reason</span><span>Message</span></div>
+      {{ range $pod.events }}
+      <div class="k9s-event k9s-event-{{ lower (index . 0) }}"><span>{{ index . 0 }}</span><span>{{ index . 1 }}</span><span>{{ index . 2 }}</span></div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <div class="k9s-crumbs">
+    <span class="k9s-crumb">pods</span><span class="k9s-crumb k9s-crumb-active">describe</span>
+    <form class="k9s-cmd" hidden>
+      <label>🐶&gt;<input type="text" aria-label="Lệnh k9s" autocomplete="off" spellcheck="false" placeholder="blog | books | gears | lunch"></label>
+    </form>
+  </div>
+</section>
+
+<script>
+(function () {
+  var root = document.querySelector(".k9s");
+  if (!root) return;
+  var rows = Array.prototype.slice.call(root.querySelectorAll(".k9s-row"));
+  var routes = { blog: "/blog/", books: "/books/", gears: "/gears/", lunch: "/company-lunch/", "company-lunch": "/company-lunch/", home: "/" };
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // AGE kiểu kubectl, tính lại ở trình duyệt để luôn đúng ngày hiện tại
+  function age(ms) {
+    var m = Math.floor(ms / 60000), h = Math.floor(m / 60), d = Math.floor(h / 24);
+    if (h < 1) return m + "m";
+    if (d < 2) return h + "h";
+    if (d < 730) return d + "d";
+    return Math.floor(d / 365) + "y";
+  }
+  rows.forEach(function (row) {
+    var since = row.dataset.since;
+    if (!since) return;
+    var start = since === "today" ? new Date(new Date().setHours(0, 0, 0, 0)) : new Date(since + "T00:00:00+07:00");
+    row.querySelector(".k9s-age").textContent = age(Date.now() - start);
+  });
+
+  function statusClass(s) {
+    if (s === "Running") return "is-running";
+    if (s === "Pending" || s === "ContainerCreating") return "is-pending";
+    return "is-error";
+  }
+  function setStatus(row, s) {
+    row.classList.remove("is-running", "is-pending", "is-error");
+    row.classList.add(statusClass(s));
+    row.querySelector(".k9s-status").textContent = s;
+  }
+
+  // Hiệu ứng khởi động: pod nào cũng ContainerCreating rồi lần lượt về trạng thái thật
+  rows.forEach(function (row, i) {
+    var final = row.dataset.status;
+    if (reduce) return setStatus(row, final);
+    setStatus(row, "ContainerCreating");
+    setTimeout(function () { setStatus(row, final); }, 400 + i * 350);
+  });
+
+  var current = 0;
+  function select(i) {
+    current = (i + rows.length) % rows.length;
+    rows.forEach(function (r, j) { r.classList.toggle("is-selected", j === current); });
+    var name = rows[current].dataset.pod;
+    root.querySelectorAll(".k9s-describe").forEach(function (d) { d.hidden = d.dataset.for !== name; });
+  }
+  function open(i) {
+    var link = rows[i].dataset.link;
+    if (link) window.location.href = link;
+  }
+  rows.forEach(function (row, i) {
+    row.addEventListener("mouseenter", function () { select(i); });
+    row.addEventListener("click", function () { select(i); open(i); });
+  });
+
+  var cmd = root.querySelector(".k9s-cmd");
+  var input = cmd.querySelector("input");
+  cmd.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var to = routes[input.value.trim().replace(/^:/, "").toLowerCase()];
+    if (to) window.location.href = to;
+    else { input.value = ""; input.placeholder = "the server doesn't have a resource type"; }
+  });
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { cmd.hidden = true; root.focus(); }
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var t = e.target;
+    if (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+    if (e.key === ":") {
+      e.preventDefault();
+      cmd.hidden = false;
+      input.value = "";
+      input.focus();
+      return;
+    }
+    // Di chuyển chỉ khi đang focus dashboard, để không chiếm phím cuộn trang
+    if (!root.contains(t)) return;
+    if (e.key === "j" || e.key === "ArrowDown") { e.preventDefault(); select(current + 1); }
+    else if (e.key === "k" || e.key === "ArrowUp") { e.preventDefault(); select(current - 1); }
+    else if (e.key === "Enter") { open(current); }
+  });
+})();
+</script>
