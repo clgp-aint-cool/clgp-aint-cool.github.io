@@ -1,20 +1,28 @@
 {
   "current": {
-    "title": "Chú Hề Trong Ngôi Nhà Chữ Thập",
-    "author": "Higashino Keigo",
-    "pages": 485,
-    "progress": 13,
-    "readMinutes": 62,
-    "lastOpen": "2026-10-10T22:21:18+07:00"
+    "title": "Đỏ Trỗi Dậy",
+    "author": "Pierce Brown",
+    "pages": 740,
+    "progress": 1,
+    "readMinutes": 1,
+    "lastOpen": "2026-10-10T23:31:08+07:00"
   },
   "books": [
+    {
+      "title": "Đỏ Trỗi Dậy",
+      "author": "Pierce Brown",
+      "pages": 740,
+      "progress": 1,
+      "readMinutes": 1,
+      "lastOpen": "2026-10-10T23:31:08+07:00"
+    },
     {
       "title": "Chú Hề Trong Ngôi Nhà Chữ Thập",
       "author": "Higashino Keigo",
       "pages": 485,
       "progress": 13,
       "readMinutes": 62,
-      "lastOpen": "2026-10-10T22:21:18+07:00"
+      "lastOpen": "2026-10-10T23:10:34+07:00"
     },
     {
       "title": "Và Rồi Chẳng Còn Ai",
