@@ -52,10 +52,20 @@
       {{ partial "book-reading-card.html" $card }}
     {{ end }}
     {{ range $reading }}
-      {{ partial "book-reading-card.html" (dict
+      {{ $page := . }}
+      {{ $card := dict
           "title" .Title "author" .Params.author "url" .RelPermalink "cover" .Params.coverimage
           "progress" .Params.progress "review" .Params.review
-          "meta" (printf "Bắt đầu: %s" (.Date.Format "02/01/2006"))) }}
+          "meta" (printf "Bắt đầu: %s" (.Date.Format "02/01/2006")) }}
+      {{/* Sách này có trong KOReader -> lấy tiến độ từ đó thay cho front matter */}}
+      {{ $name := lower (trim ($page.Params.koreadertitle | default $page.Title) " ") }}
+      {{ range site.Data.koreader.books }}
+        {{ if eq (lower .title) $name }}
+          {{ $card = merge $card (dict "progress" .progress
+              "meta" (printf "Đọc gần nhất: %s · %d phút" ((time.AsTime .lastOpen).Format "02/01/2006") (int .readMinutes))) }}
+        {{ end }}
+      {{ end }}
+      {{ partial "book-reading-card.html" $card }}
     {{ end }}
   </div>
   {{ end }}
