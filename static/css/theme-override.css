@@ -207,16 +207,146 @@ header a:hover {
     color: #e0e0e0;
   }
 }
-
 /* ============================================
    BOOK SECTION STYLES
    ============================================ */
 
-.books-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+.books-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2.25rem 0 0.75rem;
+  font-size: 1.25rem;
+}
+
+.books-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.1rem 0.55rem;
+  border-radius: 9999px;
+  background: #e5e7eb;
+  color: #4b5563;
+}
+
+/* ---------- Reading heatmap ---------- */
+
+.reading-activity {
+  --cell: 10px;
+  --gap: 3px;
+  background: #f3f4f6;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
   margin-top: 1.5rem;
+}
+
+.reading-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.reading-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.reading-stat-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.reading-stat-fire .reading-stat-value {
+  color: #ea580c;
+}
+
+.reading-stat-label {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.heatmap-scroll {
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.heatmap {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    ".        months"
+    "weekdays grid";
+  column-gap: 6px;
+  row-gap: 4px;
+  width: max-content;
+  font-size: 0.68rem;
+  line-height: 1;
+  color: #6b7280;
+}
+
+.heatmap-months {
+  grid-area: months;
+  display: grid;
+  grid-template-columns: repeat(53, var(--cell));
+  column-gap: var(--gap);
+}
+
+.heatmap-months span {
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.heatmap-weekdays {
+  grid-area: weekdays;
+  display: grid;
+  grid-template-rows: repeat(7, var(--cell));
+  row-gap: var(--gap);
+}
+
+.heatmap-grid {
+  grid-area: grid;
+  display: grid;
+  grid-template-rows: repeat(7, var(--cell));
+  grid-auto-flow: column;
+  grid-auto-columns: var(--cell);
+  gap: var(--gap);
+}
+
+.heatmap-cell {
+  display: inline-block;
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 2px;
+  outline: 1px solid rgba(27, 31, 36, 0.06);
+  outline-offset: -1px;
+}
+
+.heatmap-cell.lvl-0 { background: #ebedf0; }
+.heatmap-cell.lvl-1 { background: #9be9a8; }
+.heatmap-cell.lvl-2 { background: #40c463; }
+.heatmap-cell.lvl-3 { background: #30a14e; }
+.heatmap-cell.lvl-4 { background: #216e39; }
+
+.heatmap-legend {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3px;
+  margin-top: 0.6rem;
+  font-size: 0.7rem;
+  color: #6b7280;
+}
+
+.heatmap-legend span:first-child { margin-right: 3px; }
+.heatmap-legend span:last-child { margin-left: 3px; }
+
+/* ---------- Đang đọc (card lớn) ---------- */
+
+.books-reading {
+  display: grid;
+  gap: 1rem;
 }
 
 .book-card {
@@ -231,22 +361,35 @@ header a:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.book-cover {
-  margin-bottom: 1rem;
+.book-card-reading {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
 }
 
-.book-cover img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
+.book-card-reading .book-cover {
+  flex: 0 0 140px;
+  display: block;
+}
+
+.book-card-reading .book-cover img,
+.book-card-reading .book-cover .book-cover-placeholder {
+  width: 140px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
   border-radius: 4px;
   display: block;
-  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.book-info {
+  flex: 1;
+  min-width: 0;
 }
 
 .book-title {
-  font-size: 1.1rem;
-  margin: 0.75rem 0 0.25rem;
+  font-size: 1.15rem;
+  margin: 0 0 0.25rem;
 }
 
 .book-title a {
@@ -270,6 +413,27 @@ header a:hover {
   margin: 0.25rem 0;
 }
 
+.book-progress {
+  height: 8px;
+  border-radius: 9999px;
+  background: #e5e7eb;
+  overflow: hidden;
+  margin-top: 0.75rem;
+}
+
+.book-progress-bar {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #40c463, #216e39);
+}
+
+.book-progress-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0.25rem 0 0;
+  text-align: right;
+}
+
 .book-review {
   font-size: 0.95rem;
   color: #4b5563;
@@ -283,12 +447,144 @@ header a:hover {
   margin: 0.25rem 0;
 }
 
+/* ---------- Đã đọc / TBR (card nhỏ) ---------- */
+
+.books-grid-small,
+.books-grid-tbr {
+  display: grid;
+  gap: 1rem 0.9rem;
+}
+
+.books-grid-small {
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+}
+
+.books-grid-tbr {
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+}
+
+.book-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  color: inherit;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.book-mini-cover {
+  display: block;
+  aspect-ratio: 2 / 3;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  margin-bottom: 0.35rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+a.book-mini:hover .book-mini-cover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+.book-mini-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.book-mini-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.25;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.book-mini-author {
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-mini-rating {
+  color: #f59e0b;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.book-tbr {
+  opacity: 0.85;
+}
+
+.book-tbr .book-mini-title {
+  font-size: 0.78rem;
+}
+
+.book-tbr .book-mini-author {
+  font-size: 0.7rem;
+}
+
+/* Bìa placeholder khi chưa có ảnh */
+.book-cover-placeholder {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  background: linear-gradient(160deg, #64748b, #334155);
+  border-left: 5px solid rgba(0, 0, 0, 0.2);
+}
+
+.book-mini:nth-child(5n+2) .book-cover-placeholder { background: linear-gradient(160deg, #b45309, #78350f); }
+.book-mini:nth-child(5n+3) .book-cover-placeholder { background: linear-gradient(160deg, #0f766e, #134e4a); }
+.book-mini:nth-child(5n+4) .book-cover-placeholder { background: linear-gradient(160deg, #9f1239, #4c0519); }
+.book-mini:nth-child(5n+5) .book-cover-placeholder { background: linear-gradient(160deg, #4338ca, #1e1b4b); }
+
+.books-grid-tbr {
+  margin-bottom: 2.5rem;
+}
+
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
+  .books-count {
+    background: #2d3748;
+    color: #d1d5db;
+  }
+
+  .reading-activity,
   .book-card {
     background: #252930;
     border-color: #444;
   }
+
+  .reading-stat-label,
+  .heatmap,
+  .heatmap-legend {
+    color: #9ca3af;
+  }
+
+  .reading-stat-fire .reading-stat-value {
+    color: #fb923c;
+  }
+
+  .heatmap-cell { outline-color: rgba(255, 255, 255, 0.05); }
+  .heatmap-cell.lvl-0 { background: #2d333b; }
+  .heatmap-cell.lvl-1 { background: #0e4429; }
+  .heatmap-cell.lvl-2 { background: #006d32; }
+  .heatmap-cell.lvl-3 { background: #26a641; }
+  .heatmap-cell.lvl-4 { background: #39d353; }
 
   .book-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -298,7 +594,9 @@ header a:hover {
     color: #60a5fa;
   }
 
-  .book-author {
+  .book-author,
+  .book-mini-author,
+  .book-progress-label {
     color: #9ca3af;
   }
 
@@ -309,12 +607,33 @@ header a:hover {
   .book-review {
     color: #d1d5db;
   }
+
+  .book-progress {
+    background: #2d3748;
+  }
 }
 
 /* Narrow screens */
 @media (max-width: 600px) {
-  .books-grid {
-    grid-template-columns: 1fr;
+  .reading-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .book-card-reading .book-cover {
+    flex-basis: 96px;
+  }
+
+  .book-card-reading .book-cover img,
+  .book-card-reading .book-cover .book-cover-placeholder {
+    width: 96px;
+  }
+
+  .books-grid-small {
+    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+  }
+
+  .books-grid-tbr {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
   }
 }
 

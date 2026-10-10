@@ -1,2 +1,5 @@
 # Ignore secret post
 content/serect.md
+
+# KOReader stats gốc (dữ liệu cá nhân) - chỉ commit bản tổng hợp trong data/
+*.sqlite3

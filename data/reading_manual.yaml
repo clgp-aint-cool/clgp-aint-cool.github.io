@@ -1,0 +1,4 @@
+# Ghi tay số trang cho sách KHÔNG đọc trên KOReader (sách giấy...).
+# Cộng dồn với data/reading_log.json (sinh tự động từ KOReader).
+# Format: "YYYY-MM-DD": số trang   (nhớ để ngày trong dấu nháy kép)
+{}

@@ -1,0 +1,130 @@
+{
+  "books": [
+    {
+      "title": "Án Mạng Trên Sân Golf",
+      "author": "Agatha Christie",
+      "cover": "images/books/kindle/an-mang-tren-san-golf.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "Bà Nội Găngxtơ",
+      "author": "David Walliams",
+      "cover": "images/books/kindle/ba-noi-gangxto.jpg",
+      "opened": true,
+      "onBlog": false
+    },
+    {
+      "title": "Bên nhau trọn đời",
+      "author": "Cố Mạn",
+      "cover": "images/books/kindle/ben-nhau-tron-doi.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "Chú Hề Trong Ngôi Nhà Chữ Thập",
+      "author": "Higashino Keigo",
+      "cover": "images/books/kindle/chu-he-trong-ngoi-nha-chu-thap.jpg",
+      "opened": true,
+      "onBlog": true
+    },
+    {
+      "title": "Cứu tinh xứ cát",
+      "author": "Frank Herbert",
+      "cover": "images/books/kindle/cuu-tinh-xu-cat.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "Đỏ Trỗi Dậy",
+      "author": "Pierce Brown",
+      "cover": "images/books/kindle/do-troi-day.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "Kẻ Song Trùng",
+      "author": "Stephen King",
+      "cover": "images/books/kindle/ke-song-trung.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "1984",
+      "author": "George Orwell",
+      "cover": "images/books/kindle/1984.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "Nghĩa Địa Thú Cưng",
+      "author": "Stephen King",
+      "cover": "images/books/kindle/nghia-dia-thu-cung.jpg",
+      "opened": false,
+      "onBlog": true
+    },
+    {
+      "title": "Người Đàn Ông Mang Tên Ove",
+      "author": "Fredrik Backman",
+      "cover": "images/books/kindle/nguoi-dan-ong-mang-ten-ove.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "Nhà Tù Shawshank",
+      "author": "Stephen King",
+      "cover": "images/books/kindle/nha-tu-shawshank.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "Những Người Đàn Ông Không Có Đàn Bà",
+      "author": "Haruki Murakami",
+      "cover": "images/books/kindle/nhung-nguoi-dan-ong-khong-co-dan-ba.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "Trại Súc Vật",
+      "author": "George Orwell",
+      "cover": "images/books/kindle/trai-suc-vat.jpg",
+      "opened": false,
+      "onBlog": true
+    },
+    {
+      "title": "Út Quyên Và Tôi",
+      "author": "Nguyễn Nhật Ánh",
+      "cover": "images/books/kindle/ut-quyen-va-toi.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "Và Rồi Chẳng Còn Ai",
+      "author": "Agatha Christie",
+      "cover": "images/books/kindle/va-roi-chang-con-ai.jpg",
+      "opened": true,
+      "onBlog": false
+    },
+    {
+      "title": "Vụ Án",
+      "author": "Franz Kafka",
+      "cover": "images/books/kindle/vu-an.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "Vụ Ám Sát Cuối Cùng",
+      "author": "Stephen King",
+      "cover": "images/books/kindle/vu-am-sat-cuoi-cung.jpg",
+      "opened": false,
+      "onBlog": false
+    },
+    {
+      "title": "Xứ cát",
+      "author": "Frank Herbert",
+      "cover": "images/books/kindle/xu-cat.jpg",
+      "opened": false,
+      "onBlog": false
+    }
+  ]
+}

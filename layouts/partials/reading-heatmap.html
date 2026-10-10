@@ -1,0 +1,89 @@
+{{/*
+  Heatmap đọc sách kiểu GitHub contributions.
+  Dữ liệu (cộng dồn):
+    data/reading_log.json    — sinh tự động từ KOReader (scripts/koreader_sync.py)
+    data/reading_manual.yaml — ghi tay cho sách giấy, "YYYY-MM-DD": số trang
+  Tính ở thời điểm build: 53 tuần gần nhất, tuần bắt đầu từ Thứ 2.
+*/}}
+{{ $log := site.Data.reading_log | default dict }}
+{{ $manual := site.Data.reading_manual | default dict }}
+{{ $today := time.AsTime (now.Format "2006-01-02") }}
+{{ $offset := mod (add (int (printf "%d" $today.Weekday)) 6) 7 }}
+{{ $days := add (add (mul 52 7) $offset) 1 }}
+{{ $start := $today.AddDate 0 0 (sub 1 $days) }}
+
+{{/* Pass 1: tổng trang, số ngày đọc, streak dài nhất */}}
+{{ $total := 0 }}{{ $active := 0 }}{{ $run := 0 }}{{ $longest := 0 }}
+{{ range seq 0 (sub $days 1) }}
+  {{ $k := (($start.AddDate 0 0 .).Format "2006-01-02") }}{{ $v := add (int (index $log $k | default 0)) (int (index $manual $k | default 0)) }}
+  {{ if gt $v 0 }}
+    {{ $total = add $total $v }}{{ $active = add $active 1 }}{{ $run = add $run 1 }}
+    {{ if gt $run $longest }}{{ $longest = $run }}{{ end }}
+  {{ else }}
+    {{ $run = 0 }}
+  {{ end }}
+{{ end }}
+
+{{/* Streak hiện tại: đếm lùi từ hôm nay; hôm nay chưa đọc thì chưa tính là đứt */}}
+{{ $streak := 0 }}{{ $broken := false }}
+{{ range seq 0 (sub $days 1) }}
+  {{ if not $broken }}
+    {{ $k := (($today.AddDate 0 0 (mul -1 .)).Format "2006-01-02") }}{{ $v := add (int (index $log $k | default 0)) (int (index $manual $k | default 0)) }}
+    {{ if gt $v 0 }}{{ $streak = add $streak 1 }}{{ else if gt . 0 }}{{ $broken = true }}{{ end }}
+  {{ end }}
+{{ end }}
+
+<section class="reading-activity" aria-label="Hoạt động đọc sách">
+  <div class="reading-stats">
+    <div class="reading-stat reading-stat-fire">
+      <span class="reading-stat-value">🔥 {{ $streak }}</span>
+      <span class="reading-stat-label">ngày streak</span>
+    </div>
+    <div class="reading-stat">
+      <span class="reading-stat-value">{{ $longest }}</span>
+      <span class="reading-stat-label">streak dài nhất</span>
+    </div>
+    <div class="reading-stat">
+      <span class="reading-stat-value">{{ lang.FormatNumber 0 $total }}</span>
+      <span class="reading-stat-label">trang / 12 tháng</span>
+    </div>
+    <div class="reading-stat">
+      <span class="reading-stat-value">{{ $active }}</span>
+      <span class="reading-stat-label">ngày có đọc</span>
+    </div>
+  </div>
+
+  <div class="heatmap-scroll">
+    <div class="heatmap">
+      <div class="heatmap-months" aria-hidden="true">
+        {{ range seq 0 52 }}
+          {{ $w := $start.AddDate 0 0 (mul . 7) }}
+          <span>{{ if le $w.Day 7 }}{{ $w.Format "Jan" }}{{ end }}</span>
+        {{ end }}
+      </div>
+      <div class="heatmap-weekdays" aria-hidden="true">
+        <span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span>
+      </div>
+      <div class="heatmap-grid">
+        {{ range seq 0 (sub $days 1) }}
+          {{ $d := $start.AddDate 0 0 . }}
+          {{ $k := ($d.Format "2006-01-02") }}{{ $v := add (int (index $log $k | default 0)) (int (index $manual $k | default 0)) }}
+          {{ $lvl := 0 }}
+          {{ if gt $v 45 }}{{ $lvl = 4 }}{{ else if gt $v 25 }}{{ $lvl = 3 }}{{ else if gt $v 10 }}{{ $lvl = 2 }}{{ else if gt $v 0 }}{{ $lvl = 1 }}{{ end }}
+          <span class="heatmap-cell lvl-{{ $lvl }}" title="{{ if $v }}{{ $v }} trang{{ else }}Không đọc{{ end }} · {{ $d.Format "02/01/2006" }}"></span>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  <div class="heatmap-legend" aria-hidden="true">
+    <span>Ít</span>
+    <span class="heatmap-cell lvl-0"></span><span class="heatmap-cell lvl-1"></span><span class="heatmap-cell lvl-2"></span><span class="heatmap-cell lvl-3"></span><span class="heatmap-cell lvl-4"></span>
+    <span>Nhiều</span>
+  </div>
+</section>
+
+<script>
+  // Mobile: cuộn heatmap về phía tuần gần nhất
+  document.querySelectorAll(".heatmap-scroll").forEach(function (el) { el.scrollLeft = el.scrollWidth; });
+</script>

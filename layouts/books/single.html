@@ -4,7 +4,11 @@
     <h1><span class="title">{{ .Title | markdownify }}</span></h1>
     {{ with .Params.author }}<h2 class="author">by {{ . }}</h2>{{ end }}
     <p class="book-metadata">
+        {{ if eq .Params.status "reading" }}
+        <span class="date-read">Đang đọc{{ with .Params.progress }} · {{ . }}%{{ end }}</span>
+        {{ else }}
         {{ with .Params.date }}<span class="date-read">Date Read: {{ .Format "January 2, 2006" }}</span>{{ end }}
+        {{ end }}
         {{ with .Params.rating }}
         {{ $rating := . }} · <span class="book-rating" role="img" aria-label="{{ $rating }} out of 5 stars">{{ range seq 5 }}{{ if le . $rating }}&#9733;{{ else }}&#9734;{{ end }}{{ end }}</span>
         {{ end }}

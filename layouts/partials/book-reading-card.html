@@ -1,0 +1,22 @@
+{{/* Card lớn cho mục "Đang đọc". Nhận dict: title, author, url, cover, progress, meta, review */}}
+<div class="book-card book-card-reading">
+  {{ if .url }}<a class="book-cover" href="{{ .url }}">{{ else }}<div class="book-cover">{{ end }}
+    {{ with .cover }}
+    <img src="{{ . | relURL }}" alt="{{ $.title }} cover">
+    {{ else }}
+    <span class="book-cover-placeholder">{{ .title }}</span>
+    {{ end }}
+  {{ if .url }}</a>{{ else }}</div>{{ end }}
+  <div class="book-info">
+    <h3 class="book-title">{{ if .url }}<a href="{{ .url }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}</h3>
+    {{ with .author }}<p class="book-author">by {{ . }}</p>{{ end }}
+    {{ with .meta }}<p class="book-date">{{ . }}</p>{{ end }}
+    {{ with .progress }}
+    <div class="book-progress" role="progressbar" aria-valuenow="{{ . }}" aria-valuemin="0" aria-valuemax="100">
+      <div class="book-progress-bar" style="width: {{ . }}%"></div>
+    </div>
+    <p class="book-progress-label">{{ . }}%</p>
+    {{ end }}
+    {{ with .review }}<p class="book-review">{{ . | truncate 200 }}</p>{{ end }}
+  </div>
+</div>

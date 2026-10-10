@@ -1,0 +1,36 @@
+{
+  "current": {
+    "title": "Chú Hề Trong Ngôi Nhà Chữ Thập",
+    "author": "Higashino Keigo",
+    "pages": 485,
+    "progress": 13,
+    "readMinutes": 62,
+    "lastOpen": "2026-10-10T22:21:18+07:00"
+  },
+  "books": [
+    {
+      "title": "Chú Hề Trong Ngôi Nhà Chữ Thập",
+      "author": "Higashino Keigo",
+      "pages": 485,
+      "progress": 13,
+      "readMinutes": 62,
+      "lastOpen": "2026-10-10T22:21:18+07:00"
+    },
+    {
+      "title": "Và Rồi Chẳng Còn Ai",
+      "author": "Agatha Christie",
+      "pages": 436,
+      "progress": 3,
+      "readMinutes": 15,
+      "lastOpen": "2026-10-07T12:34:05+07:00"
+    },
+    {
+      "title": "Bà Nội Găngxtơ",
+      "author": "David Walliams",
+      "pages": 261,
+      "progress": 2,
+      "readMinutes": 2,
+      "lastOpen": "2026-10-05T01:28:09+07:00"
+    }
+  ]
+}

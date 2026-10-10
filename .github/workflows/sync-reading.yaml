@@ -1,0 +1,52 @@
+# Mỗi đêm kéo statistics.sqlite3 của KOReader từ WebDAV (Koofr),
+# sinh data/reading_log.json + data/koreader.json rồi deploy lại blog.
+name: Sync KOReader reading stats
+
+on:
+  schedule:
+    - cron: "50 16 * * *" # 23:50 giờ Việt Nam
+  workflow_dispatch: # bấm tay ở tab Actions sau khi vừa sync trên Kindle
+
+permissions:
+  contents: write # commit file data/
+  actions: write # kích hoạt workflow deploy
+
+concurrency:
+  group: sync-reading
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download statistics.sqlite3 from WebDAV
+        env:
+          WEBDAV_URL: ${{ secrets.KOREADER_WEBDAV_URL }}
+          WEBDAV_USER: ${{ secrets.KOREADER_WEBDAV_USER }}
+          WEBDAV_PASS: ${{ secrets.KOREADER_WEBDAV_PASS }}
+        run: curl -fsS -u "$WEBDAV_USER:$WEBDAV_PASS" -o "$RUNNER_TEMP/statistics.sqlite3" "$WEBDAV_URL"
+
+      - name: Generate reading data
+        run: python3 scripts/koreader_sync.py "$RUNNER_TEMP/statistics.sqlite3" data
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/reading_log.json data/koreader.json
+          if git diff --cached --quiet; then
+            echo "Không có dữ liệu đọc mới"
+          else
+            git commit -m "[books] sync KOReader stats"
+            git push
+          fi
+
+      # Push bằng GITHUB_TOKEN không tự kích hoạt workflow khác, nên gọi deploy thủ công.
+      # Deploy cả khi không có dữ liệu mới để streak/heatmap cập nhật theo ngày.
+      - name: Trigger deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run hugo.yaml --ref ${{ github.ref_name }}

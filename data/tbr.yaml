@@ -1,0 +1,8 @@
+# TBR ghi tay — cho sách KHÔNG có trên Kindle (sách giấy...).
+# Sách EPUB trên Kindle tự vào TBR qua: python3 scripts/scan_kindle.py
+# cover: đường dẫn ảnh trong static/ (vd "images/books/abc.jpg"), bỏ trống thì hiện bìa placeholder.
+books: []
+# books:
+#   - title: "Tên sách"
+#     author: "Tác giả"
+#     cover: ""

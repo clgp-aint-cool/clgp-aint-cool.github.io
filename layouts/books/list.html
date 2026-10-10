@@ -5,30 +5,105 @@
 
   {{ .Content }}
 
-  <div class="books-grid">
-    {{ range (where site.RegularPages "Section" "books").ByDate.Reverse }}
-    {{ $page := . }}
-    <div class="book-card">
-      {{ with $page.Params.coverimage }}
-      <div class="book-cover">
-        <a href="{{ $page.RelPermalink }}">
-          <img src="{{ . | relURL }}" alt="{{ $page.Title }} cover">
-        </a>
-      </div>
+  {{ partial "reading-heatmap.html" . }}
+
+  {{ $books := (where site.RegularPages "Section" "books").ByDate.Reverse }}
+  {{ $reading := where $books "Params.status" "reading" }}
+  {{ $read := where $books "Params.status" "!=" "reading" }}
+  {{ $library := site.Data.kindle_library.books | default slice }}
+
+  {{/* Tên (lowercase) của sách đã mở trong KOReader hoặc đã có trang riêng -> không còn là TBR */}}
+  {{ $started := dict }}
+  {{ range site.Data.koreader.books }}{{ $started = merge $started (dict (lower .title) true) }}{{ end }}
+  {{ range $books }}{{ $started = merge $started (dict (lower (trim .Title " ")) true) }}{{ end }}
+
+  {{/* TBR = sách ghi tay (data/tbr.yaml) + sách trên Kindle chưa mở (data/kindle_library.json) */}}
+  {{ $tbr := slice }}
+  {{ range site.Data.tbr.books }}{{ $tbr = $tbr | append . }}{{ end }}
+  {{ range $library }}
+    {{ if not (or .opened .onBlog (index $started (lower .title))) }}{{ $tbr = $tbr | append . }}{{ end }}
+  {{ end }}
+
+  {{/* ---------- Đang đọc ----------
+       1. Cuốn mở gần nhất trong KOReader (data/koreader.json, sync tự động).
+          Nếu có trang Hugo cùng tên (hoặc front matter koreaderTitle) thì lấy bìa + link của trang đó.
+       2. Các trang Hugo có status: reading (sách giấy...).
+  */}}
+  {{ $ko := site.Data.koreader.current }}
+  {{ $koPage := false }}
+  {{ with $ko }}
+    {{ range $books }}
+      {{ if or (eq (lower (.Params.koreadertitle | default "")) (lower $ko.title)) (eq (lower (trim .Title " ")) (lower $ko.title)) }}{{ $koPage = . }}{{ end }}
+    {{ end }}
+    {{ if and $koPage (ne $koPage.Params.status "reading") }}{{ $ko = false }}{{ end }}
+  {{ end }}
+  {{ with $koPage }}{{ $reading = where $reading "RelPermalink" "!=" .RelPermalink }}{{ end }}
+
+  {{ if or $ko $reading }}
+  <h2 class="books-section-title">Đang đọc</h2>
+  <div class="books-reading">
+    {{ with $ko }}
+      {{ $meta := printf "Đọc gần nhất: %s · %d phút" ((time.AsTime .lastOpen).Format "02/01/2006") (int .readMinutes) }}
+      {{ $card := dict "title" .title "author" .author "progress" .progress "meta" $meta }}
+      {{ range where $library "title" .title }}{{ $card = merge $card (dict "cover" .cover) }}{{ end }}
+      {{ with $koPage }}
+        {{ $card = merge $card (dict "url" .RelPermalink "cover" .Params.coverimage "review" .Params.review) }}
       {{ end }}
-      <h2 class="book-title"><a href="{{ $page.RelPermalink }}">{{ $page.Title | markdownify }}</a></h2>
-      {{ with $page.Params.author }}<p class="book-author">by {{ . }}</p>{{ end }}
-      <p class="book-date">{{ $page.Date.Format "January 2, 2006" }}</p>
-      {{ with $page.Params.review }}<p class="book-review">{{ . | truncate 200 }}</p>{{ end }}
+      {{ partial "book-reading-card.html" $card }}
+    {{ end }}
+    {{ range $reading }}
+      {{ partial "book-reading-card.html" (dict
+          "title" .Title "author" .Params.author "url" .RelPermalink "cover" .Params.coverimage
+          "progress" .Params.progress "review" .Params.review
+          "meta" (printf "Bắt đầu: %s" (.Date.Format "02/01/2006"))) }}
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{/* ---------- Đã đọc ---------- */}}
+  {{ with $read }}
+  <h2 class="books-section-title">Đã đọc <span class="books-count">{{ len . }}</span></h2>
+  <div class="books-grid-small">
+    {{ range . }}
+    {{ $page := . }}
+    <a class="book-mini" href="{{ $page.RelPermalink }}" title="{{ with $page.Params.review }}{{ . }}{{ end }}">
+      <span class="book-mini-cover">
+        {{ with $page.Params.coverimage }}
+        <img src="{{ . | relURL }}" alt="{{ $page.Title }} cover" loading="lazy">
+        {{ else }}
+        <span class="book-cover-placeholder">{{ $page.Title }}</span>
+        {{ end }}
+      </span>
+      <span class="book-mini-title">{{ $page.Title }}</span>
+      {{ with $page.Params.author }}<span class="book-mini-author">{{ . }}</span>{{ end }}
       {{ with $page.Params.rating }}
       {{ $rating := . }}
-      <div class="book-rating" role="img" aria-label="{{ $rating }} out of 5 stars">
-        {{ range seq 5 }}{{ if le . $rating }}&#9733;{{ else }}&#9734;{{ end }}{{ end }}
-      </div>
+      <span class="book-mini-rating" role="img" aria-label="{{ $rating }} out of 5 stars">{{ range seq 5 }}{{ if le . $rating }}&#9733;{{ else }}&#9734;{{ end }}{{ end }}</span>
       {{ end }}
+    </a>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{/* ---------- TBR ---------- */}}
+  {{ with $tbr }}
+  <h2 class="books-section-title">TBR <span class="books-count">{{ len . }}</span></h2>
+  <div class="books-grid-tbr">
+    {{ range . }}
+    <div class="book-mini book-tbr">
+      <span class="book-mini-cover">
+        {{ with .cover }}
+        <img src="{{ . | relURL }}" alt="" loading="lazy">
+        {{ else }}
+        <span class="book-cover-placeholder">{{ .title }}</span>
+        {{ end }}
+      </span>
+      <span class="book-mini-title">{{ .title }}</span>
+      {{ with .author }}<span class="book-mini-author">{{ . }}</span>{{ end }}
     </div>
     {{ end }}
   </div>
+  {{ end }}
 </div>
 
 {{ partial "footer.html" . }}
