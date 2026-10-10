@@ -24,14 +24,7 @@
   {{ end }}
 {{ end }}
 
-{{/* Streak hiện tại: đếm lùi từ hôm nay; hôm nay chưa đọc thì chưa tính là đứt */}}
-{{ $streak := 0 }}{{ $broken := false }}
-{{ range seq 0 (sub $days 1) }}
-  {{ if not $broken }}
-    {{ $k := (($today.AddDate 0 0 (int (mul -1 .))).Format "2006-01-02") }}{{ $v := add (int (index $log $k | default 0)) (int (index $manual $k | default 0)) }}
-    {{ if gt $v 0 }}{{ $streak = add $streak 1 }}{{ else if gt . 0 }}{{ $broken = true }}{{ end }}
-  {{ end }}
-{{ end }}
+{{ $streak := partial "reading-streak.html" . }}
 
 <section class="reading-activity" aria-label="Hoạt động đọc sách">
   <div class="reading-stats">
