@@ -27,29 +27,21 @@ tabWidth = 4
 post = "/post/:year/:month/:day/:slug/"
 
 [[menu.main]]
-name = "Categories"
-url = "/categories/"
-weight = 2
-[[menu.main]]
 name = "Blog"
 url = "/blog/"
 weight = 1
 [[menu.main]]
-name = "Tags"
-url = "/tags/"
-weight = 3
-[[menu.main]]
 name = "Books"
 url = "/books/"
-weight = 4
-[[menu.main]]
-name = "Company Lunch"
-url = "/company-lunch/"
-weight = 5
+weight = 2
 [[menu.main]]
 name = "Gears"
 url = "/gears/"
-weight = 6
+weight = 3
+[[menu.main]]
+name = "Company Lunch"
+url = "/company-lunch/"
+weight = 4
 
 [params]
 custom_css = ["css/theme-override.css"]
