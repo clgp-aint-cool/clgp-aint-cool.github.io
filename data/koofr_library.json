@@ -1,0 +1,32 @@
+{
+  "books": [
+    {
+      "file": "Bach Da Hanh - Higashino Keigo.epub",
+      "size": 751549,
+      "title": "Bach da hanh",
+      "author": "Higashino Keigo",
+      "cover": "images/books/koofr/bach-da-hanh.jpg"
+    },
+    {
+      "file": "Dieu Ky Dieu Cua Tiem Tap Hoa Namiya - Higashino Keigo.epub",
+      "size": 428331,
+      "title": "Điều Kỳ Diệu Của Tiệm Tạp Hóa Namiya",
+      "author": "Higashino Keigo",
+      "cover": "images/books/koofr/dieu-ky-dieu-cua-tiem-tap-hoa-namiya.jpg"
+    },
+    {
+      "file": "Phia Sau Nghi Can X - Higashino Keigo.epub",
+      "size": 1186853,
+      "title": "Phía Sau Nghi Can X",
+      "author": "Higashino Keigo",
+      "cover": "images/books/koofr/phia-sau-nghi-can-x.jpg"
+    },
+    {
+      "file": "bimatnaoko - HIGASHINO KEIGO.epub",
+      "size": 360493,
+      "title": "bimatnaoko",
+      "author": "HIGASHINO KEIGO",
+      "cover": "images/books/koofr/bimatnaoko.jpg"
+    }
+  ]
+}
