@@ -1,5 +1,5 @@
 # Mỗi đêm kéo statistics.sqlite3 của KOReader từ WebDAV (Koofr),
-# sinh data/reading_log.json + data/koreader.json rồi deploy lại blog.
+# sinh data/reading_log.json + data/koreader.json, quét sách mới trên Koofr cho TBR rồi deploy lại blog.
 name: Sync KOReader reading stats
 
 on:
@@ -32,11 +32,21 @@ jobs:
       - name: Generate reading data
         run: python3 scripts/koreader_sync.py "$RUNNER_TEMP/statistics.sqlite3" data
 
+      # EPUB trong koreader/books/ trên Koofr -> data/koofr_library.json (TBR) + bìa sách
+      - name: Sync Koofr library
+        env:
+          KOREADER_WEBDAV_URL: ${{ secrets.KOREADER_WEBDAV_URL }}
+          KOREADER_WEBDAV_USER: ${{ secrets.KOREADER_WEBDAV_USER }}
+          KOREADER_WEBDAV_PASS: ${{ secrets.KOREADER_WEBDAV_PASS }}
+        run: |
+          pip install --quiet pillow
+          python3 scripts/koofr_library.py
+
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/reading_log.json data/koreader.json
+          git add data/reading_log.json data/koreader.json data/koofr_library.json static/images/books/koofr
           if git diff --cached --quiet; then
             echo "Không có dữ liệu đọc mới"
           else

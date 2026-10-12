@@ -17,11 +17,18 @@
   {{ range site.Data.koreader.books }}{{ $started = merge $started (dict (lower .title) true) }}{{ end }}
   {{ range $books }}{{ $started = merge $started (dict (lower (trim .Title " ")) true) }}{{ end }}
 
-  {{/* TBR = sách ghi tay (data/tbr.yaml) + sách trên Kindle chưa mở (data/kindle_library.json) */}}
+  {{/* TBR = sách ghi tay (data/tbr.yaml) + sách trên Kindle chưa mở (data/kindle_library.json)
+       + sách trên Koofr chưa mở (data/koofr_library.json, sync mỗi đêm) */}}
   {{ $tbr := slice }}
   {{ range site.Data.tbr.books }}{{ $tbr = $tbr | append . }}{{ end }}
   {{ range $library }}
-    {{ if not (or .opened .onBlog (index $started (lower .title))) }}{{ $tbr = $tbr | append . }}{{ end }}
+    {{ if not (or .opened .onBlog (index $started (lower .title))) }}
+      {{ $tbr = $tbr | append . }}
+      {{ $started = merge $started (dict (lower .title) true) }}
+    {{ end }}
+  {{ end }}
+  {{ range site.Data.koofr_library.books }}
+    {{ if not (index $started (lower .title)) }}{{ $tbr = $tbr | append . }}{{ end }}
   {{ end }}
 
   {{/* ---------- Đang đọc ----------
