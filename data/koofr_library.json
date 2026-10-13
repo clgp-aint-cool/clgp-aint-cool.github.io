@@ -1,6 +1,27 @@
 {
   "books": [
     {
+      "file": "01. SOMEWHERE BEYOND THE SEA by TJ Klune.epub",
+      "size": 4240698,
+      "title": "Somewhere Beyond the Sea",
+      "author": "TJ Klune",
+      "cover": "images/books/koofr/somewhere-beyond-the-sea.jpg"
+    },
+    {
+      "file": "An Mang Ban Cung Lop - Higashino Keigo.epub",
+      "size": 995212,
+      "title": "Án Mạng Bạn Cùng Lớp",
+      "author": "Higashino Keigo",
+      "cover": "images/books/koofr/an-mang-ban-cung-lop.jpg"
+    },
+    {
+      "file": "Babel-R.-F.-Kuang.epub",
+      "size": 1076742,
+      "title": "Babel: Sự cần thiết của bạo lực",
+      "author": "R. F. Kuang",
+      "cover": "images/books/koofr/babel-su-can-thiet-cua-bao-luc.jpg"
+    },
+    {
       "file": "Bach Da Hanh - Higashino Keigo.epub",
       "size": 751549,
       "title": "Bach da hanh",
@@ -22,11 +43,53 @@
       "cover": "images/books/koofr/phia-sau-nghi-can-x.jpg"
     },
     {
+      "file": "Sợi chỉ hy vọng - Higashino Keigo.epub",
+      "size": 3777669,
+      "title": "Sợi chỉ hy vọng",
+      "author": "Higashino Keigo",
+      "cover": "images/books/koofr/soi-chi-hy-vong.jpg"
+    },
+    {
+      "file": "THỊ TRẤN MA CÀ RỒNG.epub",
+      "size": 585624,
+      "title": "THỊ TRẤN MA CÀ RỒNG",
+      "author": "Stephen King",
+      "cover": "images/books/koofr/thi-tran-ma-ca-rong.jpg"
+    },
+    {
+      "file": "XOẮN ỐC VÔ HÌNH.epub",
+      "size": 366534,
+      "title": "XOẮN ỐC VÔ HÌNH",
+      "author": "Higashino Keigo",
+      "cover": "images/books/koofr/xoan-oc-vo-hinh.jpg"
+    },
+    {
       "file": "bimatnaoko - HIGASHINO KEIGO.epub",
       "size": 360493,
       "title": "bimatnaoko",
       "author": "HIGASHINO KEIGO",
       "cover": "images/books/koofr/bimatnaoko.jpg"
+    },
+    {
+      "file": "ÁC Ý - Higashino Keigo _ An Nhiên (dịch).epub",
+      "size": 430924,
+      "title": "ÁC Ý",
+      "author": "Higashino Keigo",
+      "cover": "images/books/koofr/ac-y.jpg"
+    },
+    {
+      "file": "Án Mạng Trên Chuyến Tàu Tốc Hành Phương Đông - Agatha Christie.epub",
+      "size": 797520,
+      "title": "Án Mạng Trên Chuyến Tàu Tốc Hành Phương Đông",
+      "author": "Agatha Christie",
+      "cover": "images/books/koofr/an-mang-tren-chuyen-tau-toc-hanh-phuong-dong.jpg"
+    },
+    {
+      "file": "Ảo dạ - Higashino Keigo.epub",
+      "size": 1466589,
+      "title": "Ảo Dạ",
+      "author": "Higashino Keigo",
+      "cover": "images/books/koofr/ao-da.jpg"
     }
   ]
 }
