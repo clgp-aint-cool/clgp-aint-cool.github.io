@@ -65,47 +65,41 @@
   {{ end }}
 
   {{/* ---------- Đang đọc ----------
-       1. Cuốn mở gần nhất trong KOReader (data/koreader.json, sync tự động).
-          Nếu có trang Hugo cùng tên (hoặc front matter koreaderTitle) thì lấy bìa + link của trang đó.
-       2. Các trang Hugo có status: reading (sách giấy...).
+       1. Mọi sách KOReader chưa đọc xong (data/koreader.json, sync tự động), mở gần nhất lên đầu.
+          Nếu có trang Hugo cùng tên (hoặc front matter koreaderTitle) thì lấy bìa + link của trang đó;
+          trang đó không để status: reading thì bỏ qua.
+       2. Các trang Hugo có status: reading không có trong KOReader (sách giấy...).
   */}}
-  {{ $ko := site.Data.koreader.current }}
-  {{ $koPage := false }}
-  {{ with $ko }}
-    {{ range $books }}
-      {{ if or (eq (lower (.Params.koreadertitle | default "")) (lower $ko.title)) (eq (lower (trim .Title " ")) (lower $ko.title)) }}{{ $koPage = . }}{{ end }}
+  {{ $koCards := slice }}
+  {{ range site.Data.koreader.books }}
+    {{ if not .finished }}
+      {{ $kb := . }}
+      {{ $page := false }}
+      {{ range $books }}
+        {{ if eq (lower (trim (.Params.koreadertitle | default .Title) " ")) (lower $kb.title) }}{{ $page = . }}{{ end }}
+      {{ end }}
+      {{ if or (not $page) (eq $page.Params.status "reading") }}
+        {{ $card := dict "title" .title "author" .author "progress" .progress
+            "meta" (printf "Đọc gần nhất: %s · %d phút" ((time.AsTime .lastOpen).Format "02/01/2006") (int .readMinutes)) }}
+        {{ range where $covers "title" .title }}{{ $card = merge $card (dict "cover" .cover) }}{{ end }}
+        {{ with $page }}
+          {{ $card = merge $card (dict "url" .RelPermalink "cover" .Params.coverimage "review" .Params.review) }}
+          {{ $reading = where $reading "RelPermalink" "!=" .RelPermalink }}
+        {{ end }}
+        {{ $koCards = $koCards | append $card }}
+      {{ end }}
     {{ end }}
-    {{ if and $koPage (ne $koPage.Params.status "reading") }}{{ $ko = false }}{{ end }}
   {{ end }}
-  {{ with $koPage }}{{ $reading = where $reading "RelPermalink" "!=" .RelPermalink }}{{ end }}
 
-  {{ if or $ko $reading }}
+  {{ if or $koCards $reading }}
   <h2 class="books-section-title">Đang đọc</h2>
   <div class="books-reading">
-    {{ with $ko }}
-      {{ $meta := printf "Đọc gần nhất: %s · %d phút" ((time.AsTime .lastOpen).Format "02/01/2006") (int .readMinutes) }}
-      {{ $card := dict "title" .title "author" .author "progress" .progress "meta" $meta }}
-      {{ range where $library "title" .title }}{{ $card = merge $card (dict "cover" .cover) }}{{ end }}
-      {{ with $koPage }}
-        {{ $card = merge $card (dict "url" .RelPermalink "cover" .Params.coverimage "review" .Params.review) }}
-      {{ end }}
-      {{ partial "book-reading-card.html" $card }}
-    {{ end }}
+    {{ range $koCards }}{{ partial "book-reading-card.html" . }}{{ end }}
     {{ range $reading }}
-      {{ $page := . }}
-      {{ $card := dict
+      {{ partial "book-reading-card.html" (dict
           "title" .Title "author" .Params.author "url" .RelPermalink "cover" .Params.coverimage
           "progress" .Params.progress "review" .Params.review
-          "meta" (printf "Bắt đầu: %s" (.Date.Format "02/01/2006")) }}
-      {{/* Sách này có trong KOReader -> lấy tiến độ từ đó thay cho front matter */}}
-      {{ $name := lower (trim ($page.Params.koreadertitle | default $page.Title) " ") }}
-      {{ range site.Data.koreader.books }}
-        {{ if eq (lower .title) $name }}
-          {{ $card = merge $card (dict "progress" .progress
-              "meta" (printf "Đọc gần nhất: %s · %d phút" ((time.AsTime .lastOpen).Format "02/01/2006") (int .readMinutes))) }}
-        {{ end }}
-      {{ end }}
-      {{ partial "book-reading-card.html" $card }}
+          "meta" (printf "Bắt đầu: %s" (.Date.Format "02/01/2006"))) }}
     {{ end }}
   </div>
   {{ end }}
