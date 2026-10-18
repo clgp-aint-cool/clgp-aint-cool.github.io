@@ -1,11 +1,14 @@
 {
   "current": {
-    "title": "Chú Hề Trong Ngôi Nhà Chữ Thập",
-    "author": "Higashino Keigo",
-    "pages": 528,
-    "progress": 100,
-    "readMinutes": 424,
-    "lastOpen": "2026-10-18T12:31:36+07:00"
+    "title": "Đỏ Trỗi Dậy",
+    "author": "Pierce Brown",
+    "pages": 740,
+    "progress": 1,
+    "finished": false,
+    "startDate": "2026-10-10",
+    "lastReadDate": "2026-10-10",
+    "readMinutes": 1,
+    "lastOpen": "2026-10-10T23:31:08+07:00"
   },
   "books": [
     {
@@ -13,6 +16,9 @@
       "author": "Higashino Keigo",
       "pages": 528,
       "progress": 100,
+      "finished": true,
+      "startDate": "2026-10-07",
+      "lastReadDate": "2026-10-18",
       "readMinutes": 424,
       "lastOpen": "2026-10-18T12:31:36+07:00"
     },
@@ -21,6 +27,9 @@
       "author": "Pierce Brown",
       "pages": 740,
       "progress": 1,
+      "finished": false,
+      "startDate": "2026-10-10",
+      "lastReadDate": "2026-10-10",
       "readMinutes": 1,
       "lastOpen": "2026-10-10T23:31:08+07:00"
     },
@@ -29,6 +38,9 @@
       "author": "Agatha Christie",
       "pages": 436,
       "progress": 3,
+      "finished": false,
+      "startDate": "2026-10-05",
+      "lastReadDate": "2026-10-07",
       "readMinutes": 15,
       "lastOpen": "2026-10-07T12:34:05+07:00"
     },
@@ -37,6 +49,9 @@
       "author": "David Walliams",
       "pages": 261,
       "progress": 2,
+      "finished": false,
+      "startDate": "2026-10-05",
+      "lastReadDate": "2026-10-05",
       "readMinutes": 2,
       "lastOpen": "2026-10-05T01:28:09+07:00"
     }
