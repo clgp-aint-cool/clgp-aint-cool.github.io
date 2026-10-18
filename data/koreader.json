@@ -1,16 +1,49 @@
 {
   "current": {
-    "title": "Đỏ Trỗi Dậy",
-    "author": "Pierce Brown",
-    "pages": 740,
-    "progress": 1,
+    "title": "Phía Sau Nghi Can X",
+    "author": "Higashino Keigo",
+    "pages": 412,
+    "progress": 0,
     "finished": false,
-    "startDate": "2026-10-10",
-    "lastReadDate": "2026-10-10",
-    "readMinutes": 1,
-    "lastOpen": "2026-10-10T23:31:08+07:00"
+    "startDate": "2026-10-18",
+    "lastReadDate": "2026-10-18",
+    "readMinutes": 2,
+    "lastOpen": "2026-10-18T22:30:41+07:00"
   },
   "books": [
+    {
+      "title": "Phía Sau Nghi Can X",
+      "author": "Higashino Keigo",
+      "pages": 412,
+      "progress": 0,
+      "finished": false,
+      "startDate": "2026-10-18",
+      "lastReadDate": "2026-10-18",
+      "readMinutes": 2,
+      "lastOpen": "2026-10-18T22:30:41+07:00"
+    },
+    {
+      "title": "Thú Tội",
+      "author": "Minato Kanae",
+      "pages": 278,
+      "progress": 2,
+      "finished": false,
+      "startDate": "2026-10-18",
+      "lastReadDate": "2026-10-18",
+      "readMinutes": 3,
+      "lastOpen": "2026-10-18T21:08:48+07:00"
+    },
+    {
+      "title": "Xứ cát",
+      "author": "Frank Herbert",
+      "pages": 1290,
+      "progress": 0,
+      "finished": false,
+      "startDate": "2026-10-18",
+      "lastReadDate": "2026-10-18",
+      "readMinutes": 0,
+      "lastOpen": "2026-10-18T15:01:55+07:00"
+    },
     {
       "title": "Chú Hề Trong Ngôi Nhà Chữ Thập",
       "author": "Higashino Keigo",
