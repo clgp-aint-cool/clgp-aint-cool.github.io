@@ -8,9 +8,42 @@
   {{ partial "reading-heatmap.html" . }}
 
   {{ $books := (where site.RegularPages "Section" "books").ByDate.Reverse }}
-  {{ $reading := where $books "Params.status" "reading" }}
-  {{ $read := where $books "Params.status" "!=" "reading" }}
   {{ $library := site.Data.kindle_library.books | default slice }}
+  {{ $covers := $library | append (site.Data.koofr_library.books | default slice) }}
+
+  {{/* Sách KOReader theo tên (lowercase) */}}
+  {{ $koBooks := dict }}
+  {{ range site.Data.koreader.books }}{{ $koBooks = merge $koBooks (dict (lower .title) .) }}{{ end }}
+
+  {{/* Chia trang sách: status reading mà KOReader chưa đọc xong -> Đang đọc, còn lại -> Đã đọc.
+       Đã đọc là list dict để gộp chung với sách KOReader đọc xong nhưng chưa có trang riêng. */}}
+  {{ $reading := slice }}
+  {{ $read := slice }}
+  {{ $hasPage := dict }}
+  {{ range $books }}
+    {{ $name := lower (trim (.Params.koreadertitle | default .Title) " ") }}
+    {{ $hasPage = merge $hasPage (dict $name true) }}
+    {{ $kb := index $koBooks $name }}
+    {{ $finished := false }}
+    {{ with $kb }}{{ $finished = .finished }}{{ end }}
+    {{ if and (eq .Params.status "reading") (not $finished) }}
+      {{ $reading = $reading | append . }}
+    {{ else }}
+      {{ $item := dict "title" .Title "author" .Params.author "url" .RelPermalink "cover" .Params.coverimage
+          "rating" .Params.rating "review" .Params.review "date" (.Date.Format "2006-01-02")
+          "minutes" (.Params.readminutes | default 0) }}
+      {{ with $kb }}{{ $item = merge $item (dict "minutes" .readMinutes "date" (.lastReadDate | default $item.date)) }}{{ end }}
+      {{ $read = $read | append $item }}
+    {{ end }}
+  {{ end }}
+  {{ range site.Data.koreader.books }}
+    {{ if and .finished (not (index $hasPage (lower .title))) }}
+      {{ $item := dict "title" .title "author" .author "minutes" .readMinutes "date" .lastReadDate }}
+      {{ range where $covers "title" .title }}{{ $item = merge $item (dict "cover" .cover) }}{{ end }}
+      {{ $read = $read | append $item }}
+    {{ end }}
+  {{ end }}
+  {{ $read = sort $read "date" "desc" }}
 
   {{/* Tên (lowercase) của sách đã mở trong KOReader hoặc đã có trang riêng -> không còn là TBR */}}
   {{ $started := dict }}
@@ -82,22 +115,26 @@
   <h2 class="books-section-title">Đã đọc <span class="books-count">{{ len . }}</span></h2>
   <div class="books-grid-small">
     {{ range . }}
-    {{ $page := . }}
-    <a class="book-mini" href="{{ $page.RelPermalink }}" title="{{ with $page.Params.review }}{{ . }}{{ end }}">
+    {{ $b := . }}
+    {{ if .url }}<a class="book-mini" href="{{ .url }}" title="{{ with .review }}{{ . }}{{ end }}">{{ else }}<div class="book-mini">{{ end }}
       <span class="book-mini-cover">
-        {{ with $page.Params.coverimage }}
-        <img src="{{ . | relURL }}" alt="{{ $page.Title }} cover" loading="lazy">
+        {{ with .cover }}
+        <img src="{{ . | relURL }}" alt="{{ $b.title }} cover" loading="lazy">
         {{ else }}
-        <span class="book-cover-placeholder">{{ $page.Title }}</span>
+        <span class="book-cover-placeholder">{{ .title }}</span>
         {{ end }}
       </span>
-      <span class="book-mini-title">{{ $page.Title }}</span>
-      {{ with $page.Params.author }}<span class="book-mini-author">{{ . }}</span>{{ end }}
-      {{ with $page.Params.rating }}
+      <span class="book-mini-title">{{ .title }}</span>
+      {{ with .author }}<span class="book-mini-author">{{ . }}</span>{{ end }}
+      {{ with .minutes }}
+      {{ $mins := int . }}
+      <span class="book-mini-time" title="Tổng thời gian đọc">⏱ {{ if ge $mins 60 }}{{ printf "%dh%02d" (div $mins 60) (mod $mins 60) }}{{ else }}{{ $mins }} phút{{ end }}</span>
+      {{ end }}
+      {{ with .rating }}
       {{ $rating := . }}
       <span class="book-mini-rating" role="img" aria-label="{{ $rating }} out of 5 stars">{{ range seq 5 }}{{ if le . $rating }}&#9733;{{ else }}&#9734;{{ end }}{{ end }}</span>
       {{ end }}
-    </a>
+    {{ if .url }}</a>{{ else }}</div>{{ end }}
     {{ end }}
   </div>
   {{ end }}

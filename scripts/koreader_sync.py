@@ -5,7 +5,10 @@ Usage: python3 scripts/koreader_sync.py <statistics.sqlite3> [data_dir]
 
 Tạo ra:
   data/reading_log.json  {"YYYY-MM-DD": số trang đọc trong ngày}  -> heatmap
-  data/koreader.json     {"current": {...}, "books": [...]}         -> mục "Đang đọc"
+  data/koreader.json     {"current": {...}, "books": [...]}         -> mục "Đang đọc" / "Đã đọc"
+
+Trạng thái "Book finished" của KOReader nằm trong .sdr/metadata.lua trên máy, không có trong
+statistics.sqlite3, nên coi sách là đọc xong khi đã đọc tới trang cuối (progress 100%).
 """
 import json
 import sqlite3
@@ -37,6 +40,7 @@ def main(db_path, data_dir):
     # nên đổi cỡ chữ giữa chừng không làm lệch số trang.
     pages_per_day = {}
     max_page = {}
+    days = {}  # id_book -> (ngày đọc đầu tiên, ngày đọc gần nhất)
     seen = set()
     for row in con.execute("SELECT id_book, page, start_time FROM page_stat"):
         if row["id_book"] not in books:
@@ -47,19 +51,25 @@ def main(db_path, data_dir):
             seen.add(key)
             pages_per_day[day] = pages_per_day.get(day, 0) + 1
         max_page[row["id_book"]] = max(max_page.get(row["id_book"], 0), row["page"])
+        first, last = days.get(row["id_book"], (day, day))
+        days[row["id_book"]] = (min(first, day), max(last, day))
 
     book_list = []
     for book_id, b in books.items():
         if not b["total_read_pages"]:
             continue
         pages = b["pages"] or 0
-        progress = round(100 * max_page.get(book_id, 0) / pages) if pages else 0
+        progress = min(round(100 * max_page.get(book_id, 0) / pages), 100) if pages else 0
+        started, last_read = days.get(book_id, (None, None))
         book_list.append({
             "title": b["title"].strip(),
             # authors có thể nhiều dòng ("Tác giả\nDịch giả") -> lấy dòng đầu
             "author": (b["authors"] or "").split("\n")[0].strip(),
             "pages": pages,
-            "progress": min(progress, 100),
+            "progress": progress,
+            "finished": progress >= 100,
+            "startDate": started,
+            "lastReadDate": last_read,
             "readMinutes": round((b["total_read_time"] or 0) / 60),
             "lastOpen": datetime.fromtimestamp(b["last_open"], TZ).isoformat(),
         })
@@ -69,11 +79,13 @@ def main(db_path, data_dir):
     (out / "reading_log.json").write_text(
         json.dumps(dict(sorted(pages_per_day.items())), indent=2) + "\n")
     (out / "koreader.json").write_text(json.dumps({
-        "current": book_list[0] if book_list else None,
+        # Cuốn đang đọc = mở gần nhất mà chưa đọc xong
+        "current": next((b for b in book_list if not b["finished"]), None),
         "books": book_list,
     }, ensure_ascii=False, indent=2) + "\n")
 
-    print(f"{len(pages_per_day)} ngày, {sum(pages_per_day.values())} trang, {len(book_list)} sách")
+    print(f"{len(pages_per_day)} ngày, {sum(pages_per_day.values())} trang, {len(book_list)} sách, "
+          f"{sum(b['finished'] for b in book_list)} đã đọc xong")
 
 
 if __name__ == "__main__":
