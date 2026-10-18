@@ -519,6 +519,12 @@ a.book-mini:hover .book-mini-cover {
   text-overflow: ellipsis;
 }
 
+.book-mini-time {
+  font-size: 0.72rem;
+  color: #10b981;
+  line-height: 1.3;
+}
+
 .book-mini-rating {
   color: #f59e0b;
   font-size: 0.8rem;
