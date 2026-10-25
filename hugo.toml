@@ -48,6 +48,9 @@ custom_css = ["css/theme-override.css"]
 description = "A simple, minimal blog for those who love text."
 footer = "Open-Source | [GitHub](https://github.com/clgp-aint-cool)"
 
+[params.books]
+readingMinProgress = 5 # sách KOReader dưới 5% chưa tính là "Đang đọc", xếp vào TBR
+
 [params.giscus]
 repo = "clgp-aint-cool/clgp-aint-cool.github.io"
 repoId = "R_kgDOQVBefA" 

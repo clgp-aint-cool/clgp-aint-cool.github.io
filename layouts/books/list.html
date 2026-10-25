@@ -11,6 +11,9 @@
   {{ $library := site.Data.kindle_library.books | default slice }}
   {{ $covers := $library | append (site.Data.koofr_library.books | default slice) }}
 
+  {{/* Sách KOReader chưa đọc xong mà tiến độ dưới ngưỡng này (%) -> coi là mới mở thử, xếp vào TBR */}}
+  {{ $minProgress := site.Params.books.readingMinProgress | default 5 }}
+
   {{/* Sách KOReader theo tên (lowercase) */}}
   {{ $koBooks := dict }}
   {{ range site.Data.koreader.books }}{{ $koBooks = merge $koBooks (dict (lower .title) .) }}{{ end }}
@@ -54,6 +57,21 @@
        + sách trên Koofr chưa mở (data/koofr_library.json, sync mỗi đêm) */}}
   {{ $tbr := slice }}
   {{ range site.Data.tbr.books }}{{ $tbr = $tbr | append . }}{{ end }}
+  {{/* + sách KOReader chưa đọc xong, tiến độ dưới $minProgress (có trang riêng status: reading cũng chuyển về TBR) */}}
+  {{ range site.Data.koreader.books }}
+    {{ if and (not .finished) (lt .progress $minProgress) }}
+      {{ $kb := . }}
+      {{ $item := dict "title" .title "author" .author }}
+      {{ range where $covers "title" .title }}{{ $item = merge $item (dict "cover" .cover) }}{{ end }}
+      {{ range $reading }}
+        {{ if eq (lower (trim (.Params.koreadertitle | default .Title) " ")) (lower $kb.title) }}
+          {{ with .Params.coverimage }}{{ $item = merge $item (dict "cover" .) }}{{ end }}
+          {{ $reading = where $reading "RelPermalink" "!=" .RelPermalink }}
+        {{ end }}
+      {{ end }}
+      {{ $tbr = $tbr | append $item }}
+    {{ end }}
+  {{ end }}
   {{ range $library }}
     {{ if not (or .opened .onBlog (index $started (lower .title))) }}
       {{ $tbr = $tbr | append . }}
@@ -65,14 +83,14 @@
   {{ end }}
 
   {{/* ---------- Đang đọc ----------
-       1. Mọi sách KOReader chưa đọc xong (data/koreader.json, sync tự động), mở gần nhất lên đầu.
+       1. Sách KOReader chưa đọc xong, tiến độ từ $minProgress% (data/koreader.json, sync tự động), mở gần nhất lên đầu.
           Nếu có trang Hugo cùng tên (hoặc front matter koreaderTitle) thì lấy bìa + link của trang đó;
           trang đó không để status: reading thì bỏ qua.
        2. Các trang Hugo có status: reading không có trong KOReader (sách giấy...).
   */}}
   {{ $koCards := slice }}
   {{ range site.Data.koreader.books }}
-    {{ if not .finished }}
+    {{ if and (not .finished) (ge .progress $minProgress) }}
       {{ $kb := . }}
       {{ $page := false }}
       {{ range $books }}
