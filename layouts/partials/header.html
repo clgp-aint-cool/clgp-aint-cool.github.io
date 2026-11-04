@@ -35,6 +35,12 @@
           </li>
           {{end}}
 
+          <li class="pull-right">
+            <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Đổi chế độ sáng / tối" title="Đổi chế độ sáng / tối">
+              <span class="theme-icon-dark">☾</span><span class="theme-icon-light">☀</span>
+            </button>
+          </li>
+
           {{ range .Site.Menus.feed }}
           {{ $name := lower .Name}}
           <li class="pull-right">

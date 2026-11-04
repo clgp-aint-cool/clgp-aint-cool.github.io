@@ -1,0 +1,23 @@
+{{ partial "header.html" . }}
+
+<div class="content-wrapper">
+  <div class="cv-header">
+    <h1>{{ .Title | markdownify }}</h1>
+    {{ with .Params.pdf }}
+    <div class="cv-actions">
+      <a class="cv-button" href="{{ . | relURL }}" download>⬇ Tải PDF</a>
+      <a class="cv-button cv-button-ghost" href="{{ . | relURL }}" target="_blank" rel="noopener">Mở tab mới ↗</a>
+    </div>
+    {{ end }}
+  </div>
+
+  {{ .Content }}
+
+  {{ with .Params.pdf }}
+  <object class="cv-viewer" data="{{ . | relURL }}#view=FitH" type="application/pdf">
+    <p>Trình duyệt không xem trực tiếp được PDF. <a href="{{ . | relURL }}">Tải CV tại đây</a>.</p>
+  </object>
+  {{ end }}
+</div>
+
+{{ partial "footer.html" . }}
