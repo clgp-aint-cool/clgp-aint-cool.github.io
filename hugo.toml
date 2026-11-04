@@ -39,8 +39,8 @@ name = "Gears"
 url = "/gears/"
 weight = 3
 [[menu.main]]
-name = "Company Lunch"
-url = "/company-lunch/"
+name = "CV"
+url = "/cv/"
 weight = 4
 
 [params]

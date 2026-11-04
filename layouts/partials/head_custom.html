@@ -1,0 +1,42 @@
+<script>
+  /* Chế độ sáng / tối: CSS viết theo @media (prefers-color-scheme), script này ép các khối media đó
+     theo lựa chọn lưu trong localStorage ("light" | "dark"); chưa chọn thì theo hệ thống. */
+  (function () {
+    var KEY = "theme";
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function current() {
+      return localStorage.getItem(KEY) || (mq.matches ? "dark" : "light");
+    }
+
+    function apply(theme) {
+      for (var i = 0; i < document.styleSheets.length; i++) {
+        var rules;
+        try { rules = document.styleSheets[i].cssRules; } catch (e) { continue; }
+        for (var j = 0; j < rules.length; j++) {
+          var m = rules[j].media;
+          if (!m) continue;
+          var text = rules[j]._origMedia || m.mediaText;
+          if (!/prefers-color-scheme/.test(text)) continue;
+          rules[j]._origMedia = text; // giữ điều kiện gốc để đổi qua lại nhiều lần
+          var want = /dark/.test(text) ? "dark" : "light";
+          var forced = text.replace(/\(\s*prefers-color-scheme:\s*(dark|light)\s*\)/, want === theme ? "all" : "not all");
+          m.mediaText = forced;
+        }
+      }
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.style.colorScheme = theme;
+      var frame = document.querySelector("iframe.giscus-frame");
+      if (frame) frame.contentWindow.postMessage({ giscus: { setConfig: { theme: theme } } }, "https://giscus.app");
+    }
+
+    window.toggleTheme = function () {
+      var next = current() === "dark" ? "light" : "dark";
+      localStorage.setItem(KEY, next);
+      apply(next);
+    };
+
+    apply(current());
+    mq.addEventListener("change", function () { if (!localStorage.getItem(KEY)) apply(current()); });
+  })();
+</script>
