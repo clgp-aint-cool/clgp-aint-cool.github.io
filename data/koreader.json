@@ -1,16 +1,27 @@
 {
   "current": {
-    "title": "Cứu tinh xứ cát",
-    "author": "Frank Herbert",
-    "pages": 797,
-    "progress": 0,
+    "title": "bimatnaoko",
+    "author": "HIGASHINO KEIGO",
+    "pages": 527,
+    "progress": 17,
     "finished": false,
     "startDate": "2026-11-08",
-    "lastReadDate": "2026-11-08",
-    "readMinutes": 0,
-    "lastOpen": "2026-11-08T22:55:11+07:00"
+    "lastReadDate": "2026-11-10",
+    "readMinutes": 66,
+    "lastOpen": "2026-11-10T21:03:10+07:00"
   },
   "books": [
+    {
+      "title": "bimatnaoko",
+      "author": "HIGASHINO KEIGO",
+      "pages": 527,
+      "progress": 17,
+      "finished": false,
+      "startDate": "2026-11-08",
+      "lastReadDate": "2026-11-10",
+      "readMinutes": 66,
+      "lastOpen": "2026-11-10T21:03:10+07:00"
+    },
     {
       "title": "Cứu tinh xứ cát",
       "author": "Frank Herbert",
