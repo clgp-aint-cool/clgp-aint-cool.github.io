@@ -1,0 +1,187 @@
+{{/*
+  Khung terminal giới thiệu ở trang chủ.
+  Thông tin cá nhân: front matter `profile:` trong content/_index.md
+  Streak + sách đang đọc lấy từ data/reading_log.json, data/koreader.json
+  Khi load tự gõ `neofetch` và `ls`, sau đó người xem gõ lệnh được (help, cd, cat cv.pdf, ...)
+*/}}
+{{ $p := .Params.profile | default dict }}
+{{ $age := $p.age | default 21 }}
+{{ $since := time.AsTime ($p.since | default "2026-07-01") }}
+{{ $streak := partial "reading-streak.html" . }}
+{{ $reading := "" }}
+{{ with site.Data.koreader.current }}{{ $reading = printf "%s · %v%%" .title .progress }}{{ end }}
+{{ $host := "blog" }}
+
+<section class="term" aria-label="Giới thiệu, hiển thị như cửa sổ terminal"
+         data-since="{{ $since.Format "2006-01-02" }}" data-host="{{ $host }}">
+  <div class="term-bar" aria-hidden="true">
+    <span class="term-dot term-dot-red"></span><span class="term-dot term-dot-yellow"></span><span class="term-dot term-dot-green"></span>
+    <span class="term-title">clgp@{{ $host }}: ~ — zsh</span>
+  </div>
+
+  <div class="term-body">
+    <div class="term-out">
+      <div class="term-line term-cmd" data-cmd="neofetch"><span class="term-ps1">clgp@{{ $host }} ~ %</span> <span class="term-typed">neofetch</span></div>
+      <div class="term-block term-neofetch">
+        <pre class="term-logo" aria-hidden="true">   ___ _    ___ ___
+  / __| |  / __| _ \
+ | (__| |_| (_ |  _/
+  \___|____\___|_|  </pre>
+        <dl class="term-info">
+          <dt class="term-info-head">clgp@{{ $host }}</dt><dd></dd>
+          <dt>OS</dt><dd>Human v{{ $age }} ({{ $p.location }})</dd>
+          <dt>Role</dt><dd>{{ $p.role }} @ {{ $p.company }}</dd>
+          <dt>Study</dt><dd>Senior @ HCMUS</dd>
+          <dt>Uptime</dt><dd><span class="term-uptime">—</span> (từ {{ $since.Format "02/01/2006" }})</dd>
+          {{ with $reading }}<dt>Reading</dt><dd><a href="/books/">{{ . }}</a></dd>{{ end }}
+          <dt>Streak</dt><dd>🔥 {{ $streak }} ngày đọc liên tiếp</dd>
+          <dt>Shell</dt><dd>zsh + ☕ × 3/ngày</dd>
+          <dt>Memory</dt><dd>[<span class="term-red">██████████</span>] <span class="term-red term-blink">137% OVERLOADED</span> (đang swap sang ☕)</dd>
+          <dt class="term-swatches" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></dt><dd></dd>
+        </dl>
+      </div>
+
+      <div class="term-line term-cmd" data-cmd="ls"><span class="term-ps1">clgp@{{ $host }} ~ %</span> <span class="term-typed">ls</span></div>
+      <div class="term-block term-ls">
+        <a href="/blog/">blog/</a><a href="/books/">books/</a><a href="/gears/">gears/</a><a href="/cv/" class="term-file">cv.pdf</a>
+      </div>
+    </div>
+
+    <form class="term-prompt" autocomplete="off">
+      <label><span class="term-ps1">clgp@{{ $host }} ~ %</span>
+        <input type="text" aria-label="Gõ lệnh, thử help" spellcheck="false" autocapitalize="off" placeholder="gõ help rồi Enter">
+      </label>
+    </form>
+  </div>
+</section>
+
+<script>
+(function () {
+  var root = document.querySelector(".term");
+  if (!root) return;
+  var out = root.querySelector(".term-out");
+  var body = root.querySelector(".term-body");
+  var form = root.querySelector(".term-prompt");
+  var input = form.querySelector("input");
+  var ps1 = root.querySelector(".term-ps1").textContent;
+  // Giữ bản sao output gốc để `clear` xong vẫn chạy lại được ls / neofetch
+  var lsHTML = root.querySelector(".term-ls").outerHTML;
+  var neoHTML;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var days = Math.floor((Date.now() - new Date(root.dataset.since + "T00:00:00+07:00")) / 86400000);
+  root.querySelector(".term-uptime").textContent = days + " ngày";
+  neoHTML = root.querySelector(".term-neofetch").outerHTML;
+
+  var dirs = { blog: "/blog/", books: "/books/", gears: "/gears/", cv: "/cv/", "~": "/", home: "/" };
+  var cmds = {
+    help: function () {
+      return "Lệnh: whoami, ls, cd &lt;thư mục&gt;, cat cv.pdf, neofetch, date, history, clear, sudo …\n" +
+             "Tab để tự hoàn thành, ↑/↓ để xem lại lệnh cũ.";
+    },
+    whoami: function () { return "clgp: Cao Lê Gia Phú, Cloud Engineer ở CMC Telecom, nghiện cà phê."; },
+    ls: function () { return lsHTML; },
+    neofetch: function () { return neoHTML; },
+    date: function () { return new Date().toString(); },
+    history: function () { return hist.map(function (h, i) { return "  " + (i + 1) + "  " + esc(h); }).join("\n"); },
+    pwd: function () { return "/home/clgp"; },
+    echo: function (a) { return esc(a.join(" ")); },
+    cd: function (a) {
+      var d = (a[0] || "~").replace(/\/$/, "");
+      if (dirs[d]) { go(dirs[d]); return "→ " + dirs[d]; }
+      return "cd: no such file or directory: " + esc(a[0]);
+    },
+    cat: function (a) {
+      if (/^cv(\.pdf)?$/.test(a[0] || "")) { go("/cv/"); return "Đang mở CV…"; }
+      if (!a[0]) return "cat: thiếu tên file";
+      if (dirs[a[0].replace(/\/$/, "")]) return "cat: " + esc(a[0]) + ": Is a directory";
+      return "cat: " + esc(a[0]) + ": No such file or directory";
+    },
+    sudo: function (a) {
+      if (/hire/.test(a.join(" "))) { go("/cv/"); return "[sudo] Quyền được cấp. Đang mở CV…"; }
+      return "clgp is not in the sudoers file. This incident will be reported. 🚨";
+    },
+    rm: function () { return "Nice try. 😄"; },
+    exit: function () { return "Không thoát được đâu, ở lại đọc blog đi."; },
+    vim: function () { return "Bạn vừa vào vim. Chúc may mắn thoát ra. (gợi ý: thử nhấn F5)"; },
+    coffee: function () { return "☕ Đang pha… 100% [████████████] done."; }
+  };
+  cmds.open = cmds.cd;
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function go(url) { setTimeout(function () { window.location.href = url; }, 500); }
+  function scroll() { body.scrollTop = body.scrollHeight; }
+
+  function print(cmd, html) {
+    var line = document.createElement("div");
+    line.className = "term-line";
+    line.innerHTML = '<span class="term-ps1">' + esc(ps1) + "</span> " + esc(cmd);
+    out.appendChild(line);
+    if (html) {
+      var block = document.createElement("div");
+      block.className = "term-block";
+      block.innerHTML = html;
+      out.appendChild(block);
+    }
+    scroll();
+  }
+
+  var hist = [], pos = 0;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var raw = input.value.trim();
+    input.value = "";
+    if (!raw) return print("", "");
+    hist.push(raw); pos = hist.length;
+    var parts = raw.split(/\s+/), name = parts[0].toLowerCase();
+    if (name === "clear") { out.innerHTML = ""; return; }
+    var fn = cmds[name];
+    print(raw, fn ? fn(parts.slice(1)) : "zsh: command not found: " + esc(name) + "  (thử <b>help</b>)");
+  });
+
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowUp" && pos > 0) { e.preventDefault(); input.value = hist[--pos]; }
+    else if (e.key === "ArrowDown") { e.preventDefault(); pos = Math.min(pos + 1, hist.length); input.value = hist[pos] || ""; }
+    else if (e.key === "Tab") {
+      // Hoàn thành tên lệnh, hoặc thư mục sau cd/cat
+      var v = input.value, m = v.match(/^(\S*)$|^(\S+\s+)(\S*)$/);
+      if (!m) return;
+      var pool = m[1] !== undefined ? Object.keys(cmds) : Object.keys(dirs).filter(function (d) { return /^\w/.test(d) && d !== "home"; }).map(function (d) { return d === "cv" ? "cv.pdf" : d + "/"; });
+      var word = m[1] !== undefined ? m[1] : m[3];
+      var hit = pool.filter(function (c) { return c.indexOf(word) === 0; });
+      e.preventDefault();
+      if (hit.length === 1) input.value = (m[2] || "") + hit[0] + (m[1] !== undefined ? " " : "");
+    }
+  });
+  // Click chỗ trống trong terminal để focus ô lệnh (không cướp focus khi đang bôi đen chữ)
+  body.addEventListener("click", function (e) {
+    if (e.target.closest("a") || String(window.getSelection())) return;
+    input.focus({ preventScroll: true });
+  });
+
+  // Hiệu ứng gõ lệnh lúc load: ẩn output, gõ từng ký tự rồi hiện kết quả
+  if (reduce) return;
+  var steps = Array.prototype.slice.call(out.querySelectorAll(".term-cmd"));
+  steps.forEach(function (c) {
+    c.querySelector(".term-typed").textContent = "";
+    c.hidden = true;
+    c.nextElementSibling.hidden = true;
+  });
+  form.hidden = true;
+  (function run(i) {
+    if (i >= steps.length) { form.hidden = false; return; }
+    var c = steps[i], text = c.dataset.cmd, typed = c.querySelector(".term-typed"), k = 0;
+    c.hidden = false;
+    c.classList.add("is-typing");
+    (function type() {
+      typed.textContent = text.slice(0, ++k);
+      if (k < text.length) return setTimeout(type, 70 + Math.random() * 60);
+      setTimeout(function () {
+        c.classList.remove("is-typing");
+        c.nextElementSibling.hidden = false;
+        setTimeout(function () { run(i + 1); }, 450);
+      }, 250);
+    })();
+  })(0);
+})();
+</script>
